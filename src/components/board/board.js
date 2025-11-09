@@ -3,6 +3,8 @@ import BottomMenu from '../bottomMenu/bottomMenu'
 import styles from './board.module.css'
 import TextElement from '../textElement.js/textElement'
 import TextMenu from '../bottomMenu/textMenu'
+import TextElementClass from '../textElement.js/textElementClass'
+
 
 function Board()
 {
@@ -13,13 +15,11 @@ function Board()
 
     const addTextItem = () =>
     {
-        const id = Math.floor(Math.random()*1000000)
+        
         const localTextElement = [...textElements]
-        localTextElement.push({
-            class:'',
-            id,
-        })
-        setEdit(id)
+        const item = new TextElementClass()
+        localTextElement.push(item)
+        setEdit(item.id)
         setTextElements(localTextElement)
     }
 
@@ -41,7 +41,7 @@ function Board()
     return(
         <>
             <div className={styles.board} ref={boardRef} onClick={boardClicked}>
-                {textElements.map(x=><TextElement setEdit={setEdit} key={x.id} board={boardRef.current} clearElementEdit={clearElementEdit} id={x.id}/>)}
+                {textElements.map(x=><TextElement setEdit={setEdit} key={x.id} board={boardRef.current} clearElementEdit={clearElementEdit} id={x.id} item={x} />)}
             </div>
 
             <BottomMenu addTextItem={addTextItem} clearElementEdit={clearElementEdit} display={edit === 0}/>

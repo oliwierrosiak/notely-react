@@ -14,6 +14,7 @@ function TextElement(props)
         const top = Math.round(mouseEvent.clientY/window.innerHeight*100)
         e.target.style.left = `${left}%`
         e.target.style.top = `${top}%`
+        props.item.setPosition(left,top)
     }
     
     const changePosition = (e)=>{
@@ -45,6 +46,7 @@ function TextElement(props)
         const height = (e.clientY-containerRef.current.offsetTop)/window.innerHeight*200
         containerRef.current.style.width = `${width}rem`
         containerRef.current.style.height = `${height}vh`
+        props.item.setSizes(width,height)
     }
 
    const resizeMouseUp = ()=>{
@@ -57,8 +59,30 @@ function TextElement(props)
         props.board.addEventListener('mouseup',resizeMouseUp)
     }
 
+    const getStyles = () =>{
+        const object = {}
+        if(props.item.width)
+        {
+            object.width = props.item.width
+        }
+        if(props.item.height)
+        {
+            object.height = props.item.height
+        }
+        if(props.item.left)
+        {
+            object.left = props.item.left
+        }
+        if(props.item.top)
+        {
+            object.top = props.item.top
+        }
+        console.log(object)
+        return object
+    }
+
     return(
-        <div className={`element editOn ${styles.element}`} onMouseDown={changePosition} onMouseUp={setSolidPosition} onClick={checkEditMode} ref={containerRef}>
+        <div className={`element editOn ${styles.element}`} style={getStyles()} onMouseDown={changePosition} onMouseUp={setSolidPosition} onClick={checkEditMode} ref={containerRef}>
             <textarea placeholder="Wprowadź tekst..." className={styles.textArea} onFocus={e=>e.target.placeholder = ''} onBlur={e=>e.target.placeholder = 'Wprowadź tekst...'}></textarea>
 
             
