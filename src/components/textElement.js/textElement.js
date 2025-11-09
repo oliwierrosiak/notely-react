@@ -1,4 +1,4 @@
-import { useEffect, useRef } from 'react'
+import { useEffect, useRef, useState } from 'react'
 import styles from './textElement.module.css'
 
 function TextElement(props)
@@ -6,6 +6,8 @@ function TextElement(props)
 
     const containerRef = useRef()
 
+    const [textValue,setTextValue] = useState('') 
+    
     let moveHandler, resizeHandler
 
     const moveElement = (e,mouseEvent) =>
@@ -59,33 +61,14 @@ function TextElement(props)
         props.board.addEventListener('mouseup',resizeMouseUp)
     }
 
-    const getStyles = () =>{
-        const object = {}
-        if(props.item.width)
-        {
-            object.width = props.item.width
-        }
-        if(props.item.height)
-        {
-            object.height = props.item.height
-        }
-        if(props.item.left)
-        {
-            object.left = props.item.left
-        }
-        if(props.item.top)
-        {
-            object.top = props.item.top
-        }
-        console.log(object)
-        return object
-    }
+    useEffect(()=>{
+        props.item.setText(textValue)
+    },[textValue])
 
     return(
-        <div className={`element editOn ${styles.element}`} style={getStyles()} onMouseDown={changePosition} onMouseUp={setSolidPosition} onClick={checkEditMode} ref={containerRef}>
-            <textarea placeholder="Wprowadź tekst..." className={styles.textArea} onFocus={e=>e.target.placeholder = ''} onBlur={e=>e.target.placeholder = 'Wprowadź tekst...'}></textarea>
+        <div className={`element editOn ${styles.element}`} style={props.item.getStyles()} onMouseDown={changePosition} onMouseUp={setSolidPosition} onClick={checkEditMode} ref={containerRef}>
+            <textarea placeholder="Wprowadź tekst..." onChange={e=>setTextValue(e.target.value)} value={textValue} className={styles.textArea} onFocus={e=>e.target.placeholder = ''} onBlur={e=>e.target.placeholder = 'Wprowadź tekst...'}></textarea>
 
-            
             <div className={styles.resize} onMouseDown={resizeElement} onMouseUp={resizeMouseUp}></div>
         
         </div>
