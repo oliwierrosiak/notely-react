@@ -23,3 +23,266 @@ html
 {
     display: block;
 }
+.bold>textarea
+{
+  font-weight: 900;
+}
+.fontSize24>textarea
+{
+  font-size: 2rem;
+}
+.fontSize28>textarea
+{
+  font-size: 3rem;
+}
+.fontSize32>textarea
+{
+  font-size: 4rem;
+}
+.fontSize20>textarea
+{
+  font-size: 1rem;
+}
+.fontSize18>textarea
+{
+  font-size: .9rem;
+}
+.fontSize16>textarea
+{
+  font-size: .8rem;
+}
+.fontSize14>textarea
+{
+  font-size: .7rem;
+}
+.fontSize12>textarea
+{
+  font-size: .6rem;
+}
+.fontSize10>textarea
+{
+  font-size: .5rem;
+}
+.italic>textarea
+{
+  font-style: italic;
+}
+.alignLeft>textarea
+{
+  text-align: left;
+}
+.alignCenter>textarea
+{
+  text-align: center;
+}
+.alignRight>textarea
+{
+  text-align: right;
+}
+.alignJustify>textarea
+{
+  text-align: justify;
+}
+.colorBlack>textarea::placeholder,
+.colorBlack>textarea
+{
+  color: black;
+}
+.colorWhite>textarea::placeholder,
+.colorWhite>textarea
+{
+  color: white;
+}
+.colorRed>textarea::placeholder,
+.colorRed>textarea
+{
+  color: red;
+}
+.colorGreen>textarea::placeholder,
+.colorGreen>textarea
+{
+  color: rgb(0, 218, 0);
+}
+.colorBlue>textarea::placeholder,
+.colorBlue>textarea
+{
+   color: rgb(0, 55, 255);
+}
+.colorYellow>textarea::placeholder,
+.colorYellow>textarea
+{
+  color: yellow;
+}
+.colorOrange>textarea::placeholder,
+.colorOrange>textarea
+{
+   color: rgb(255, 183, 0);
+}
+.bgRed1
+{
+  background-color: rgb(113, 0, 0);
+}
+.bgRed2
+{
+  background-color: rgb(189, 0, 0);
+}
+.bgRed3
+{
+  background-color: rgb(255, 0, 0);
+}
+.bgRed4
+{
+  background-color: rgb(252, 29, 29);
+}
+.bgRed5
+{
+  background-color: rgb(253, 77, 77);
+}
+.bgRed6
+{
+  background-color: rgb(249, 136, 136);
+}
+.bgOrange1
+{
+  background-color: rgb(142, 92, 0);
+}
+.bgOrange2
+{
+  background-color: rgb(199, 129, 0);
+}
+.bgOrange3
+{
+  background-color: rgb(255, 166, 0);
+}
+.bgOrange4
+{
+  background-color: rgb(253, 180, 43);
+}
+.bgOrange5
+{
+  background-color: rgb(255, 190, 69);
+}
+.bgOrange6
+{
+  background-color: rgb(247, 198, 105);
+}
+.bgYellow1
+{
+  background-color: rgb(105, 105, 0);
+}
+.bgYellow2
+{
+  background-color: rgb(179, 179, 0);
+}
+.bgYellow3
+{
+  background-color: rgb(255, 255, 0);
+}
+.bgYellow4
+{
+  background-color: rgb(255, 255, 63);
+}
+.bgYellow5
+{
+  background-color: rgb(249, 249, 91);
+}
+.bgYellow6
+{
+  background-color: rgb(248, 248, 131);
+}
+.bgGreen1
+{
+  background-color: rgb(0, 65, 0);
+}
+.bgGreen2
+{
+  background-color: rgb(0, 131, 0);
+}
+.bgGreen3
+{
+  background-color: rgb(0, 255, 0);
+}
+.bgGreen4
+{
+  background-color: rgb(71, 249, 71);
+}
+.bgGreen5
+{
+  background-color: rgb(139, 255, 139);
+}
+.bgGreen6
+{
+  background-color: rgb(150, 255, 150);
+}
+.bgBlue1
+{
+  background-color: rgb(0, 0, 110);
+}
+.bgBlue2
+{
+  background-color: rgb(0, 0, 169);
+}
+.bgBlue3
+{
+  background-color: rgb(0, 0, 255);
+}
+.bgBlue4
+{
+  background-color: rgb(40, 40, 255);
+}
+.bgBlue5
+{
+  background-color: rgb(77, 77, 255);
+}
+.bgBlue6
+{
+  background-color: rgb(133, 133, 250);
+}
+.bgPink1
+{
+  background-color: rgb(100, 0, 88);
+}
+.bgPink2
+{
+  background-color: rgb(154, 0, 136);
+}
+.bgPink3
+{
+  background-color: rgb(255, 0, 225);
+}
+.bgPink4
+{
+  background-color: rgb(237, 54, 253);
+}
+.bgPink5
+{
+  background-color: rgb(255, 112, 238);
+}
+.bgPink6
+{
+  background-color: rgb(250, 133, 236);
+}
+.bgBlack1
+{
+  background-color: black;
+}
+.bgBlack2
+{
+  background-color: rgb(54, 54, 54);
+}
+.bgBlack3
+{
+  background-color: rgb(148, 148, 148);
+}
+.bgBlack4
+{
+  background-color: rgb(192, 192, 192);
+}
+.bgBlack5
+{
+  background-color: rgb(255, 255, 255);
+}
+.bgBlack6
+{
+  background-color: rgba(0, 0, 0, 0);
+}

@@ -2,7 +2,7 @@ import { useEffect, useId, useRef, useState } from 'react'
 import BottomMenu from '../bottomMenu/bottomMenu'
 import styles from './board.module.css'
 import TextElement from '../textElement.js/textElement'
-import TextMenu from '../bottomMenu/textMenu'
+import TextMenu from '../bottomMenu/textMenu/textMenu'
 import TextElementClass from '../textElement.js/textElementClass'
 
 
@@ -12,14 +12,16 @@ function Board()
 
     const [textElements,setTextElements] = useState([])
     const [edit,setEdit] = useState(0)
+    const [editUpdate,setEditUpdate] = useState(true)
+
 
     const addTextItem = () =>
     {
         
         const localTextElement = [...textElements]
-        const item = new TextElementClass()
+        const item = new TextElementClass(['fontSize18','alignLeft','colorBlack','bgYellow6'])
         localTextElement.push(item)
-        setEdit(item.id)
+        setEdit(item)
         setTextElements(localTextElement)
     }
 
@@ -46,7 +48,7 @@ function Board()
 
             <BottomMenu addTextItem={addTextItem} clearElementEdit={clearElementEdit} display={edit === 0}/>
 
-            <TextMenu display={edit!==0}/>
+            <TextMenu display={edit!==0} element={edit} editUpdate={editUpdate} setEditUpdate={setEditUpdate} board={boardRef}/>
             
         </>
     )
