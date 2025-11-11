@@ -4,14 +4,17 @@
     bottom: 2rem;
     left:50%;
     translate: -50% 0;
-    height: 3rem;
-    background-color: blue;
+    height: 3.8rem;
+    padding: .3rem .5rem;
+    background-color: rgb(76, 76, 76);
+    border-radius: 1rem;
     transform: translate(0,300%);
     transition: all .5s ease;
     display: flex;
     justify-content: center;
     align-items: center;
-    gap:2rem;
+    gap:.8rem;
+    color: white;
 }
 .display
 {
@@ -19,30 +22,47 @@
 }
 .menuItem
 {
-    width: 3rem;
-    height: 3rem;
-    background-color: yellow;
+    width: 2.5rem;
+    height: 2.5rem;
+    background-color: rgb(117, 117, 117);
     display: flex;
     justify-content: center;
     align-items: center;
-    border-radius: .5rem;
+    border-radius: 1rem;
     cursor: pointer;
+    transition: all .3s ease;
+}
+.menuItem:hover
+{
+    background-color: rgb(146, 146, 146);
+}
+.boldItem
+{
+    font-size: 1.4rem;
+    font-weight: 900;
 }
 .marked
 {
-    background-color: grey;
+    background-color: rgb(36, 36, 36);
+
+}
+.marked:hover
+{
+    background-color: rgb(36, 36, 36);
 }
 .fontSizeItem
 {
     position: relative;
+    font-size: 1.4rem;
+    font-weight: 900;
 }
 .fontSizeMenu
 {
     position: absolute;
-    bottom: 3.2rem;
+    bottom: 3.3rem;
     left:0;
     right: 0;
-    background-color: rgb(87, 87, 87);
+    background-color: rgb(76, 76, 76);
     display: flex;
     flex-direction: column;
     padding: .3rem 0;
@@ -57,15 +77,17 @@
     font-size: 1.5rem;
     cursor: pointer;
     padding: .2rem 0;
+    font-size: 1.2rem;
 }
-
 .option:hover
 {
-    background-color: grey;
+    background-color: rgb(117, 117, 117);
 }
 .italic
 {
     font-style: italic;
+    font-size: 1.6rem;
+    font-weight: 900;
 }
 .align
 {
@@ -74,11 +96,11 @@
 .alignMenu
 {
     position: absolute;
-    bottom: 3.2rem;
+    bottom: 3.3rem;
     display: flex;
     justify-content: center;
     align-items: center;
-    background: rgb(92, 92, 92);
+    background: rgb(76, 76, 76);
     border-radius: .5rem;
     overflow: hidden;
 }
@@ -93,24 +115,26 @@
 }
 .alignItem:hover
 {
-    background-color: grey;
+    background-color: rgb(117, 117, 117);
 }
 .selected
 {
-    background-color: rgb(155, 155, 155) !important;
+    background-color: rgb(146, 146, 146) !important;
     cursor: default;
 }
 .color
 {
     position: relative;
+    font-size: 1.7rem;
+    font-weight: 900;
 }
 .colorContainer
 {
     position: absolute;
-    bottom: 3.2rem;
+    bottom: 3.3rem;
     left:-5.5rem;
     height: 2rem;
-    background-color: rgb(92, 92, 92);
+    background-color: rgb(76, 76, 76);
     display: flex;
     justify-content: center;
     align-items: center;
@@ -125,10 +149,11 @@
     justify-content: center;
     align-items: center;
     font-weight: 900;
+    font-size: 1.6rem;
 }
 .colorItem:hover
 {
-    background-color: grey;
+    background-color: rgb(117, 117, 117);
 }
 .white
 {
@@ -164,10 +189,10 @@
 }
 .colorPreview
 {
-    width: 2rem;
-    height: 2rem;
+    width: 1.6rem;
+    height: 1.6rem;
     border-radius: 50%;
-    border: .2rem solid grey;
+    border: .25rem solid rgb(65, 65, 65);
 }
 .bgColorContainer
 {
@@ -177,20 +202,20 @@
     grid-auto-flow: column;
     grid-template-columns: 1fr 1fr 1fr 1fr 1fr 1fr;
     grid-template-rows: 1fr 1fr 1fr 1fr 1fr 1fr;
-    background-color: rgb(92, 92, 92);
+    background-color: rgb(76, 76, 76);
     border-radius: .5rem;
     padding: .2rem;
 }
 .bgColorMenuItem
 {
-    width: 1.5rem;
-    height: 1.5rem;
-    border: .3rem solid rgb(92, 92, 92);
+    width: 1.8rem;
+    height: 1.8rem;
+    border: .3rem solid rgb(76, 76, 76);
     border-radius: .5rem;
 }
 .bgColorMenuItem:hover
 {
-    border: .3rem solid grey;
+    border: .3rem solid rgb(117, 117, 117);
 }
 .transparentImg
 {
@@ -201,4 +226,60 @@
 .selectedBgColorItem
 {
     border: .3rem solid rgb(217, 217, 217) !important;
+}
+.deleteItem
+{
+    border-radius: 50%;
+}
+.deleteItem:hover>.deleteSVG
+{
+    fill: red;
+}
+.deleteSVG
+{
+    fill: rgb(255, 0, 0);
+    width: 55%;
+    height: 55%;
+    transition: fill .3s ease;
+}
+.line
+{
+    width: .3rem;
+    height: 80%;
+    background-color: rgb(117, 117, 117);
+    border-radius: 10px;
+}
+.fontFamilyItem
+{
+    width: 12rem;
+    position: relative;
+    padding: 0 .5rem;
+}
+.fontFamilyMenuContainer
+{
+    position: absolute;
+    bottom: 3.2rem;
+    left:0;
+    background-color: rgb(76, 76, 76);
+    right: 0;
+    display: flex;
+    flex-direction: column;
+    padding: .3rem 0;
+    border-radius: .5rem;
+    color: white;
+    overflow: hidden;
+}
+.fontFamilyHeader
+{
+    font-size: 1.1rem;
+}
+.fontFamilyMenuItem
+{
+    padding: .2rem 0;
+    width: 100%;
+    text-align: center;
+}
+.fontFamilyMenuItem:hover
+{
+    background-color: rgb(117, 117, 117);
 }

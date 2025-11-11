@@ -2,9 +2,17 @@ import { useEffect, useState } from 'react'
 import styles from './textMenu.module.css'
 import ColorMenu from './colorMenu'
 import BgColorMenu from './bgColorMenu'
+import DeleteIcon from '../../../assets/svg/deleteIcon'
+import FontFamilyMenu from './fontFamilyMenu'
+import AlignCenterIcon from '../../../assets/svg/alignCenterIcon'
+import AlignJustifyIcon from '../../../assets/svg/alignJustifyIcon'
+import AlignLeftIcon from '../../../assets/svg/alignLeftIcon'
+import AlignRightIcon from '../../../assets/svg/alignRightIcon'
 
 function TextMenu(props)
 {
+
+    const availableFontFamily = [{class:'fontArial',text:'Arial'},{class:'fontCentury',text:"Century Gothic"},{class:'fontCourier',text:'Courier New'},{class:'fontGothic',text:'Gothic Light'},{class:'fontGeorgia',text:'Georgia'},{class:'fontImpact',text:'Impact'},{class:'fontLucida',text:'Lucida Console'},{class:'fontLucidaSans',text:'Lucida Sans Unicode'},{class:'fontPalatino',text:'Palatino Linotype'},{class:'fontTahoma',text:'Tahoma'},{class:'fontRoman',text:'Times New Roman'},{class:'fontMS',text:'Trebuchet MS'},{class:'fontVerdana',text:'Verdana'}]
 
     const fontSizeSetter = () =>{
         if(props.element.class)
@@ -13,7 +21,7 @@ function TextMenu(props)
             if(font)
             {
                 const value = font.split("fontSize")[1]
-                return value
+                return Number(value) || 18
 
             }
             else{
@@ -32,7 +40,7 @@ function TextMenu(props)
         {
             const align = props.element.class.find(x=>x.includes('align'))
             const direction = align.split('align')[1].toLowerCase()
-            return direction
+            return direction || "left"
         }
         else
         {
@@ -45,7 +53,7 @@ function TextMenu(props)
         {
             const colorClass = props.element.class.find(x=>x.includes('color'))
             const color = colorClass.split('color')[1].toLowerCase()
-            return color
+            return color || 'black'
         }   
         else
         {
@@ -57,11 +65,24 @@ function TextMenu(props)
         if(props.element.class)
         {
             const colorClass = props.element.class.find(x=>x.includes('bg'))
-            return colorClass
+            return colorClass || "bgYellow6"
         }
         else
         {
             return "bgYellow6"
+        }
+    }
+
+    const fontFamilySetter = () => {
+        if(props.element.class)
+        {
+            const cl = props.element.class.find(x=>x.includes('font') && !x.includes('fontS'))
+            const obj = availableFontFamily.find(x=>x.class === cl)
+            return obj || {class:'fontArial',text:'Arial'}
+        }
+        else
+        {
+            return {class:'fontArial',text:'Arial'}
         }
     }
 
@@ -74,7 +95,10 @@ function TextMenu(props)
     const [color,setColor] = useState(colorSetter())
     const [bgColor,setBgColor] = useState(bgColorSetter())
     const [showBgColorMenu,setShowBgColorMenu] = useState(false)
+    const [fontFamily,setFontFamily] = useState(fontFamilySetter())
+    const [showFontFamilyMenu,setShowFontFamilyMenu] = useState(false)
 
+    
 
     const boldHandle = () => {
         if(props.element.class.includes('bold'))
@@ -155,7 +179,7 @@ function TextMenu(props)
         {
             setShowFontMenu(false)
         }
-        if(!e.target.classList.contains(styles.alignItem) && !e.target.classList.contains(styles.align))
+        if(!e.target.classList.contains(styles.alignItem) && !e.target.classList.contains(styles.align) && !e.target.closest('div').classList.contains(styles.align))
         {
             setShowAlignMenu(false)
         }
@@ -166,6 +190,10 @@ function TextMenu(props)
         if(!e.target.classList.contains(styles.bgColorItem) && !e.target.classList.contains(styles.colorPreview) && !e.target.classList.contains(styles.bgColorItem))
         {
             setShowBgColorMenu(false)
+        }
+        if(!e.target.classList.contains(styles.fontFamilyItem) && ! e.target.classList.contains(styles.fontFamilyHeader))
+        {
+            setShowFontFamilyMenu(false)
         }
     }
 
@@ -185,6 +213,19 @@ function TextMenu(props)
         return styles[color]
     }
 
+    const changeFontFamily = (font)=>{
+        setFontFamily(font)
+        setState(!state)
+        props.setEditUpdate(!props.editUpdate)
+        const classes = [...props.element.class]
+        const filtered = classes.filter(x=>x.includes('font')&&!x.includes('fontS'))
+        filtered.forEach(x=>{
+            props.element.removeClass(x)
+        })
+        props.element.addClass(font.class)
+
+    }
+
     useEffect(()=>{
         window.addEventListener('click',boardEvent)
         return () =>{
@@ -197,10 +238,26 @@ function TextMenu(props)
         setFontSize(fontSizeSetter())
         setColor(colorSetter())
         setBgColor(bgColorSetter())
+        setFontFamily(fontFamilySetter())
     },[props.element])
+
+    const alignClicked = (e) =>
+    {
+        if(e.target.closest('div').classList.contains(styles.menuItem))
+        {
+            // console.log("now")
+            setShowAlignMenu(!showAlignMenu)
+        }
+    }
 
     return(
         <div className={`${styles.container} ${props.display?styles.display:''}`}>
+
+            <div className={`${styles.menuItem} ${styles.fontFamilyItem}`} onClick={e=>setShowFontFamilyMenu(!showFontFamilyMenu)}>
+                <p className={`${styles.fontFamilyHeader} ${fontFamily.class}`} onClick={e=>setShowFontFamilyMenu(!showFontFamilyMenu)}>{fontFamily.text}</p>
+                {showFontFamilyMenu &&
+                <FontFamilyMenu fonts={availableFontFamily} changeFontFamily={changeFontFamily} fontFamily={fontFamily}/>}
+            </div>
 
             <div className={`${styles.menuItem} ${styles.fontSizeItem}`} onClick={e=>e.target.classList.contains(styles.menuItem) && setShowFontMenu(!showFontMenu)}>
                 {fontSize}
@@ -218,18 +275,27 @@ function TextMenu(props)
                 </div> }
             </div>
 
-            <div className={`${styles.menuItem} ${props.element.class?.includes('bold')?styles.marked:''}`} onClick={boldHandle}>B</div>
+            <div className={`${styles.menuItem} ${styles.boldItem} ${props.element.class?.includes('bold')?styles.marked:''}`} onClick={boldHandle}>B</div>
 
             <div className={`${styles.menuItem} ${styles.italic} ${props.element.class?.includes('italic')?styles.marked:''}`} onClick={italicHandle}>I</div>
 
-            <div className={`${styles.menuItem} ${styles.align}`} onClick={e=>e.target.classList.contains(styles.menuItem) && setShowAlignMenu(!showAlignMenu)}>
-                align
+            <div className={`${styles.menuItem} ${styles.align}`} onClick={alignClicked}>
+                {align === "left" && <AlignLeftIcon />}
+                {align === "center" && <AlignCenterIcon />}
+                {align === "right" && <AlignRightIcon />}
+                {align === "justify" && <AlignJustifyIcon />}
                 {showAlignMenu &&
                 <div className={styles.alignMenu}>
-                    <div className={`${styles.alignItem} ${align === "left"?styles.selected:''}`} onClick={e=>alignHandle('left')}>left</div>
-                    <div  className={`${styles.alignItem} ${align === "center"?styles.selected:''}`} onClick={e=>alignHandle('center')}>center</div>
-                    <div  className={`${styles.alignItem} ${align === "right"?styles.selected:''}`} onClick={e=>alignHandle('right')}>right</div>
-                    <div  className={`${styles.alignItem} ${align === "justify"?styles.selected:''}`} onClick={e=>alignHandle('justify')}>justify</div>
+                    <div className={`${styles.alignItem} ${align === "left"?styles.selected:''}`} onClick={e=>alignHandle('left')}>
+                        <AlignLeftIcon />
+                    </div>
+                    <div  className={`${styles.alignItem} ${align === "center"?styles.selected:''}`} onClick={e=>alignHandle('center')}>
+                        <AlignCenterIcon />
+                    </div>
+                    <div  className={`${styles.alignItem} ${align === "right"?styles.selected:''}`} onClick={e=>alignHandle('right')}>
+                        <AlignRightIcon />
+                    </div>
+                    <div  className={`${styles.alignItem} ${align === "justify"?styles.selected:''}`} onClick={e=>alignHandle('justify')}><AlignJustifyIcon /></div>
                 </div>}
 
             </div>
@@ -247,7 +313,11 @@ function TextMenu(props)
                 <BgColorMenu item={props.element} changeBgColor={changeBgColor} color={bgColor}/>}
             </div>
 
-            <div className={styles.menuItem}></div>
+            <div className={styles.line}></div>
+
+            <div className={`${styles.menuItem} ${styles.deleteItem}`} onClick={e=>props.deleteItem(props.element.id)}>
+                <DeleteIcon class={styles.deleteSVG}/>
+            </div>
 
         </div>
     )

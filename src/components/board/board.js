@@ -19,7 +19,7 @@ function Board()
     {
         
         const localTextElement = [...textElements]
-        const item = new TextElementClass(['fontSize18','alignLeft','colorBlack','bgYellow6'])
+        const item = new TextElementClass(['fontSize18','alignLeft','colorBlack','bgYellow6','fontArial'])
         localTextElement.push(item)
         setEdit(item)
         setTextElements(localTextElement)
@@ -40,6 +40,15 @@ function Board()
         }
     }
 
+    const deleteItem = (id) =>
+    {
+        const localTextElements = [...textElements]
+        const idx = localTextElements.findIndex(x=>x.id === id)
+        localTextElements.splice(idx,1)
+        setTextElements([...localTextElements])
+        setEdit(0)
+    }
+
     return(
         <>
             <div className={styles.board} ref={boardRef} onClick={boardClicked}>
@@ -48,7 +57,7 @@ function Board()
 
             <BottomMenu addTextItem={addTextItem} clearElementEdit={clearElementEdit} display={edit === 0}/>
 
-            <TextMenu display={edit!==0} element={edit} editUpdate={editUpdate} setEditUpdate={setEditUpdate} board={boardRef}/>
+            <TextMenu display={edit!==0} element={edit} editUpdate={editUpdate} setEditUpdate={setEditUpdate} board={boardRef} deleteItem={deleteItem}/>
             
         </>
     )

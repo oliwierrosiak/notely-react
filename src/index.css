@@ -286,3 +286,81 @@ html
 {
   background-color: rgba(0, 0, 0, 0);
 }
+.fontArial>textarea,
+.fontArial>textarea::placeholder,
+.fontArial
+{
+  font-family: Arial, Helvetica, sans-serif;
+}
+.fontCentury>textarea,
+.fontCentury>textarea::placeholder,
+.fontCentury
+{
+  font-family: 'Century Gothic';
+}
+.fontCourier>textarea,
+.fontCourier>textarea::placeholder,
+.fontCourier
+{
+  font-family: "Courier New";
+}
+.fontGothic>textarea,
+.fontGothic>textarea::placeholder,
+.fontGothic
+{
+  font-family: "Copperplate Gothic Light";
+}
+.fontGeorgia>textarea,
+.fontGeorgia>textarea::placeholder,
+.fontGeorgia
+{
+  font-family: Georgia, 'Times New Roman', Times, serif;
+}
+.fontImpact>textarea,
+.fontImpact>textarea::placeholder,
+.fontImpact
+{
+  font-family: Impact, Haettenschweiler, 'Arial Narrow Bold', sans-serif;
+}
+.fontLucida>textarea,
+.fontLucida>textarea::placeholder,
+.fontLucida
+{
+  font-family: Lucida Console;
+}
+.fontLucidaSans>textarea,
+.fontLucidaSans>textarea::placeholder,
+.fontLucidaSans
+{
+  font-family: 'Lucida Sans Unicode';
+}
+.fontPalatino>textarea,
+.fontPalatino>textarea::placeholder,
+.fontPalatino
+{
+  font-family: 'Palatino Linotype';
+}
+.fontTahoma>textarea,
+.fontTahoma>textarea::placeholder,
+.fontTahoma
+{
+  font-family: Tahoma;
+}
+.fontRoman>textarea,
+.fontRoman>textarea::placeholder,
+.fontRoman
+{
+  font-family: 'Times New Roman';
+}
+.fontMS>textarea,
+.fontMS>textarea::placeholder,
+.fontMS
+{
+  font-family: 'Trebuchet MS';
+}
+.fontVerdana>textarea,
+.fontVerdana>textarea::placeholder,
+.fontVerdana
+{
+  font-family: Verdana;
+}
