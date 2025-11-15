@@ -25,6 +25,7 @@ function AddingImgForm(props)
             const regex = /^https?:\/\/.+/;
             if(regex.test(linkValue))
             {
+                props.setShowAddingImgForm(false)
                 props.addImg(linkValue)
             }
             else

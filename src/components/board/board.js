@@ -54,7 +54,7 @@ function Board()
 
     const addImg = (link) =>{
         const localTextElement = [...elements]
-        const img = new ImgElementClass(link)
+        const img = new ImgElementClass([],link)
         localTextElement.push(img)
         setElements(localTextElement)
     }
@@ -69,7 +69,7 @@ function Board()
                     }
                     else if(x.type === "img")
                     {
-                        return <ImgElement />
+                        return <ImgElement key={x.id} item={x}/>
                     }
                     
                 })}

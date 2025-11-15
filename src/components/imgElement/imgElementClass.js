@@ -1,11 +1,13 @@
-class ImgElementClass
+import ElementClass from "../ElementClass"
+
+class ImgElementClass extends ElementClass
 {
-    constructor(link)
+    constructor(classNames,link)
     {
+        super(classNames)
         this.link = link
         this.type = 'img'
     }
-
 
 }
 
