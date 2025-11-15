@@ -1,0 +1,28 @@
+.element
+{
+    position: absolute;
+    top:50%;
+    left:50%;
+    translate: -50% -50%;
+    border-radius: 1rem;
+    border:.2rem solid transparent;
+    min-height: 3rem;
+    min-width: 3rem;
+    width: 7rem;
+    height: 5rem;
+    padding: .5rem;
+    cursor: pointer;
+}
+.resize
+{
+    position: absolute;
+    width: .8rem;
+    height: .8rem;
+    background-color: rgb(106, 106, 106);
+    border-radius: 50%;
+    display: none;
+    bottom:-.2rem;
+    right: -.2rem;
+    cursor: nw-resize;
+    
+}

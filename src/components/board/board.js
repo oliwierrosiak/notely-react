@@ -69,7 +69,7 @@ function Board()
                     }
                     else if(x.type === "img")
                     {
-                        return <ImgElement key={x.id} item={x}/>
+                        return <ImgElement key={x.id} board={boardRef.current} clearElementEdit={clearElementEdit} setEdit={setEdit} item={x}/>
                     }
                     
                 })}
