@@ -38,3 +38,24 @@
 {
     background: none;
 }
+.loading
+{
+    position: absolute;
+    top:0;
+    left:0;
+    right: 0;
+    bottom: 0;
+    /* background-color: red; */
+    border-radius: 1rem;
+}
+.error
+{
+     position: absolute;
+    top:0;
+    left:0;
+    right: 0;
+    bottom: 0;
+    /* background-color: blue; */
+    border-radius: 1rem;
+    color: rgb(0, 0, 0);
+}

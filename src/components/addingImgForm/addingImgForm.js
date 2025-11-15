@@ -27,6 +27,7 @@ function AddingImgForm(props)
             {
                 props.setShowAddingImgForm(false)
                 props.addImg(linkValue)
+                setLinkValue('')
             }
             else
             {
