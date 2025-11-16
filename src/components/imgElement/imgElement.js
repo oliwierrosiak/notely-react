@@ -1,5 +1,7 @@
 import { useEffect, useRef, useState } from 'react'
 import styles from './imgElement.module.css'
+import ImgLoadingIcon from '../../assets/svg/imgLoadingIcon'
+import ImgErrorIcon from '../../assets/svg/imgErrorIcon'
 
 function ImgElement(props)
 {
@@ -30,10 +32,13 @@ function ImgElement(props)
 
             <img src={props.item.link} onLoad={e=>setPhotoLoaded(true)} onError={e=>{setError(true);setPhotoLoaded(true)}} onDragStart={e=>e.preventDefault()} className={styles.img} onClick={e=>checkEditMode(e.target.closest('div'))} onMouseDown={e=>changePosition(e.target.closest('div'))} onMouseUp={setSolidPosition}/>
 
-            {!photoLoaded && <div className={styles.loading}></div>}
+            {!photoLoaded && <div className={styles.loading}>
+                <ImgLoadingIcon />
+            </div>}
 
             {error && <div className={styles.error} onClick={e=>checkEditMode(e.target.closest('.element'))} onMouseDown={e=>changePosition(e.target.closest('.element'))} onMouseUp={setSolidPosition}>
-                Bład ładowania    
+                <ImgErrorIcon />
+                <h2>Błąd ładowania</h2>
             </div>}
 
             <div className={styles.resize} onMouseDown={resizeElement}></div>
