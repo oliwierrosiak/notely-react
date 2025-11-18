@@ -31,6 +31,7 @@
     border-radius: 1rem;
     cursor: pointer;
     transition: all .3s ease;
+    position: relative;
 }
 .item:hover
 {
@@ -57,4 +58,12 @@
 .deleteItem:hover>.deleteSVG
 {
     fill: red;
+}
+.colorPreview
+{
+    width: 1.6rem;
+    height: 1.6rem;
+    border-radius: .5rem;
+    border-style: solid;
+    border-width: .25rem;
 }

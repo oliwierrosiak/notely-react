@@ -55,7 +55,7 @@ function Board()
 
     const addImg = (data) =>{
         const localTextElement = [...elements]
-        const img = new ImgElementClass([],data.link,data.mimetype)
+        const img = new ImgElementClass(['borderBgBlack6'],data.link,data.mimetype)
         localTextElement.push(img)
         setEdit(img)
         setElements(localTextElement)
@@ -83,7 +83,7 @@ function Board()
             {edit.type === "text" ?
             <TextMenu display={edit!==0 && edit.type === "text"} element={edit} editUpdate={editUpdate} setEditUpdate={setEditUpdate} board={boardRef} deleteItem={deleteItem}/>
             :
-            (edit.type === 'img'? <ImageMenu display={edit !== 0 && edit.type === "img"} element={edit} deleteItem={deleteItem}/>:null)}
+            (edit.type === 'img'? <ImageMenu display={edit !== 0 && edit.type === "img"} element={edit} editUpdate={editUpdate} setEditUpdate={setEditUpdate} deleteItem={deleteItem}/>:null)}
             
         </>
     )

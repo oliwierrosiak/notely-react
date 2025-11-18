@@ -3,14 +3,24 @@ import styles from './textMenu.module.css'
 
 function BgColorMenu(props)
 {
+
+    const borderClassNameSetter = (color) =>{
+        const array = color.split('')
+        array.splice(0,1,array[0].toUpperCase())
+        const str = array.join('')
+        return str
+    }
+
     const colorClicked = (color) =>{
         const classes = props.item.class
-        const filtered = classes.filter(x => x.includes('bg'))
+        const filtered = classes.filter(x => x.includes('bg') || x.includes('borderBg'))
         filtered.forEach(x => {
             props.item.removeClass(x)
         });
-        props.item.addClass(color)
-        props.changeBgColor(color)
+        borderClassNameSetter(color)
+        const currentColor = props.border?`border${borderClassNameSetter(color)}`:color
+        props.item.addClass(currentColor)
+        props.changeBgColor(currentColor)
     }
 
     return(
