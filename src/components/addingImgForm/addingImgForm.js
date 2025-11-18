@@ -19,7 +19,7 @@ function AddingImgForm(props)
         e.target.placeholder = 'Wprowadź link...'
     }
 
-    const validLink = () =>
+    const validLink = async() =>
     {
         if(linkValue)
         {
@@ -27,7 +27,7 @@ function AddingImgForm(props)
             if(regex.test(linkValue))
             {
                 props.setShowAddingImgForm(false)
-                props.addImg(linkValue)
+                props.addImg({link:linkValue,mimetype:'image/*'})
                 setLinkValue('')
             }
             else

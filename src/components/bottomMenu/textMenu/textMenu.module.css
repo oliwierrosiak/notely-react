@@ -231,10 +231,6 @@
 {
     border-radius: 50%;
 }
-.deleteItem:hover>.deleteSVG
-{
-    fill: red;
-}
 .deleteSVG
 {
     fill: rgb(255, 0, 0);

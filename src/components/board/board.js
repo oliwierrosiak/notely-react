@@ -46,10 +46,10 @@ function Board()
 
     const deleteItem = (id) =>
     {
-        const localTextElements = [...elements]
-        const idx = localTextElements.findIndex(x=>x.id === id)
-        localTextElements.splice(idx,1)
-        setElements([...localTextElements])
+        const localElements = [...elements]
+        const idx = localElements.findIndex(x=>x.id === id)
+        localElements.splice(idx,1)
+        setElements([...localElements])
         setEdit(0)
     }
 
@@ -57,6 +57,7 @@ function Board()
         const localTextElement = [...elements]
         const img = new ImgElementClass([],data.link,data.mimetype)
         localTextElement.push(img)
+        setEdit(img)
         setElements(localTextElement)
     }
 
@@ -82,7 +83,7 @@ function Board()
             {edit.type === "text" ?
             <TextMenu display={edit!==0 && edit.type === "text"} element={edit} editUpdate={editUpdate} setEditUpdate={setEditUpdate} board={boardRef} deleteItem={deleteItem}/>
             :
-            (edit.type === 'img'? <ImageMenu display={edit !== 0 && edit.type === "img"} element={edit}/>:null)}
+            (edit.type === 'img'? <ImageMenu display={edit !== 0 && edit.type === "img"} element={edit} deleteItem={deleteItem}/>:null)}
             
         </>
     )
