@@ -30,7 +30,11 @@ function ImgElement(props)
     return(
        <div className={`element editOn ${styles.element} ${props.item.getClass()}`} style={props.item.getStyles()} onMouseDown={e=>changePosition(e.target)} onMouseUp={setSolidPosition} onClick={e=>checkEditMode(e.target)} ref={containerRef}>
 
+            {props.item.mimetype.includes('image/')?
             <img src={props.item.link} onLoad={e=>{setPhotoLoaded(true);props.item.setProportion(e.target)}} onError={e=>{setError(true);setPhotoLoaded(true)}} onDragStart={e=>e.preventDefault()} className={styles.img} onClick={e=>checkEditMode(e.target.closest('div'))} onMouseDown={e=>changePosition(e.target.closest('div'))} onMouseUp={setSolidPosition}/>
+            :
+            <video src={props.item.link} controls onLoadedData={e=>{setPhotoLoaded(true);props.item.setProportion(e.target)}} onError={e=>{setError(true);setPhotoLoaded(true)}} onDragStart={e=>e.preventDefault()} className={styles.img} onClick={e=>checkEditMode(e.target.closest('div'))} onMouseDown={e=>changePosition(e.target.closest('div'))} onMouseUp={setSolidPosition}></video>
+            }
 
             {!photoLoaded && <div className={styles.loading}>
                 <ImgLoadingIcon />

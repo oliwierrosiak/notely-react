@@ -53,9 +53,9 @@ function Board()
         setEdit(0)
     }
 
-    const addImg = (link) =>{
+    const addImg = (data) =>{
         const localTextElement = [...elements]
-        const img = new ImgElementClass([],link)
+        const img = new ImgElementClass([],data.link,data.mimetype)
         localTextElement.push(img)
         setElements(localTextElement)
     }

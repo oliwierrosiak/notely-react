@@ -47,7 +47,7 @@ function AddingImgForm(props)
             const data = new FormData()
             data.append('img',file)
             const response = await axios.post(`${ApiAddress}/boardImg`,data)
-            props.addImg(response.data.link)
+            props.addImg(response.data)
             setLinkValue('')
             props.setImageAddingLoading(false)
         }
@@ -61,7 +61,7 @@ function AddingImgForm(props)
     const fileChosen = (e) =>
     {
         const file = e.target.files[0]
-        if(file.type.includes('image/'))
+        if(file.type.includes('image/') || file.type.includes('video/'))
         {
             sendFile(file)
             e.target.value = ''
@@ -85,7 +85,7 @@ function AddingImgForm(props)
             <button className={styles.btn} onClick={validLink}>Potwierdź</button>
             <div className={styles.line}></div>
             <button className={styles.btn}>
-                <input type='file' onChange={fileChosen} className={styles.inputFile} accept='image/*'/>
+                <input type='file' onChange={fileChosen} className={styles.inputFile} accept='image/*,video/*'/>
                 Prześlij z urządzenia
             </button>
         </div>

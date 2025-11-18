@@ -2,12 +2,13 @@ import ElementClass from "../ElementClass"
 
 class ImgElementClass extends ElementClass
 {
-    constructor(classNames,link)
+    constructor(classNames,link,mimetype)
     {
         super(classNames)
         this.link = link
         this.type = 'img'
         this.proportion = 1
+        this.mimetype = mimetype
     }
 
     setProportion(img)
