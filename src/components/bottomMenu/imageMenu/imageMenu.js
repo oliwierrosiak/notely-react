@@ -3,6 +3,8 @@ import styles from './imageMenu.module.css'
 import DeleteIcon from '../../../assets/svg/deleteIcon'
 import BgColorMenu from '../textMenu/bgColorMenu'
 import borderColors from './borderMenuColors.module.css'
+import CornerMenu from './cornerMenu/cornerMenu'
+import BorderRadius from './cornerMenu/borderRadius1'
 
 function ImageMenu(props)
 {
@@ -31,11 +33,25 @@ function ImageMenu(props)
         }
     }
 
+    const borderRadiusSetter = () =>{
+        if(props.element.class)
+        {
+            const borderRadius = props.element.class.find(x=>x.includes('borderRadius'))
+            return borderRadius || 'borderRadius1'
+        }
+        else
+        {
+            return 'borderRadius1'
+        }
+    }
+
     const [display,setDisplay] = useState(false)
     const [displayColorMenu,setDisplayColorMenu] = useState(false)
     const [borderColor,setBorderColor] = useState(borderColorSetter())
     const [displayBorderWidthMenu,setDisplayBorderWidthMenu] = useState(false)
     const [borderWidth,setBorderWidth] = useState(borderWidthSetter())
+    const [displayCornerMenu,setDisplayCornerMenu] = useState(false)
+    const [borderRadius,setBorderRadius] = useState(borderRadiusSetter())
 
    useEffect(()=>{
         setTimeout(()=>{
@@ -78,6 +94,18 @@ function ImageMenu(props)
         props.setEditUpdate(!props.editUpdate)
     }
 
+    const cornerItemClicked = (cut) =>{
+        const classes = props.element.class
+        const filtered = classes.filter(x => x.includes('borderRadius'))
+        filtered.forEach(x => {
+            props.element.removeClass(x)
+        });
+        const newClass = `borderRadius${cut}`
+        props.element.addClass(newClass)
+        setBorderRadius(newClass)
+        props.setEditUpdate(!props.editUpdate)
+    }
+
     const boardEvent = (e) =>{
         if(!e.target.classList.contains(styles.borderColor) && !e.target.classList.contains(styles.colorPreview))
         {
@@ -87,11 +115,16 @@ function ImageMenu(props)
         {
             setDisplayBorderWidthMenu(false)
         }
+        if(!e.target.classList.contains(styles.cornerItem) && !e.target.classList.contains('borderRadiusComponent'))
+        {
+            setDisplayCornerMenu(false)
+        }
     }
 
     useEffect(()=>{
         setBorderColor(borderColorSetter())
         setBorderWidth(borderWidthSetter())
+        setBorderRadius(borderRadiusSetter())
     },[props.element])
 
     useEffect(()=>{
@@ -130,7 +163,12 @@ function ImageMenu(props)
                     </li>
                 </ul>}
             </div>
-            <div className={styles.item}>ścięcia narożników</div>
+            <div className={`${styles.item} ${styles.cornerItem}`} onClick={e=>setDisplayCornerMenu(!displayCornerMenu)}>
+                <div className={styles.borderRadiusPreview}>
+                    <BorderRadius borderRadius={borderRadius} bgColor={styles.borderRadiusIconsColor}/>
+                </div>
+                {displayCornerMenu && <CornerMenu borderRadius={borderRadius} cornerItemClicked={cornerItemClicked}/>}
+            </div>
             <div className={styles.item}>jasność</div>
             <div className={styles.item}>Kontrast</div>
 

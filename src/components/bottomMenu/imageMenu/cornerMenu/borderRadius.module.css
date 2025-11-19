@@ -1,0 +1,26 @@
+.borderRadius
+{
+    position: absolute;
+    bottom: .5rem;
+    left: .5rem;
+    width: 55%;
+    height: 55%;
+    border-top:.5rem solid rgb(255, 255, 255);
+    border-right: .5rem solid rgb(255, 255, 255);
+}
+.borderRadius1
+{
+    border-top-right-radius: 0;
+}
+.borderRadius2
+{
+    border-top-right-radius: .8rem;
+}
+.borderRadius3
+{
+    border-top-right-radius: 1.2rem;
+}
+.borderRadius4
+{
+    border-top-right-radius: 2rem;
+}

@@ -13,6 +13,7 @@ class ImgElementClass extends ElementClass
 
     setProportion(img)
     {
+        console.log('teraz')
         this.proportion = img.clientHeight/img.clientWidth
         this.width = `10rem`
         const width = 10
@@ -35,8 +36,8 @@ class ImgElementClass extends ElementClass
         const width = (e.clientX-containerRef.offsetLeft)/window.innerWidth*200
         const height = width * this.proportion
         containerRef.style.width = `${width}rem`
-        containerRef.style.height = `${height}rem`
-        this.setSizes(width,height)
+        containerRef.style.height = `${height*1.2}rem`
+        this.setSizes(width,height*1.2)
     }
 
 }

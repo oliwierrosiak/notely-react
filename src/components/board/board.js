@@ -55,7 +55,7 @@ function Board()
 
     const addImg = (data) =>{
         const localTextElement = [...elements]
-        const img = new ImgElementClass(['borderBgBlack6','borderWidth1'],data.link,data.mimetype)
+        const img = new ImgElementClass(['borderBgBlack6','borderWidth1','borderRadius1'],data.link,data.mimetype)
         localTextElement.push(img)
         setEdit(img)
         setElements(localTextElement)

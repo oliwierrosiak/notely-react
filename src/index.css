@@ -569,3 +569,19 @@ img
   border-width: 1rem;
    border-style: solid;
 }
+.borderRadius1>img
+{
+  border-radius: 0;
+}
+.borderRadius2>img
+{
+  border-radius: .8rem;
+}
+.borderRadius3>img
+{
+  border-radius: 1.5rem;
+}
+.borderRadius4>img
+{
+  border-radius: 50%;
+}
