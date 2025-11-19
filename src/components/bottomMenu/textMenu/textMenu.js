@@ -179,7 +179,7 @@ function TextMenu(props)
         {
             setShowFontMenu(false)
         }
-        if(!e.target.classList.contains(styles.alignItem) && !e.target.classList.contains(styles.align) && !e.target.closest('div').classList.contains(styles.align))
+        if(!e.target.classList.contains(styles.alignItem) && !e.target.classList.contains(styles.align) && !e.target.closest('div')?.classList.contains(styles.align))
         {
             setShowAlignMenu(false)
         }
@@ -191,7 +191,7 @@ function TextMenu(props)
         {
             setShowBgColorMenu(false)
         }
-        if(!e.target.classList.contains(styles.fontFamilyItem) && ! e.target.classList.contains(styles.fontFamilyHeader))
+        if(!e.target.classList.contains(styles.fontFamilyItem) && !e.target.classList.contains(styles.fontFamilyHeader))
         {
             setShowFontFamilyMenu(false)
         }
@@ -267,17 +267,17 @@ function TextMenu(props)
             <div className={`${styles.menuItem} ${styles.fontSizeItem}`} onClick={e=>e.target.classList.contains(styles.menuItem) && setShowFontMenu(!showFontMenu)}>
                 {fontSize}
                 {showFontMenu &&
-                <div className={`${styles.fontSizeMenu}`}>
-                    <div className={`${styles.option} ${fontSize === 32?styles.selected:''}`} onClick={e=>changeFontSize(32)}>32</div>
-                    <div className={`${styles.option} ${fontSize === 28?styles.selected:''}`} onClick={e=>changeFontSize(28)}>28</div>
-                    <div className={`${styles.option} ${fontSize === 24?styles.selected:''}`} onClick={e=>changeFontSize(24)}>24</div>
-                    <div className={`${styles.option} ${fontSize === 20?styles.selected:''}`} onClick={e=>changeFontSize(20)}>20</div>
-                    <div className={`${styles.option} ${fontSize === 18?styles.selected:''}`} onClick={e=>changeFontSize(18)}>18</div>
-                    <div className={`${styles.option} ${fontSize === 16?styles.selected:''}`} onClick={e=>changeFontSize(16)}>16</div>
-                    <div className={`${styles.option} ${fontSize === 14?styles.selected:''}`} onClick={e=>changeFontSize(14)}>14</div>
-                    <div className={`${styles.option} ${fontSize === 12?styles.selected:''}`} onClick={e=>changeFontSize(12)}>12</div>
-                    <div className={`${styles.option} ${fontSize === 10?styles.selected:''}`} onClick={e=>changeFontSize(10)}>10</div>
-                </div> }
+                <ul className={`${styles.fontSizeMenu}`}>
+                    <li className={`${styles.option} ${fontSize === 32?styles.selected:''}`} onClick={e=>changeFontSize(32)}>32</li>
+                    <li className={`${styles.option} ${fontSize === 28?styles.selected:''}`} onClick={e=>changeFontSize(28)}>28</li>
+                    <li className={`${styles.option} ${fontSize === 24?styles.selected:''}`} onClick={e=>changeFontSize(24)}>24</li>
+                    <li className={`${styles.option} ${fontSize === 20?styles.selected:''}`} onClick={e=>changeFontSize(20)}>20</li>
+                    <li className={`${styles.option} ${fontSize === 18?styles.selected:''}`} onClick={e=>changeFontSize(18)}>18</li>
+                    <li className={`${styles.option} ${fontSize === 16?styles.selected:''}`} onClick={e=>changeFontSize(16)}>16</li>
+                    <li className={`${styles.option} ${fontSize === 14?styles.selected:''}`} onClick={e=>changeFontSize(14)}>14</li>
+                    <li className={`${styles.option} ${fontSize === 12?styles.selected:''}`} onClick={e=>changeFontSize(12)}>12</li>
+                    <li className={`${styles.option} ${fontSize === 10?styles.selected:''}`} onClick={e=>changeFontSize(10)}>10</li>
+                </ul> }
             </div>
 
             <div className={`${styles.menuItem} ${styles.boldItem} ${props.element.class?.includes('bold')?styles.marked:''}`} onClick={boldHandle}>B</div>
@@ -290,18 +290,18 @@ function TextMenu(props)
                 {align === "right" && <AlignRightIcon />}
                 {align === "justify" && <AlignJustifyIcon />}
                 {showAlignMenu &&
-                <div className={styles.alignMenu}>
-                    <div className={`${styles.alignItem} ${align === "left"?styles.selected:''}`} onClick={e=>alignHandle('left')}>
+                <ul className={styles.alignMenu}>
+                    <li className={`${styles.alignItem} ${align === "left"?styles.selected:''}`} onClick={e=>alignHandle('left')}>
                         <AlignLeftIcon />
-                    </div>
-                    <div  className={`${styles.alignItem} ${align === "center"?styles.selected:''}`} onClick={e=>alignHandle('center')}>
+                    </li>
+                    <li  className={`${styles.alignItem} ${align === "center"?styles.selected:''}`} onClick={e=>alignHandle('center')}>
                         <AlignCenterIcon />
-                    </div>
-                    <div  className={`${styles.alignItem} ${align === "right"?styles.selected:''}`} onClick={e=>alignHandle('right')}>
+                    </li>
+                    <li  className={`${styles.alignItem} ${align === "right"?styles.selected:''}`} onClick={e=>alignHandle('right')}>
                         <AlignRightIcon />
-                    </div>
-                    <div  className={`${styles.alignItem} ${align === "justify"?styles.selected:''}`} onClick={e=>alignHandle('justify')}><AlignJustifyIcon /></div>
-                </div>}
+                    </li>
+                    <li  className={`${styles.alignItem} ${align === "justify"?styles.selected:''}`} onClick={e=>alignHandle('justify')}><AlignJustifyIcon /></li>
+                </ul>}
 
             </div>
 

@@ -22,6 +22,8 @@ function ImageMenu(props)
     const [display,setDisplay] = useState(false)
     const [displayColorMenu,setDisplayColorMenu] = useState(false)
     const [borderColor,setBorderColor] = useState(borderColorSetter())
+    const [displayBorderWidthMenu,setDisplayBorderWidthMenu] = useState(false)
+    const [borderWidth,setBorderWidth] = useState()
 
    useEffect(()=>{
         setTimeout(()=>{
@@ -55,8 +57,11 @@ function ImageMenu(props)
                 <div className={`${styles.colorPreview} ${borderColors[borderColor]}`}></div>
                 {displayColorMenu && <BgColorMenu changeBgColor={setBorderColorFunc} border={true} color={colorSetter()} item={props.element}/>}
             </div>
-            <div className={styles.item}>Ramka grubość</div>
-            <div className={styles.item}>Ramka Styl</div>
+            <div className={styles.item} onClick={e=>setDisplayBorderWidthMenu(!displayBorderWidthMenu)}>
+                {displayBorderWidthMenu && <ul className={styles.widthMenu}>
+                    <li>test</li>
+                </ul>}
+            </div>
             <div className={styles.item}>ścięcia narożników</div>
             <div className={styles.item}>jasność</div>
             <div className={styles.item}>Kontrast</div>

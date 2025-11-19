@@ -67,3 +67,15 @@
     border-style: solid;
     border-width: .25rem;
 }
+.widthMenu
+{
+    width: 8rem;
+    height: 10rem;
+    bottom: 3.3rem;
+    left:50%;
+    translate: -50% 0;
+    background-color: rgb(76, 76, 76);
+    position: absolute;
+    border-radius: .5rem;
+    padding: .2rem;
+}
