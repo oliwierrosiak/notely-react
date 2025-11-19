@@ -370,217 +370,269 @@ img
 {
   font-family: Verdana;
 }
+.borderBgRed1>video,
 .borderBgRed1>img
 {
   border-color: rgb(113, 0, 0);
  
 }
+.borderBgRed2>video,
 .borderBgRed2>img
 {
   border-color: rgb(189, 0, 0);
 }
+.borderBgRed3>video,
 .borderBgRed3>img
 {
   border-color: rgb(255, 0, 0);
 }
+.borderBgRed4>video,
 .borderBgRed4>img
 {
   border-color: rgb(252, 29, 29);
 }
+.borderBgRed5>video,
 .borderBgRed5>img
 {
   border-color: rgb(253, 77, 77);
 }
+.borderBgRed6>video,
 .borderBgRed6>img
 {
   border-color: rgb(249, 136, 136);
 }
+.borderBgOrange1>video,
 .borderBgOrange1>img
 {
   border-color: rgb(142, 92, 0);
 }
+.borderBgOrange2>video,
 .borderBgOrange2>img
 {
   border-color: rgb(199, 129, 0);
 }
+.borderBgOrange3>video,
 .borderBgOrange3>img
 {
   border-color: rgb(255, 166, 0);
 }
+.borderBgOrange4>video,
 .borderBgOrange4>img
 {
   border-color: rgb(253, 180, 43);
 }
+.borderBgOrange5>video,
 .borderBgOrange5>img
 {
   border-color: rgb(255, 190, 69);
 }
+.borderBgOrange6>video,
 .borderBgOrange6>img
 {
   border-color: rgb(247, 198, 105);
 }
+.borderBgYellow1>video,
 .borderBgYellow1>img
 {
   border-color: rgb(105, 105, 0);
 }
+.borderBgYellow2>video,
 .borderBgYellow2>img
 {
   border-color: rgb(179, 179, 0);
 }
+.borderBgYellow3>video,
 .borderBgYellow3>img
 {
   border-color: rgb(255, 255, 0);
 }
+.borderBgYellow4>video,
 .borderBgYellow4>img
 {
   border-color: rgb(255, 255, 63);
 }
+.borderBgYellow5>video,
 .borderBgYellow5>img
 {
   border-color: rgb(249, 249, 91);
 }
+.borderBgYellow6>video,
 .borderBgYellow6>img
 {
   border-color: rgb(248, 248, 131);
 }
+.borderBgGreen1>video,
 .borderBgGreen1>img
 {
   border-color: rgb(0, 65, 0);
 }
+.borderBgGreen2>video,
 .borderBgGreen2>img
 {
   border-color: rgb(0, 131, 0);
 }
+.borderBgGreen3>video,
 .borderBgGreen3>img
 {
   border-color: rgb(0, 255, 0);
 }
+.borderBgGreen4>video,
 .borderBgGreen4>img
 {
   border-color: rgb(71, 249, 71);
 }
+.borderBgGreen5>video,
 .borderBgGreen5>img
 {
   border-color: rgb(139, 255, 139);
 }
+.borderBgGreen6>video,
 .borderBgGreen6>img
 {
   border-color: rgb(150, 255, 150);
 }
+.borderBgBlue1>video,
 .borderBgBlue1>img
 {
   border-color: rgb(0, 0, 110);
 }
+.borderBgBlue2>video,
 .borderBgBlue2>img
 {
   border-color: rgb(0, 0, 169);
 }
+.borderBgBlue3>video,
 .borderBgBlue3>img
 {
   border-color: rgb(0, 0, 255);
 }
+.borderBgBlue4>video,
 .borderBgBlue4>img
 {
   border-color: rgb(40, 40, 255);
 }
+.borderBgBlue5>video,
 .borderBgBlue5>img
 {
   border-color: rgb(77, 77, 255);
 }
+.borderBgBlue6>video,
 .borderBgBlue6>img
 {
   border-color: rgb(133, 133, 250);
 }
+.borderBgPink1>video,
 .borderBgPink1>img
 {
   border-color: rgb(100, 0, 88);
 }
+.borderBgPink2>video,
 .borderBgPink2>img
 {
   border-color: rgb(154, 0, 136);
 }
+.borderBgPink3>video,
 .borderBgPink3>img
 {
   border-color: rgb(255, 0, 225);
 }
+.borderBgPink4>video,
 .borderBgPink4>img
 {
   border-color: rgb(237, 54, 253);
 }
+.borderBgPink5>video,
 .borderBgPink5>img
 {
   border-color: rgb(255, 112, 238);
 }
+.borderBgPink6>video,
 .borderBgPink6>img
 {
   border-color: rgb(250, 133, 236);
 }
+.borderBgBlack1>video,
 .borderBgBlack1>img
 {
   border-color: black;
 }
+.borderBgBlack2>video,
 .borderBgBlack2>img
 {
   border-color: rgb(54, 54, 54);
 }
+.borderBgBlack3>video,
 .borderBgBlack3>img
 {
   border-color: rgb(148, 148, 148);
 }
+.borderBgBlack4>video,
 .borderBgBlack4>img
 {
   border-color: rgb(192, 192, 192);
 }
+.borderBgBlack5>video,
 .borderBgBlack5>img
 {
   border-color: rgb(255, 255, 255);
 }
+.borderBgBlack6>video,
 .borderBgBlack6>img
 {
   border-color: rgba(0, 0, 0, 0);
 }
+.borderWidth1>video,
 .borderWidth1>img
 {
   border-width: 0;
   border-style: solid;
 }
+.borderWidth2>video,
 .borderWidth2>img
 {
   border-width: .2rem;
    border-style: solid;
 }
+.borderWidth3>video,
 .borderWidth3>img
 {
   border-width: .4rem;
    border-style: solid;
 }
+.borderWidth4>video,
 .borderWidth4>img
 {
   border-width: .6rem;
    border-style: solid;
 }
+.borderWidth5>video,
 .borderWidth5>img
 {
   border-width: .8rem;
    border-style: solid;
 }
+.borderWidth6>video,
 .borderWidth6>img
 {
   border-width: 1rem;
    border-style: solid;
 }
+.borderRadius1>video,
 .borderRadius1>img
 {
   border-radius: 0;
 }
+.borderRadius2>video,
 .borderRadius2>img
 {
   border-radius: .8rem;
 }
+.borderRadius3>video,
 .borderRadius3>img
 {
   border-radius: 1.5rem;
 }
+.borderRadius4>video,
 .borderRadius4>img
 {
   border-radius: 50%;
