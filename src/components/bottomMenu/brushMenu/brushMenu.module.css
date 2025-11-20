@@ -1,0 +1,24 @@
+.container
+{
+    position: fixed;
+    bottom: 2rem;
+    left:50%;
+    translate: -50% 0;
+    height: 3.8rem;
+    padding: .3rem .5rem;
+    background-color: rgb(76, 76, 76);
+    border-radius: 1rem;
+    transform: translate(0,300%);
+    transition: all .5s ease;
+    display: flex;
+    justify-content: center;
+    align-items: center;
+    gap:.8rem;
+    color: white;
+
+    width: 10rem;
+}
+.containerDisplay
+{
+    transform: translate(0%,0%);
+}

@@ -38,6 +38,12 @@ function BottomMenu(props)
         }
     },[imageAddingError])
 
+    const brushClicked = () =>{
+        props.clearElementEdit()
+        props.setShowAddingImgForm(false)
+        props.brushClicked()
+    }
+
     return(
         <div className={`${styles.menu} ${props.display?styles.display:''}`}>
 
@@ -58,6 +64,10 @@ function BottomMenu(props)
                     </div>
                     </>
                 )}
+            </div>
+
+            <div className={styles.item} onClick={brushClicked}>
+                Pędzel
             </div>
         </div>
     )

@@ -7,13 +7,14 @@ import TextElementClass from '../textElement.js/textElementClass'
 import ImgElement from '../imgElement/imgElement'
 import ImgElementClass from '../imgElement/imgElementClass'
 import ImageMenu from '../bottomMenu/imageMenu/imageMenu'
+import BrushMenu from '../bottomMenu/brushMenu/brushMenu'
 
 
 function Board()
 {
     const boardRef = useRef()
 
-    const [elements,setElements] = useState([])
+    const [elements,setElements] = useState([{type:'canvas',id:`${new Date().getTime()}${Math.floor(Math.random()*100)}`}])
     const [edit,setEdit] = useState(0)
     const [editUpdate,setEditUpdate] = useState(true)
     const [showAddingImgForm,setShowAddingImgForm] = useState(false)
@@ -61,6 +62,12 @@ function Board()
         setElements(localTextElement)
     }
 
+    const brushClicked = () =>{
+        const localElement = [...elements]
+        const canvas = localElement.find(x=>x.type==="canvas")
+        setEdit(canvas)
+    }
+
     return(
         <>
             <div className={styles.board} ref={boardRef} onClick={boardClicked}>
@@ -77,14 +84,15 @@ function Board()
                 })}
             </div>
 
-            <BottomMenu addTextItem={addTextItem} addImg={addImg} showAddingImgForm={showAddingImgForm} setShowAddingImgForm={setShowAddingImgForm} clearElementEdit={clearElementEdit} display={edit === 0}/>
+            <BottomMenu addTextItem={addTextItem} brushClicked={brushClicked} addImg={addImg} showAddingImgForm={showAddingImgForm} setShowAddingImgForm={setShowAddingImgForm} clearElementEdit={clearElementEdit} display={edit === 0}/>
 
             
-            {edit.type === "text" ?
-            <TextMenu display={edit!==0 && edit.type === "text"} element={edit} editUpdate={editUpdate} setEditUpdate={setEditUpdate} board={boardRef} deleteItem={deleteItem}/>
-            :
-            (edit.type === 'img'? <ImageMenu display={edit !== 0 && edit.type === "img"} element={edit} editUpdate={editUpdate} setEditUpdate={setEditUpdate} deleteItem={deleteItem}/>:null)}
+            {edit.type === "text" && <TextMenu display={edit!==0 && edit.type === "text"} element={edit} editUpdate={editUpdate} setEditUpdate={setEditUpdate} board={boardRef} deleteItem={deleteItem}/>}
             
+            {edit.type === 'img' && <ImageMenu display={edit !== 0 && edit.type === "img"} element={edit} editUpdate={editUpdate} setEditUpdate={setEditUpdate} deleteItem={deleteItem}/>}
+            
+            {edit.type === "canvas" && <BrushMenu display={edit !==0 && edit.type === "canvas"} element={edit} editUpdate={editUpdate} setEditUpdate={setEditUpdate}/>}
+
         </>
     )
 }
