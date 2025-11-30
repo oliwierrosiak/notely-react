@@ -1,4 +1,4 @@
-import { Canvas, PencilBrush } from 'fabric'
+import { Canvas, CircleBrush, Pattern, PatternBrush, PencilBrush, SprayBrush } from 'fabric'
 import { useEffect, useRef, useState } from 'react'
 import styles from './canvasElement.module.css'
 
@@ -15,13 +15,26 @@ function CanvasElement(props)
         canvasObj.current.freeDrawingBrush.width = window.innerWidth/1000;
     }
 
+    const objectAddedToCanvas = (e) =>{
+        const obj = e.target
+        obj.selectable = false
+        obj.evented = false
+    }
+
     useEffect(()=>{
        const canvas = new Canvas(canvasRef.current,{
             isDrawingMode:props.drawing
         })
         canvas.freeDrawingBrush = new PencilBrush(canvas);
+        // canvas.freeDrawingBrush = new SprayBrush(canvas)
+        // canvas.freeDrawingBrush = new PatternBrush(canvas)
+        // canvas.freeDrawingBrush = new CircleBrush(canvas)
         canvas.freeDrawingBrush.width = window.innerWidth/1000;
         canvas.freeDrawingBrush.color = "red";
+        canvas.selection = false
+        canvas.skipTargetFind = false
+
+        canvas.on('object:added',objectAddedToCanvas)
 
         canvasObj.current = canvas
         resize()
@@ -43,7 +56,7 @@ function CanvasElement(props)
 
 
     return(
-        <canvas ref={canvasRef} className={styles.container}></canvas>
+        <canvas ref={canvasRef} className={`${styles.container} canvas`}></canvas>
     )
 }
 

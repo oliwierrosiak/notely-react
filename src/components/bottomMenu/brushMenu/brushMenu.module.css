@@ -15,10 +15,25 @@
     align-items: center;
     gap:.8rem;
     color: white;
-
-    width: 10rem;
 }
 .containerDisplay
 {
     transform: translate(0%,0%);
+}
+.item
+{
+    width: 2.5rem;
+    height: 2.5rem;
+    background-color: rgb(117, 117, 117);
+    display: flex;
+    justify-content: center;
+    align-items: center;
+    border-radius: 1rem;
+    cursor: pointer;
+    transition: all .3s ease;
+    position: relative;
+}
+.item:hover
+{
+    background-color: rgb(146, 146, 146);
 }

@@ -34,11 +34,14 @@ function Board()
         elements.forEach(x=>{
             x.classList.remove(`editOn`)
         })
-        setEdit(0)
+        if(edit.type !== "canvas")
+        {
+            setEdit(0)
+        }
     }
 
     const boardClicked = (e) =>{
-        if(e.target.classList.contains(styles.board))
+        if(e.target.classList.contains(styles.board) || e.target.classList.contains('canvas'))
         {
             clearElementEdit()
             setShowAddingImgForm(false)
@@ -68,6 +71,10 @@ function Board()
         setEdit(canvas)
     }
 
+    const brushMenuClosed = () =>{
+        setEdit(0)
+    }
+
     return(
         <>
             <div className={styles.board} ref={boardRef} onClick={boardClicked}>
@@ -92,7 +99,7 @@ function Board()
             
             {edit.type === 'img' && <ImageMenu display={edit !== 0 && edit.type === "img"} element={edit} editUpdate={editUpdate} setEditUpdate={setEditUpdate} deleteItem={deleteItem}/>}
             
-            {edit.type === "canvas" && <BrushMenu display={edit !==0 && edit.type === "canvas"} element={edit} editUpdate={editUpdate} setEditUpdate={setEditUpdate}/>}
+            {edit.type === "canvas" && <BrushMenu display={edit !==0 && edit.type === "canvas"} brushMenuClosed={brushMenuClosed} element={edit} editUpdate={editUpdate} setEditUpdate={setEditUpdate}/>}
 
         </>
     )
