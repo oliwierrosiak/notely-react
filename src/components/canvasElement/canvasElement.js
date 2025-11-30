@@ -12,7 +12,15 @@ function CanvasElement(props)
         const height = document.documentElement.clientHeight
         canvasObj.current.setWidth(width)
         canvasObj.current.setHeight(height)
-        canvasObj.current.freeDrawingBrush.width = window.innerWidth/1000;
+        if( canvasObj.current.freeDrawingBrush)
+        {
+            canvasObj.current.freeDrawingBrush.width = window.innerWidth/1000;
+
+        }
+
+        // canvasObj.current.getObjects().forEach(obj=>{
+        //     console.log(obj)
+        // })
     }
 
     const objectAddedToCanvas = (e) =>{
@@ -25,12 +33,14 @@ function CanvasElement(props)
        const canvas = new Canvas(canvasRef.current,{
             isDrawingMode:props.drawing
         })
-        canvas.freeDrawingBrush = new PencilBrush(canvas);
-        // canvas.freeDrawingBrush = new SprayBrush(canvas)
-        // canvas.freeDrawingBrush = new PatternBrush(canvas)
-        // canvas.freeDrawingBrush = new CircleBrush(canvas)
-        canvas.freeDrawingBrush.width = window.innerWidth/1000;
-        canvas.freeDrawingBrush.color = "red";
+        // canvas.freeDrawingBrush = new PencilBrush(canvas);
+        if(canvas.freeDrawingBrush)
+        {
+            canvas.freeDrawingBrush.width = window.innerWidth/1000;
+            canvas.freeDrawingBrush.color = "red";
+
+        }
+
         canvas.selection = false
         canvas.skipTargetFind = false
 
@@ -54,6 +64,28 @@ function CanvasElement(props)
         }
     },[props.drawing])
 
+    const getBrushMode = () =>{
+        switch(props.brush.type)
+        {
+            case "":
+                return ""
+            case 'brush':
+                return new PencilBrush(canvasObj.current)
+            case 'pattern':
+                return new PatternBrush(canvasObj.current)
+            case 'spray':
+                return new SprayBrush(canvasObj.current)
+            case 'circle':
+                return new CircleBrush(canvasObj.current)
+        }
+    }
+
+    useEffect(()=>{
+        if(canvasObj.current)
+        {
+            canvasObj.current.freeDrawingBrush = getBrushMode()
+        }
+    },[props.brush])
 
     return(
         <canvas ref={canvasRef} className={`${styles.container} canvas`}></canvas>

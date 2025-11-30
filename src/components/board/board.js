@@ -18,6 +18,7 @@ function Board()
     const [edit,setEdit] = useState(0)
     const [editUpdate,setEditUpdate] = useState(true)
     const [showAddingImgForm,setShowAddingImgForm] = useState(false)
+    const [brush,setBrush] = useState({type:'',width:1,color:'black'})
 
     const addTextItem = () =>
     {
@@ -78,7 +79,7 @@ function Board()
     return(
         <>
             <div className={styles.board} ref={boardRef} onClick={boardClicked}>
-                <CanvasElement drawing={edit !==0 && edit.type === "canvas"}/>
+                <CanvasElement drawing={edit !== 0 && edit.type === "canvas" && brush.type !== ''} brush={brush}/>
                 {elements.map((x)=>{
                     if(x.type === "text")
                     {
@@ -99,7 +100,7 @@ function Board()
             
             {edit.type === 'img' && <ImageMenu display={edit !== 0 && edit.type === "img"} element={edit} editUpdate={editUpdate} setEditUpdate={setEditUpdate} deleteItem={deleteItem}/>}
             
-            {edit.type === "canvas" && <BrushMenu display={edit !==0 && edit.type === "canvas"} brushMenuClosed={brushMenuClosed} element={edit} editUpdate={editUpdate} setEditUpdate={setEditUpdate}/>}
+            {edit.type === "canvas" && <BrushMenu display={edit !==0 && edit.type === "canvas"} setBrush={setBrush} brush={brush} brushMenuClosed={brushMenuClosed} element={edit} editUpdate={editUpdate} setEditUpdate={setEditUpdate}/>}
 
         </>
     )
