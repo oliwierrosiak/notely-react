@@ -85,7 +85,7 @@ function BrushMenu(props)
             <div className={`${styles.item} ${styles.brushItem} ${brush.type === "circle" ? styles.brushSelected:''}`} onClick={e=>pencilChanger(e,{type:'circle'})}>
                 <CircleBrushIcon class={styles.brushSvg} />
             </div>
-             <div className={`${styles.item} ${styles.brushItem} ${brush.type === "eraser" ? styles.brushSelected:''}`} onClick={e=>pencilChanger(e,{type:'circle'})}>
+             <div className={`${styles.item} ${styles.brushItem} ${brush.type === "eraser" ? styles.brushSelected:''}`} onClick={e=>pencilChanger(e,{type:'eraser'})}>
                 <EraserIcon class={styles.brushSvg} />
             </div>
 

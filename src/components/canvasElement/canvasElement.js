@@ -2,6 +2,7 @@ import { Canvas, CircleBrush, PatternBrush, PencilBrush, SprayBrush } from 'fabr
 import { useEffect, useRef, useState } from 'react'
 import styles from './canvasElement.module.css'
 import brushColors from './brushColors'
+import cursor from '../../assets/img/cursor.png'
 
 function CanvasElement(props)
 {
@@ -10,8 +11,8 @@ function CanvasElement(props)
 
     const brushInitialWidth = window.innerWidth/20000
 
-    const getBrushWidth = () =>{
-        return brushInitialWidth * props.brush.width
+    const getBrushWidth = (width = props.brush.width) =>{
+        return brushInitialWidth * width
     }
 
     const getBrushColor = () =>
@@ -45,10 +46,14 @@ function CanvasElement(props)
        const canvas = new Canvas(canvasRef.current,{
             isDrawingMode:props.drawing
         })
-
+        canvas.preserveObjectStacking = true;
+        canvas.backgroundColor = "transparent";
+        canvas.renderOnAddRemove = true;
 
         canvas.selection = false
         canvas.skipTargetFind = false
+
+        canvas.freeDrawingCursor = `url(${cursor}) 16 16, auto`;
 
         canvas.on('object:added',objectAddedToCanvas)
 
@@ -81,22 +86,37 @@ function CanvasElement(props)
                 return new SprayBrush(canvasObj.current)
             case 'circle':
                 return new CircleBrush(canvasObj.current)
+            case 'eraser':
+                return new PencilBrush(canvasObj.current)
         }
     }
+
+    useEffect(()=>{
+        console.log(window.fabric)
+    },[])
 
     useEffect(()=>{
         if(canvasObj.current)
         {
             canvasObj.current.freeDrawingBrush = getBrushType()
-            if(props.brush.type)
+            if(props.brush.type === "eraser")
             {
-                canvasObj.current.freeDrawingBrush.width = getBrushWidth()
+                canvasObj.current.freeDrawingBrush.width = getBrushWidth(100)
+                canvasObj.current.freeDrawingBrush.color = `rgb(255,255,255)`
             }
-            if(props.brush.color &&  canvasObj.current.freeDrawingBrush)
+            else
             {
-                canvasObj.current.freeDrawingBrush.color = getBrushColor()
+                if(props.brush.type)
+                {
+                    canvasObj.current.freeDrawingBrush.width = getBrushWidth()
+                }
+                if(props.brush.color && canvasObj.current.freeDrawingBrush)
+                {
+                    canvasObj.current.freeDrawingBrush.color = getBrushColor()
 
+                }
             }
+           
         }
     },[props.brush])
 
