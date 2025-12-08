@@ -1,7 +1,12 @@
-import { useEffect, useState } from 'react'
+import { useEffect, useRef, useState } from 'react'
 import styles from './brushMenu.module.css'
 import RangeSlider from '../imageMenu/rangeSlider/rangeSlider'
 import BgColorMenu from '../textMenu/bgColorMenu'
+import LineBrushIcon from '../../../assets/svg/lineBrushIcon'
+import SprayBrushIcon from '../../../assets/svg/sprayBrushIcon'
+import CircleBrushIcon from '../../../assets/svg/circleBrushIcon'
+import EraserIcon from '../../../assets/svg/eraserIcon'
+import ArrowIcon from '../../../assets/svg/arrowIcon'
 
 function BrushMenu(props)
 {
@@ -11,6 +16,7 @@ function BrushMenu(props)
     const [lineWidth,setLineWidth] = useState(props.brush.width)
     const [showColorMenu,setShowColorMenu] = useState(false)
 
+    const widthPreviewRef = useRef()
 
     useEffect(()=>{
         setTimeout(()=>{
@@ -24,22 +30,40 @@ function BrushMenu(props)
         setBrush({type,color,width})
     }
 
+    const setWidthPreviewSizes = () =>
+    {
+        const value = 1.2 * (lineWidth / 100) + 0.7
+        widthPreviewRef.current.style.width = `${value}rem`
+        widthPreviewRef.current.style.height = `${value}rem`
+    }
+
     useEffect(()=>{
-        if(brush.type)
-        {
+        // if(brush.type)
+        // {
             changePencil({width:lineWidth})
-        }
+            setWidthPreviewSizes()
+        // }
     },[lineWidth])
 
     return(
         <div className={`${styles.container} ${display?styles.containerDisplay:''}`}>
-            <div className={styles.item} onClick={e=>changePencil({type:'brush'})}>linia</div>
-            <div className={styles.item} onClick={e=>changePencil({type:'pattern'})}>przer</div>
-            <div className={styles.item} onClick={e=>changePencil({type:'spray'})}>spary</div>
-            <div className={styles.item} onClick={e=>changePencil({type:'circle'})}>circle</div>
+            <div className={`${styles.item} ${styles.brushItem} ${brush.type === "brush" ? styles.brushSelected:''}`} onClick={e=>changePencil({type:'brush'})}>
+                <LineBrushIcon class={styles.brushSvg}/>
+            </div>
+            <div className={`${styles.item} ${styles.brushItem} ${brush.type === "spray" ? styles.brushSelected:''}`} onClick={e=>changePencil({type:'spray'})}>
+                <SprayBrushIcon class={styles.brushSvg}/>
+            </div>
+            <div className={`${styles.item} ${styles.brushItem} ${brush.type === "circle" ? styles.brushSelected:''}`} onClick={e=>changePencil({type:'circle'})}>
+                <CircleBrushIcon class={styles.brushSvg} />
+            </div>
+             <div className={`${styles.item} ${styles.brushItem} ${brush.type === "eraser" ? styles.brushSelected:''}`} onClick={e=>changePencil({type:'circle'})}>
+                <EraserIcon class={styles.brushSvg} />
+            </div>
+
+            <div className={styles.line}></div>
+
             <div className={styles.item} onClick={e=>setDisplayWidth(true)}>
-                <div className={styles.widthPreview}>
-                    {lineWidth}
+                <div className={styles.widthPreview} ref={widthPreviewRef}>
                 </div>
                 {displayWidth && <div className={styles.filterMenu}><RangeSlider property={lineWidth} numberFormat={true} setProperty={setLineWidth}/></div>}    
             </div>
@@ -47,9 +71,19 @@ function BrushMenu(props)
                 <div className={`${styles.bgColorPreview} ${brush.color}`}></div>
                 {showColorMenu && <BgColorMenu brush={true} color={brush.color} changeBgColor={changePencil}/>}
             </div>
-            <div className={styles.item}>tył</div>
-            <div className={styles.item}>przód</div>
-            <div className={styles.item} onClick={e=>{props.brushMenuClosed();changePencil({type:'',color:brush.color,width:brush.width})}}>close</div>
+
+            <div className={styles.line}></div>
+
+            <div className={styles.item}>
+                <ArrowIcon class={styles.arrow}/>
+            </div>
+            <div className={styles.item}>
+                <ArrowIcon class={styles.arrowRotated}/>
+            </div>
+            <div className={styles.item} onClick={e=>{!brush.type && props.brushMenuClosed();changePencil({type:'',color:brush.color,width:brush.width})}}>
+                <div className={`${styles.closeElement} ${brush.type?styles.closeElementDisplay:''}`}>OK</div>
+                <div className={`${styles.closeElement} ${!brush.type?styles.closeElementDisplay:''}`}><ArrowIcon class={styles.bottomArrow}/></div>
+            </div>
         </div>
     )
 }

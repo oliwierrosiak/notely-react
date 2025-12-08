@@ -33,6 +33,10 @@
     transition: all .3s ease;
     position: relative;
 }
+.brushItem
+{
+    background-color: rgb(76, 76, 76) !important;
+}
 .item:hover
 {
     background-color: rgb(146, 146, 146);
@@ -58,4 +62,80 @@
     height: 1.6rem;
     border-radius: 50%;
     border: .25rem solid rgb(65, 65, 65);
+}
+.widthPreview
+{
+    background-color: rgb(200, 200, 200);
+    border-radius: 50%;
+    width: .94rem;
+    height: .94rem;
+}
+.brushSvg
+{   
+    width: 2.8rem;
+    height: 2.8rem;
+    fill: rgb(128, 128, 128);
+    transition: fill .3s ease;
+    margin-top: .2rem;
+    margin-left: .2rem;
+}
+.brushItem:hover>.brushSvg
+{
+    fill: rgb(161, 161, 161);
+}
+.brushSelected>.brushSvg
+{
+    fill: white !important;
+}
+.line
+{
+    width: .3rem;
+    height: 80%;
+    margin: 0 .3rem;
+    background-color: gray;
+    border-radius: 10px;
+}
+.arrow
+{
+    width: 2rem;
+    height: 2rem;
+    fill: rgb(193, 193, 193);
+    margin-top: .4rem;
+    margin-right: .2rem;
+}
+.arrowRotated
+{
+    width: 2rem;
+    height: 2rem;
+    fill: rgb(193, 193, 193);
+    rotate: 180deg;
+    margin-bottom: .4rem;
+    margin-left: .2rem;
+}
+.closeElement
+{
+    position: absolute;
+    top:0;
+    left:0;
+    bottom: 0;
+    right: 0;
+    display: flex;
+    justify-content: center;
+    align-items: center;
+    font-weight: 900;
+    transform: scale(0);
+    transition: transform .3s ease;
+}
+.bottomArrow
+{
+    width: 2.2rem;
+    height: 2.2rem;
+    fill: rgb(193, 193, 193);
+    rotate: 270deg;
+    margin-top: .2rem;
+    margin-left: .4rem;
+}
+.closeElementDisplay
+{
+    transform: scale(1);
 }

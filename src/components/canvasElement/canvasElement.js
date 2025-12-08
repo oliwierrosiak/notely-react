@@ -77,8 +77,6 @@ function CanvasElement(props)
                 return ""
             case 'brush':
                 return new PencilBrush(canvasObj.current)
-            case 'pattern':
-                return new PatternBrush(canvasObj.current)
             case 'spray':
                 return new SprayBrush(canvasObj.current)
             case 'circle':
