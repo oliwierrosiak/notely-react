@@ -67,24 +67,26 @@ class ElementClass
 
     moveElement(e,mouseEvent)
     {
-        const left = Math.round(mouseEvent.clientX/window.innerWidth*100)
-        const top = Math.round(mouseEvent.clientY/window.innerHeight*100)
+        const left = mouseEvent.pageX/5000*100
+        const top = mouseEvent.pageY/5000*100
         e.style.left = `${left}%`
         e.style.top = `${top}%`
         this.setPosition(left,top)
     }
 
-    changePosition(e,board)
+    changePosition(e,board,movingLocked)
     {
         if(e.classList.contains(`editOn`))
         {
             this.moveHandler = (ev) => this.moveElement(e,ev)
             board.addEventListener('mousemove',this.moveHandler) 
+            movingLocked.current = true
         }
     }  
     
-    setSolidPosition(board){
+    setSolidPosition(board,movingLocked){
         board.removeEventListener('mousemove',this.moveHandler)
+        movingLocked.current = false
     }
 
     checkEditMode(e,clearElementEdit,setEdit,item)
@@ -99,23 +101,25 @@ class ElementClass
 
     resizeAction(e,containerRef)
     {
-        const width = (e.clientX-containerRef.offsetLeft)/window.innerWidth*200
-        const height = (e.clientY-containerRef.offsetTop)/window.innerHeight*200
+        const width = (e.pageX-containerRef.offsetLeft)/window.innerWidth*200
+        const height = (e.pageY-containerRef.offsetTop)/window.innerHeight*200
         containerRef.style.width = `${width}rem`
         containerRef.style.height = `${height}vh`
         this.setSizes(width,height)
     }
 
-    resizeMouseUp(board)
+    resizeMouseUp(board,movingLocked)
     {
         board.removeEventListener('mousemove',this.resizeHandler)
+        movingLocked.current = false
     }
 
-    resizeElement(board,containerRef)
+    resizeElement(board,containerRef,movingLocked)
     {
         this.resizeHandler = (e) => this.resizeAction(e,containerRef)
         board.addEventListener('mousemove',this.resizeHandler)
-        board.addEventListener('mouseup',e=>this.resizeMouseUp(board))
+        board.addEventListener('mouseup',e=>this.resizeMouseUp(board,movingLocked))
+        movingLocked.current = true
     }
 
 }

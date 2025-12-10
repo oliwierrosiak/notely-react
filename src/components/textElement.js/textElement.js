@@ -9,11 +9,11 @@ function TextElement(props)
     const [textValue,setTextValue] = useState('') 
 
     const changePosition = (e)=>{
-        props.item.changePosition(e,props.board)
+        props.item.changePosition(e,props.board,props.movingLocked)
     }   
 
     const setSolidPosition = (e) =>{
-        props.item.setSolidPosition(props.board)
+        props.item.setSolidPosition(props.board,props.movingLocked)
     }
 
     const checkEditMode = (e) =>{
@@ -21,7 +21,7 @@ function TextElement(props)
     }
 
     const resizeElement = () =>{
-        props.item.resizeElement(props.board,containerRef.current)
+        props.item.resizeElement(props.board,containerRef.current,props.movingLocked)
     }
 
     useEffect(()=>{

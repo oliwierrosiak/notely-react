@@ -19,6 +19,7 @@ function Board()
     const [editUpdate,setEditUpdate] = useState(true)
     const [showAddingImgForm,setShowAddingImgForm] = useState(false)
     const [brush,setBrush] = useState({type:'',width:20,color:'bgBlack1'})
+    const movingLocked = useRef(false)
 
     const addTextItem = () =>
     {
@@ -89,11 +90,15 @@ function Board()
         }, 50);
     },[])
 
+    useEffect(()=>{
+        console.log(movingLocked)
+    },[movingLocked])
+
     const boardMouseDown = (e) =>
     {
         mouseDownTimeStamp.current = e.timeStamp
         mouseMoveListener.current = (e) =>{
-            if(!(edit !== 0 && edit.type === "canvas" && brush.type !== ''))
+            if(!movingLocked.current)
             {
                 if(e.buttons)
                 {
@@ -122,15 +127,15 @@ function Board()
     return(
         <>
             <div className={styles.board} ref={boardRef} onMouseDown={boardMouseDown} onMouseUp={boardMouseUp}>
-                <CanvasElement drawing={edit !== 0 && edit.type === "canvas" && brush.type !== ''} brush={brush}/>
+                <CanvasElement movingLocked={movingLocked} drawing={edit !== 0 && edit.type === "canvas" && brush.type !== ''} brush={brush}/>
                 {elements.map((x)=>{
                     if(x.type === "text")
                     {
-                        return <TextElement setEdit={setEdit} key={x.id} board={boardRef.current} clearElementEdit={clearElementEdit} id={x.id} item={x} />
+                        return <TextElement movingLocked={movingLocked} setEdit={setEdit} key={x.id} board={boardRef.current} clearElementEdit={clearElementEdit} id={x.id} item={x} />
                     }
                     else if(x.type === "img")
                     {
-                        return <ImgElement key={x.id} board={boardRef.current} clearElementEdit={clearElementEdit} setEdit={setEdit} item={x}/>
+                        return <ImgElement movingLocked={movingLocked} key={x.id} board={boardRef.current} clearElementEdit={clearElementEdit} setEdit={setEdit} item={x}/>
                     }
                     
                 })}

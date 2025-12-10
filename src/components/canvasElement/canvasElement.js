@@ -31,29 +31,28 @@ function CanvasElement(props)
 
         setBrushInitialWidth(window.innerWidth/40000)
 
-        const scaleX = width/initialSizes.width
-        const scaleY = height/initialSizes.height
+        // const scaleX = width/initialSizes.width
+        // const scaleY = height/initialSizes.height
 
-        const deltaX = scaleX / currentScale.current.x
-        const deltaY = scaleY / currentScale.current.y
+        // const deltaX = scaleX / currentScale.current.x
+        // const deltaY = scaleY / currentScale.current.y
 
-        canvasObj.current.getObjects().forEach(obj=>{
-            obj.scaleX *= deltaX
-            obj.scaleY *= deltaY
-            obj.left *= deltaX
-            obj.top *= deltaY
-            obj.setCoords()
-        })
+        // canvasObj.current.getObjects().forEach(obj=>{
+        //     obj.scaleX *= deltaX
+        //     obj.scaleY *= deltaY
+        //     obj.left *= deltaX
+        //     obj.top *= deltaY
+        //     obj.setCoords()
+        // })
 
-        currentScale.current = {x:scaleX,y:scaleY}
+        // currentScale.current = {x:scaleX,y:scaleY}
 
-        canvasObj.current.renderAll()
+        // canvasObj.current.renderAll()
     }
 
     useEffect(()=>{
         if(canvasObj.current?.freeDrawingBrush)
         {
-            console.log(getBrushWidth())
             canvasObj.current.freeDrawingBrush.width = getBrushWidth();
         }
     },[brushInitialWidth])
@@ -100,6 +99,7 @@ function CanvasElement(props)
         {
             canvasObj.current.isDrawingMode = props.drawing
         }
+        props.movingLocked.current = props.drawing
     },[props.drawing])
 
     const getBrushType = () =>{

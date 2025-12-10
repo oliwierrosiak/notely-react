@@ -34,7 +34,7 @@ class ImgElementClass extends ElementClass
 
     resizeAction(e,containerRef)
     {
-        const width = (e.clientX-containerRef.offsetLeft)/window.innerWidth*200
+        const width = (e.pageX-containerRef.offsetLeft)/window.innerWidth*200
         const height = width * this.proportion
         containerRef.style.width = `${width}rem`
         containerRef.style.height = `${height*1.2}rem`

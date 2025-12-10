@@ -12,11 +12,11 @@ function ImgElement(props)
 
     const changePosition = (e) =>
     {
-        props.item.changePosition(e,props.board)
+        props.item.changePosition(e,props.board,props.movingLocked)
     }
 
     const setSolidPosition = (e) =>{
-        props.item.setSolidPosition(props.board)
+        props.item.setSolidPosition(props.board,props.movingLocked)
     }
 
     const checkEditMode = (e) =>{
@@ -24,7 +24,7 @@ function ImgElement(props)
     }
 
     const resizeElement = () =>{
-        props.item.resizeElement(props.board,containerRef.current)
+        props.item.resizeElement(props.board,containerRef.current,props.movingLocked)
     }
 
     return(
