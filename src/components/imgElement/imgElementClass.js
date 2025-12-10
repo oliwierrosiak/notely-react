@@ -16,29 +16,23 @@ class ImgElementClass extends ElementClass
     setProportion(img)
     {
         this.proportion = img.clientHeight/img.clientWidth
-        this.width = `10rem`
-        const width = 10
+        this.width = `200px`
+        const width = 200
         const height = width * this.proportion
-        this.height = `${height + height*0.2}rem`
+        this.height = `${height*1.05}px`
         img.closest('.element').style.height = this.height
-        img.closest('.element').style.minHeight = `${height/2}rem`
-        img.closest('.element').style.minWidth = `${width/2}rem`
+        img.closest('.element').style.minHeight = `${height/2}px`
+        img.closest('.element').style.minWidth = `${width/2}px`
 
-    }
-
-    setSizes(width,height)
-    {
-        this.width = `${width}rem`
-        this.height = `${height}rem`
     }
 
     resizeAction(e,containerRef)
     {
-        const width = (e.pageX-containerRef.offsetLeft)/window.innerWidth*200
+        const width = (e.pageX-containerRef.offsetLeft)*2
         const height = width * this.proportion
-        containerRef.style.width = `${width}rem`
-        containerRef.style.height = `${height*1.2}rem`
-        this.setSizes(width,height*1.2)
+        containerRef.style.width = `${width}px`
+        containerRef.style.height = `${height*1.05}px`
+        this.setSizes(width,height*1.05)
     }
 
     setBrightness(value)

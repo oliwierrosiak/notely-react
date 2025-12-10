@@ -17,8 +17,8 @@ class ElementClass
 
     setSizes(width,height)
     {
-        this.width = `${width}rem`
-        this.height = `${height}vh`
+        this.width = `${width}px`
+        this.height = `${height}px`
     }
 
     setPositionRelativeToScreen()
@@ -109,10 +109,10 @@ class ElementClass
 
     resizeAction(e,containerRef)
     {
-        const width = (e.pageX-containerRef.offsetLeft)/window.innerWidth*200
-        const height = (e.pageY-containerRef.offsetTop)/window.innerHeight*200
-        containerRef.style.width = `${width}rem`
-        containerRef.style.height = `${height}vh`
+        const width = (e.pageX-containerRef.offsetLeft)*2
+        const height = (e.pageY-containerRef.offsetTop)*2
+        containerRef.style.width = `${width}px`
+        containerRef.style.height = `${height}px`
         this.setSizes(width,height)
     }
 
