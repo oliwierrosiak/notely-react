@@ -10,6 +10,8 @@ import ImageMenu from '../bottomMenu/imageMenu/imageMenu'
 import BrushMenu from '../bottomMenu/brushMenu/brushMenu'
 import CanvasElement from '../canvasElement/canvasElement'
 import DragDropIcon from '../../assets/svg/drag&dropIcon'
+import axios from 'axios'
+import ApiAddress from '../../ApiAddress'
 
 function Board()
 {
@@ -62,6 +64,7 @@ function Board()
     }
 
     const addImg = (data) =>{
+        clearElementEdit()
         const localTextElement = [...elements]
         const img = new ImgElementClass(['borderBgBlack6','borderWidth1','borderRadius1'],data.link,data.mimetype)
         localTextElement.push(img)
@@ -126,10 +129,43 @@ function Board()
         boardRef.current.removeEventListener('mousemove',mouseMoveListener.current)
     }
 
+    const sendFileToServer = async(file) =>{
+        try
+        {
+            const data = new FormData()
+            data.append('img',file)
+            const response = await axios.post(`${ApiAddress}/boardImg`,data)
+            addImg(response.data)
+        }
+        catch(ex)
+        {
+            console.log(ex)
+            // bład serwera
+        }
+    }
+
     const drop = (e) =>
     {
         e.preventDefault()
-        console.log(e)
+        const file = e.dataTransfer.files[0] || null
+        if(file && file.type.includes('image/'))
+        {
+            const url = e.dataTransfer.getData("text/uri-list") || e.dataTransfer.getData("text/plain");
+            if(url)
+            {
+                addImg({link:url,mimetype:'image/*'})
+            }
+            else
+            {
+                console.log("teraz")
+                sendFileToServer(file)
+            }
+        }
+        else
+        {
+            // bład mimetype pliku
+        }
+        
         setDisplayDragElement(false)
     }
 
