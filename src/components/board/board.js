@@ -12,6 +12,7 @@ import CanvasElement from '../canvasElement/canvasElement'
 import DragDropIcon from '../../assets/svg/drag&dropIcon'
 import axios from 'axios'
 import ApiAddress from '../../ApiAddress'
+import Message from '../message/message'
 
 function Board()
 {
@@ -23,6 +24,9 @@ function Board()
     const [showAddingImgForm,setShowAddingImgForm] = useState(false)
     const [brush,setBrush] = useState({type:'',width:20,color:'bgBlack1'})
     const [displayDragElement,setDisplayDragElement] = useState(false)
+    
+    const messages = useRef([])
+    const [updater,setUpdater] = useState(false)
 
     const movingLocked = useRef(false)
 
@@ -95,9 +99,30 @@ function Board()
         }, 50);
     },[])
 
-    // useEffect(()=>{
-    //     console.log(movingLocked.current)
-    // },[movingLocked.current])
+    const addMessage=(message,type)=>{
+        const localMessages = [...messages.current]
+        const id = Date.now()+Math.floor(Math.random()*100000)
+        localMessages.push({message,type,id})
+        messages.current = localMessages
+        setUpdater(!updater)
+    }
+
+    const removeMessage = (id) =>
+    {
+        const localMessages = [...messages.current]
+        const messageIdx = localMessages.findIndex(x=>x.id === id)
+        if(messageIdx>=0)
+        {
+            localMessages.splice(messageIdx,1)
+            messages.current = localMessages
+            setUpdater(!updater)
+        }
+
+    }
+
+    useEffect(()=>{
+        // console.log(messages.current)
+    },[messages.current])
 
     const boardMouseDown = (e) =>
     {
@@ -139,8 +164,7 @@ function Board()
         }
         catch(ex)
         {
-            console.log(ex)
-            // bład serwera
+            addMessage("Błąd przesyłania pliku","error")
         }
     }
 
@@ -157,13 +181,12 @@ function Board()
             }
             else
             {
-                console.log("teraz")
                 sendFileToServer(file)
             }
         }
         else
         {
-            // bład mimetype pliku
+            addMessage("Nieprawidłowy format pliku","error")
         }
         
         setDisplayDragElement(false)
@@ -191,6 +214,10 @@ function Board()
                 </div>}
 
             </div>
+
+            {messages.current[0] && <div className={styles.messageContainer}>
+                {messages.current.map(x=><Message removeMessage={removeMessage} key={x.id} {...x} />)}    
+            </div>}
 
             <BottomMenu addTextItem={addTextItem} brushClicked={brushClicked} addImg={addImg} showAddingImgForm={showAddingImgForm} setShowAddingImgForm={setShowAddingImgForm} clearElementEdit={clearElementEdit} display={edit === 0}/>
 
