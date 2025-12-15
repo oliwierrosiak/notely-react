@@ -165,7 +165,7 @@ function Board()
     {
         e.preventDefault()
         const file = e.dataTransfer.files[0] || null
-        if(file && file.type.includes('image/'))
+        if(file && (file.type.includes('image/') || file.type.includes('video/')))
         {
             const url = e.dataTransfer.getData("text/uri-list") || e.dataTransfer.getData("text/plain");
             if(url)
