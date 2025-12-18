@@ -17,6 +17,8 @@ import ImgLoadingIcon from '../../assets/svg/imgLoadingIcon'
 import MessageContext from '../../context/messageContext'
 import GlobalLoadingContext from '../../context/globalLoadingContext'
 import ClearElementEditContext from '../../context/clearEdit'
+import ArrowIcon from '../../assets/svg/arrowIcon'
+import { useNavigate } from 'react-router-dom'
 
 function Board()
 {
@@ -33,7 +35,6 @@ function Board()
     const [globalLoading,setGlobalLoading] = useState(false)
     const [projectName,setProjectName] = useState('Nowy projekt')
 
-
     const movingLocked = useRef(false)
     const mouseMoveListener = useRef()
     const mouseDownTimeStamp = useRef()
@@ -45,12 +46,11 @@ function Board()
     const panStartX = useRef(0)
     const panStartY = useRef(0)
 
-
     const zoomSpeed = 0.001
     const minScale = window.innerWidth/window.innerHeight / 100
     const maxScale = 3
 
-
+    const navigate = useNavigate()
 
     const addTextItem = () =>
     {
@@ -356,29 +356,31 @@ function Board()
         <MessageContext.Provider value={{addMessage,removeMessage}}>
         <GlobalLoadingContext.Provider value={{globalLoading,setGlobalLoading}}>
         <ClearElementEditContext.Provider value={clearElementEdit}>
-            <div className={`${styles.viewport} viewport`} ref={viewport} onDragEnter={e=>setDisplayDragElement(true)} >
+
+            <div className={styles.back} onClick={e=>navigate('/')}>
+                <ArrowIcon class={styles.arrowSvg}/>
+            </div>
 
             <input type='text'className={styles.projectName} value={projectName} onChange={e=>setProjectName(e.target.value)} onFocus={projectNameInputFocused} onBlur={projectNameInputBlur} />
 
-            <div className={`${styles.board} board`} ref={boardRef} onMouseDown={boardMouseDown} onMouseUp={boardMouseUp}>
+            <div className={`${styles.viewport} viewport`} ref={viewport} onDragEnter={e=>setDisplayDragElement(true)} >
 
-                <CanvasElement movingLocked={movingLocked} drawing={edit !== 0 && edit.type === "canvas" && brush.type !== ''} brush={brush}/>
+                <div className={`${styles.board} board`} ref={boardRef} onMouseDown={boardMouseDown} onMouseUp={boardMouseUp}>
 
-                {elements.map((x)=>{
-                    if(x.type === "text")
-                    {
-                        return <TextElement movingLocked={movingLocked} setEdit={setEdit} edit={edit} key={x.id} board={boardRef.current} id={x.id} item={x} />
-                    }
-                    else if(x.type === "img")
-                    {
-                        return <ImgElement movingLocked={movingLocked} key={x.id} board={boardRef.current} setEdit={setEdit} item={x}/>
-                    }
+                    <CanvasElement movingLocked={movingLocked} drawing={edit !== 0 && edit.type === "canvas" && brush.type !== ''} brush={brush}/>
+
+                    {elements.map((x)=>{
+                        if(x.type === "text")
+                        {
+                            return <TextElement movingLocked={movingLocked} setEdit={setEdit} edit={edit} key={x.id} board={boardRef.current} id={x.id} item={x} />
+                        }
+                        else if(x.type === "img")
+                        {
+                            return <ImgElement movingLocked={movingLocked} key={x.id} board={boardRef.current} setEdit={setEdit} item={x}/>
+                        }
                     
-                })}
-
-                
-
-            </div>
+                    })}
+                </div>
             </div>
 
             {displayDragElement && <div className={styles.dragElement} onDragLeave={e=>setDisplayDragElement(false)} onDragOver={e=>e.preventDefault()} onDrop={drop}>

@@ -1,9 +1,9 @@
 import styles from './bottomMenu.module.css'
 import AddingImgForm from '../addingImgForm/addingImgForm'
 import { useContext, useEffect, useState } from 'react'
-import ImgErrorIcon from '../../assets/svg/imgErrorIcon'
-import ImgLoadingIcon from '../../assets/svg/imgLoadingIcon'
 import ClearElementEditContext from '../../context/clearEdit'
+import ZoomInIcon from '../../assets/svg/zoomInIcon'
+import ZoomOutIcon from '../../assets/svg/zoomOutIcon'
 
 function BottomMenu(props)
 {
@@ -47,10 +47,10 @@ function BottomMenu(props)
                 Pędzel
             </div>
             <div className={styles.item} onClick={e=>props.zoomBtn(-100)}>
-                zoom+
+                <ZoomInIcon class={styles.zoomIcon}/>
             </div>
             <div className={styles.item} onClick={e=>props.zoomBtn(100)}>
-                zoom-
+                <ZoomOutIcon class={styles.zoomIcon} />
             </div>
         </div>
     )

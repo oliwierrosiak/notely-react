@@ -1,7 +1,7 @@
 function ArrowIcon(props)
 {
     return (
-    <svg className={props.class} viewBox="0 0 100 125" x="0px" y="0px"><g data-name="Layer 2"><g data-name="Layer 1"><path d="M68.82,98a9.54,9.54,0,0,1-6.63-2.67L26.12,60.53a14.62,14.62,0,0,1,0-21.06L62.19,4.67A9.54,9.54,0,0,1,75.44,18.41L42.69,50,75.44,81.59A9.54,9.54,0,0,1,68.82,98Z"/><rect/></g></g></svg>
+    <svg className={props.class} viewBox="0 0 100 100" x="0px" y="0px"><g data-name="Layer 2"><g data-name="Layer 1"><path d="M68.82,98a9.54,9.54,0,0,1-6.63-2.67L26.12,60.53a14.62,14.62,0,0,1,0-21.06L62.19,4.67A9.54,9.54,0,0,1,75.44,18.41L42.69,50,75.44,81.59A9.54,9.54,0,0,1,68.82,98Z"/><rect/></g></g></svg>
     )
 }
 export default ArrowIcon

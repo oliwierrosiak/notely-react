@@ -101,19 +101,17 @@
 }
 .arrow
 {
-    width: 2rem;
-    height: 2rem;
+    width: 1.8rem;
+    height: 1.8rem;
     fill: rgb(193, 193, 193);
-    margin-top: .4rem;
     margin-right: .2rem;
 }
 .arrowRotated
 {
-    width: 2rem;
-    height: 2rem;
+    width: 1.8rem;
+    height: 1.8rem;
     fill: rgb(193, 193, 193);
     rotate: 180deg;
-    margin-bottom: .4rem;
     margin-left: .2rem;
 }
 .closeElement
@@ -132,12 +130,12 @@
 }
 .bottomArrow
 {
-    width: 2.2rem;
-    height: 2.2rem;
+    width: 2rem;
+    height: 2rem;
     fill: rgb(193, 193, 193);
     rotate: 270deg;
-    margin-top: .2rem;
-    margin-left: .4rem;
+    margin-left: .1rem;
+    margin-top: .1rem;
 }
 .closeElementDisplay
 {

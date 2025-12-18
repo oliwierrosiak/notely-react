@@ -4,12 +4,17 @@
     bottom: 2rem;
     left:50%;
     translate: -50% 0;
-    width: 30rem;
-    height: 3rem;
+    height: 3.8rem;
     background-color: rgb(76, 76, 76);
+    border-radius: 1rem;
     transform: translate(0,300%);
     transition: all .5s ease;
     display: flex;
+    justify-content: center;
+    align-items: center;
+    gap:.8rem;
+    color: white;
+    padding: .3rem .5rem;
 }
 .menu::selection
 {
@@ -21,10 +26,15 @@
 }
 .item
 {
-    width: 3rem;
-    height: 3rem;
+    width: 2.5rem;
+    height: 2.5rem;
+    display: flex;
+    justify-content: center;
+    align-items: center;
     background-color: rgb(117, 117, 117);
-    position: relative;
+    border-radius: 1rem;
+    cursor: pointer;
+    transition: all .3s ease;
 }
 .errorSvg
 {
@@ -45,4 +55,9 @@
 .errorContainerDisplay
 {
     transform: scale(1);
+}
+.zoomIcon
+{
+    width: 70%;
+    height: 70%;
 }
