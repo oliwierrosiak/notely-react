@@ -15,7 +15,7 @@
     width: 5000px;
     height: 5000px;
     background:linear-gradient(0deg,blue,red);
-    transition: all .3s ease;
+    /* transition: all .3s ease; */
 }
 .dragElement
 {

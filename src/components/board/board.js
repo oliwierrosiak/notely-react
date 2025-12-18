@@ -38,9 +38,13 @@ function Board()
     const scaleRef = useRef(1)
     const translateXRef = useRef(0)
     const translateYRef = useRef(0)
+    const panStartX = useRef(0)
+    const panStartY = useRef(0)
+
 
     const zoomSpeed = 0.001
-    const minScale = 0.1
+    const minScale = window.innerWidth/window.innerHeight / 100
+    console.log(minScale)
     const maxScale = 3
 
 
@@ -101,9 +105,8 @@ function Board()
         setEdit(0)
     }
 
-    const setPosition = () =>{
-        // window.scrollTo(boardRef.current.clientWidth/2 - window.innerWidth/2,boardRef.current.clientHeight/2 - window.innerHeight/2)
-    }
+
+
 
     const addMessage=(message,type)=>{
         const localMessages = [...messages.current]
@@ -126,36 +129,55 @@ function Board()
 
     }
 
+
+
+    const setBoardTransformation = () =>
+    {
+        boardRef.current.style.transform = `translate(${translateXRef.current}px, ${translateYRef.current}px) scale(${scaleRef.current})`
+    }
+
     const boardMouseDown = (e) =>
     {
-        // mouseDownTimeStamp.current = e.timeStamp
-        // mouseMoveListener.current = (e) =>{
-        //     if(!movingLocked.current)
-        //     {
-        //         if(e.buttons)
-        //         {
-        //             window.scrollTo(window.scrollX+-e.movementX,window.scrollY+-e.movementY)
+        panStartX.current = e.clientX - translateXRef.current
+        panStartY.current = e.clientY - translateYRef.current
+        mouseDownTimeStamp.current = e.timeStamp
 
-        //         }
-        //         else
-        //         {
-        //             boardRef.current.removeEventListener('mousemove',mouseMoveListener.current)
-        //         }
+        mouseMoveListener.current = (e) =>{
+            if(!movingLocked.current)
+            {
+                if(e.buttons)
+                {
+                    if(scaleRef.current > minScale + 0.1)
+                    {
+                        
+                        translateXRef.current = e.clientX - panStartX.current
+                        translateYRef.current = e.clientY - panStartY.current
+                        setBoardTransformation()
+
+                    }
+                }
+                else
+                {
+                    boardRef.current.removeEventListener('mousemove',mouseMoveListener.current)
+                }
                 
-        //     }
-        // }
-        // boardRef.current.addEventListener('mousemove',mouseMoveListener.current)
+            }
+        }
+        boardRef.current.addEventListener('mousemove',mouseMoveListener.current)
     }
 
     const boardMouseUp = (e) =>
     {
-        // if(e.timeStamp-mouseDownTimeStamp.current < 100)
-        // {
-        //     boardClicked(e)
-        // }
-        // boardRef.current.removeEventListener('mousemove',mouseMoveListener.current)
+        if(e.timeStamp-mouseDownTimeStamp.current < 100)
+        {
+            boardClicked(e)
+        }
+        boardRef.current.removeEventListener('mousemove',mouseMoveListener.current)
     }
 
+
+
+    
     const sendFileToServer = async(file) =>{
         try
         {
@@ -197,9 +219,8 @@ function Board()
         setDisplayDragElement(false)
     }
 
-    const setBoardTransformation = () =>{
-        boardRef.current.style.transform = `translate(${translateXRef.current}px, ${translateYRef.current}px) scale(${scaleRef.current})`
-    }
+
+
 
     const centerBoard = () =>{
         translateXRef.current = (viewport.current.clientWidth - boardRef.current.clientWidth*scaleRef.current) / 2
@@ -238,6 +259,7 @@ function Board()
         }
         if(localScale <= minScale)
         {
+            
             centerBoard()
            
         }
@@ -249,12 +271,10 @@ function Board()
         translateYRef.current = (viewport.current.clientHeight - boardRef.current.clientHeight) / 2
         
         setBoardTransformation()
-        
+
         window.addEventListener("resize",centerBoard)
 
-        setTimeout(() => {
-            setPosition()
-        }, 50);
+
 
         return()=>{
             window.removeEventListener("resize",centerBoard)
