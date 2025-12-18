@@ -44,7 +44,6 @@ function Board()
 
     const zoomSpeed = 0.001
     const minScale = window.innerWidth/window.innerHeight / 100
-    console.log(minScale)
     const maxScale = 3
 
 
@@ -149,7 +148,6 @@ function Board()
                 {
                     if(scaleRef.current > minScale + 0.1)
                     {
-                        console.log(e.clientY - panStartY.current - window.innerHeight)
                         if(e.clientY - panStartY.current < 0 && e.clientY - panStartY.current - window.innerHeight > -5000*scaleRef.current)  
                         {
                             translateYRef.current = e.clientY - panStartY.current
@@ -290,7 +288,7 @@ function Board()
     return(
         <>
 
-            <div className={styles.viewport} onWheel={zoom} ref={viewport} onDragEnter={e=>setDisplayDragElement(true)} >
+            <div className={`${styles.viewport} viewport`} onWheel={zoom} ref={viewport} onDragEnter={e=>setDisplayDragElement(true)} >
             <div className={`${styles.board} board`} ref={boardRef} onMouseDown={boardMouseDown} onMouseUp={boardMouseUp}>
 
                 <CanvasElement movingLocked={movingLocked} drawing={edit !== 0 && edit.type === "canvas" && brush.type !== ''} brush={brush}/>

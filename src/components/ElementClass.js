@@ -21,10 +21,25 @@ class ElementClass
         this.height = `${height}px`
     }
 
+    getTranslate()
+    {
+        const board = document.querySelector('.board')
+        const translation = board.style['transform'].split('translate(')[1].split(')').slice(0,1).join('').split(', ')
+        const scale =  Number(board.style['transform'].split('translate(')[1].split(')')[1].split('scale(')[1]) 
+        const translationValues = translation.map(x=>{
+            const number = Number(x.split('px')[0]) || 0
+            return number
+        })
+
+        return [...translationValues,scale]
+    }
+
     setPositionRelativeToScreen()
     {
-        const left = (window.scrollX+window.innerWidth/2)/5000 * 100
-        const top = (window.scrollY+window.innerHeight/2)/5000 * 100
+        
+        const [translateX,translateY,scale] = this.getTranslate()
+        const left = ((window.innerWidth/2 - translateX) / scale)/5000*100
+        const top = ((window.innerHeight/2 - translateY) / scale)/5000*100
         this.left = `${left}%`
         this.top = `${top}%`
     }
@@ -79,8 +94,9 @@ class ElementClass
         {
             this.setSolidPosition(board,movingLocked)
         }
-        const left = mouseEvent.pageX/5000*100
-        const top = mouseEvent.pageY/5000*100
+        const [translateX,translateY,scale] = this.getTranslate()
+        const left = (mouseEvent.pageX-translateX)/scale/5000*100
+        const top = (mouseEvent.pageY-translateY)/scale/5000*100
         e.style.left = `${left}%`
         e.style.top = `${top}%`
         this.setPosition(left,top)
