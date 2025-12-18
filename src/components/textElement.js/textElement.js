@@ -1,8 +1,10 @@
-import { useEffect, useRef, useState } from 'react'
+import { useContext, useEffect, useRef, useState } from 'react'
 import styles from './textElement.module.css'
+import ClearElementEditContext from '../../context/clearEdit'
 
 function TextElement(props)
 {
+    const clearEdit = useContext(ClearElementEditContext)
 
     const containerRef = useRef()
 
@@ -19,7 +21,7 @@ function TextElement(props)
 
     const checkEditMode = (e) =>{
         const div = e.closest('.element')
-        props.item.checkEditMode(div,props.clearElementEdit,props.setEdit,props.item)
+        props.item.checkEditMode(div,clearEdit,props.setEdit,props.item)
     }
 
     const resizeElement = () =>{

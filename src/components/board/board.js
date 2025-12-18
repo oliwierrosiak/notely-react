@@ -14,7 +14,9 @@ import axios from 'axios'
 import ApiAddress from '../../ApiAddress'
 import Message from '../message/message'
 import ImgLoadingIcon from '../../assets/svg/imgLoadingIcon'
-import react from 'react'
+import MessageContext from '../../context/messageContext'
+import GlobalLoadingContext from '../../context/globalLoadingContext'
+import ClearElementEditContext from '../../context/clearEdit'
 
 function Board()
 {
@@ -308,8 +310,9 @@ function Board()
     },[])
 
     return(
-        <>
-
+        <MessageContext.Provider value={{addMessage,removeMessage}}>
+        <GlobalLoadingContext.Provider value={{globalLoading,setGlobalLoading}}>
+        <ClearElementEditContext.Provider value={clearElementEdit}>
             <div className={`${styles.viewport} viewport`} onWheel={zoom} ref={viewport} onDragEnter={e=>setDisplayDragElement(true)} >
 
             <input type='text'className={styles.projectName} value={projectName} onChange={e=>setProjectName(e.target.value)} onFocus={projectNameInputFocused} onBlur={projectNameInputBlur} />
@@ -321,11 +324,11 @@ function Board()
                 {elements.map((x)=>{
                     if(x.type === "text")
                     {
-                        return <TextElement movingLocked={movingLocked} setEdit={setEdit} edit={edit} key={x.id} board={boardRef.current} clearElementEdit={clearElementEdit} id={x.id} item={x} />
+                        return <TextElement movingLocked={movingLocked} setEdit={setEdit} edit={edit} key={x.id} board={boardRef.current} id={x.id} item={x} />
                     }
                     else if(x.type === "img")
                     {
-                        return <ImgElement movingLocked={movingLocked} key={x.id} board={boardRef.current} clearElementEdit={clearElementEdit} setEdit={setEdit} item={x}/>
+                        return <ImgElement movingLocked={movingLocked} key={x.id} board={boardRef.current} setEdit={setEdit} item={x}/>
                     }
                     
                 })}
@@ -349,7 +352,7 @@ function Board()
                 <ImgLoadingIcon  class={styles.loadingSVG}/>
             </div>}
 
-            <BottomMenu addTextItem={addTextItem} brushClicked={brushClicked} addImg={addImg} showAddingImgForm={showAddingImgForm} setShowAddingImgForm={setShowAddingImgForm} clearElementEdit={clearElementEdit} display={edit === 0}/>
+            <BottomMenu addTextItem={addTextItem} brushClicked={brushClicked} addImg={addImg} showAddingImgForm={showAddingImgForm} setShowAddingImgForm={setShowAddingImgForm} display={edit === 0}/>
 
             
             <TextMenu display={edit!==0 && edit.type === "text"} element={edit} editUpdate={editUpdate} setEditUpdate={setEditUpdate} board={boardRef} deleteItem={deleteItem}/>
@@ -357,8 +360,10 @@ function Board()
             <ImageMenu display={edit !== 0 && edit.type === "img"} element={edit} editUpdate={editUpdate} setEditUpdate={setEditUpdate} deleteItem={deleteItem}/>
             
              <BrushMenu display={edit !==0 && edit.type === "canvas"} setBrush={setBrush} brush={brush} brushMenuClosed={brushMenuClosed} element={edit} editUpdate={editUpdate} setEditUpdate={setEditUpdate}/>
-        
-        </>
+
+        </ClearElementEditContext.Provider>
+        </GlobalLoadingContext.Provider>
+        </MessageContext.Provider>
     )
 }
 

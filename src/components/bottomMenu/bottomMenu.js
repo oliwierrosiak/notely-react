@@ -1,45 +1,32 @@
 import styles from './bottomMenu.module.css'
 import AddingImgForm from '../addingImgForm/addingImgForm'
-import { useEffect, useState } from 'react'
+import { useContext, useEffect, useState } from 'react'
 import ImgErrorIcon from '../../assets/svg/imgErrorIcon'
 import ImgLoadingIcon from '../../assets/svg/imgLoadingIcon'
+import ClearElementEditContext from '../../context/clearEdit'
 
 function BottomMenu(props)
 {
-
-    const [imageAddingLoading,setImageAddingLoading] = useState(false)
-    const [imageAddingError,setImageAddingError] = useState(false)
-
+    const clearElementEdit = useContext(ClearElementEditContext)
 
     const textClicked = () =>{
-        props.clearElementEdit()
+        clearElementEdit()
         props.addTextItem()
         props.setShowAddingImgForm(false)
     }
 
     const imgClicked = () =>{
-        if(!imageAddingLoading && !imageAddingError)
-        {
-            props.clearElementEdit()
-            props.setShowAddingImgForm(true)
-        }
+
+        clearElementEdit()
+        props.setShowAddingImgForm(true)
     }
 
     useEffect(()=>{
-         props.setShowAddingImgForm(false)
+        props.setShowAddingImgForm(false)
     },[props.display])
 
-    useEffect(()=>{
-        if(imageAddingError)
-        {
-            setTimeout(() => {
-                setImageAddingError(false)
-            }, 3000);
-        }
-    },[imageAddingError])
-
     const brushClicked = () =>{
-        props.clearElementEdit()
+        clearElementEdit()
         props.setShowAddingImgForm(false)
         props.brushClicked()
     }
@@ -47,23 +34,13 @@ function BottomMenu(props)
     return(
         <div className={`${styles.menu} ${props.display?styles.display:''}`}>
 
-            <AddingImgForm display={props.showAddingImgForm} setImageAddingError={setImageAddingError} setImageAddingLoading={setImageAddingLoading} setShowAddingImgForm={props.setShowAddingImgForm} addImg={props.addImg}/>
+            <AddingImgForm display={props.showAddingImgForm} setShowAddingImgForm={props.setShowAddingImgForm} addImg={props.addImg}/>
 
             <div className={styles.item} onClick={textClicked}>
                 Text
             </div>
             <div className={styles.item} onClick={imgClicked}>
-                {imageAddingLoading?
-                <ImgLoadingIcon />
-                :(
-                    <>
-                    Foto
-                    <div className={`${styles.errorContainer} ${imageAddingError?styles.errorContainerDisplay:''}`}>
-                    <ImgErrorIcon class={styles.errorSVG}/>
-
-                    </div>
-                    </>
-                )}
+                Foto
             </div>
 
             <div className={styles.item} onClick={brushClicked}>

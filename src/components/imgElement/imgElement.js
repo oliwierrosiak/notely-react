@@ -1,11 +1,13 @@
-import { useEffect, useRef, useState } from 'react'
+import { useContext, useEffect, useRef, useState } from 'react'
 import styles from './imgElement.module.css'
 import ImgLoadingIcon from '../../assets/svg/imgLoadingIcon'
 import ImgErrorIcon from '../../assets/svg/imgErrorIcon'
+import ClearElementEditContext from '../../context/clearEdit'
 
 function ImgElement(props)
 {
-
+    const clearElementEdit = useContext(ClearElementEditContext)
+    
     const containerRef = useRef()
     const [photoLoaded,setPhotoLoaded] = useState(false)
     const [error,setError] = useState(false)
@@ -20,7 +22,7 @@ function ImgElement(props)
     }
 
     const checkEditMode = (e) =>{
-        props.item.checkEditMode(e,props.clearElementEdit,props.setEdit,props.item)
+        props.item.checkEditMode(e,clearElementEdit,props.setEdit,props.item)
     }
 
     const resizeElement = () =>{

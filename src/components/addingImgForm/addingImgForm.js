@@ -1,10 +1,15 @@
-import { useState } from 'react'
+import { useContext, useState } from 'react'
 import styles from './addingImgForm.module.css'
 import axios from 'axios'
 import ApiAddress from '../../ApiAddress'
+import MessageContext from '../../context/messageContext'
+import GlobalLoadingContext from '../../context/globalLoadingContext'
 
 function AddingImgForm(props)
 {
+
+    const message = useContext(MessageContext)
+    const globalLoading = useContext(GlobalLoadingContext)
 
     const [linkValue,setLinkValue] = useState('')
     const [linkError,setLinkError] = useState(false)
@@ -49,12 +54,12 @@ function AddingImgForm(props)
             const response = await axios.post(`${ApiAddress}/boardImg`,data)
             props.addImg(response.data)
             setLinkValue('')
-            props.setImageAddingLoading(false)
+            globalLoading.setGlobalLoading(false)
         }
         catch(ex)
         {
-            props.setImageAddingError(true)
-            props.setImageAddingLoading(false)
+            message.addMessage('Wystąpił bład serwera','error')
+            globalLoading.setGlobalLoading(false)
         }
     }
 
@@ -63,16 +68,15 @@ function AddingImgForm(props)
         const file = e.target.files[0]
         if(file.type.includes('image/') || file.type.includes('video/'))
         {
+            globalLoading.setGlobalLoading(true)
             sendFile(file)
             e.target.value = ''
             props.setShowAddingImgForm(false)
-            props.setImageAddingLoading(true)
         }
         else
         {
             props.setShowAddingImgForm(false)
-            props.setImageAddingLoading(false)
-            props.setImageAddingError(true)
+            message.addMessage('Niewłaściwy typ pliku','error')
             e.target.value = ''
         }
         
