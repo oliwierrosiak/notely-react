@@ -75,11 +75,15 @@ function ImageMenu(props)
     },[props.display])
 
     useEffect(()=>{
-        props.element.setBrightness(brightness)
-        props.setEditUpdate(!props.editUpdate)
+        if(props.element.type === "img")
+        {
+            props.element.setBrightness(brightness)
+            props.setEditUpdate(!props.editUpdate)
+        }
     },[brightness])
 
     useEffect(()=>{
+        if(props.element.type === "img")
         props.element.setContrast(contrast)
         props.setEditUpdate(!props.editUpdate)
     },[contrast])

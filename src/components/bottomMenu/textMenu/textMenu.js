@@ -39,7 +39,7 @@ function TextMenu(props)
         if(props.element.class)
         {
             const align = props.element.class.find(x=>x.includes('align'))
-            const direction = align.split('align')[1].toLowerCase()
+            const direction = align?.split('align')[1].toLowerCase()
             return direction || "left"
         }
         else
@@ -52,7 +52,7 @@ function TextMenu(props)
         if(props.element.class)
         {
             const colorClass = props.element.class.find(x=>x.includes('color'))
-            const color = colorClass.split('color')[1].toLowerCase()
+            const color = colorClass?.split('color')[1].toLowerCase()
             return color || 'black'
         }   
         else
