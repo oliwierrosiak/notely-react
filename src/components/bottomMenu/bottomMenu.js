@@ -49,7 +49,7 @@ function BottomMenu(props)
 
     const windowClick = (e) =>{
         const div = e.target.closest(`div`)
-        if(!div.classList.contains(styles.shapesItem) && !div.classList.contains('zoomItem'))
+        if(div && !div.classList.contains(styles.shapesItem) && !div.classList.contains('zoomItem'))
         {
             setShowShapesMenu(false)
         }

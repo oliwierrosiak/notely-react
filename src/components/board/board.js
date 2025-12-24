@@ -21,6 +21,7 @@ import ArrowIcon from '../../assets/svg/arrowIcon'
 import { useNavigate } from 'react-router-dom'
 import ShapeElementClass from '../shapeElement.js/shapeElementClass'
 import ShapeElement from '../shapeElement.js/shapeElement'
+import ShapeBottomMenu from '../bottomMenu/shapeBottomMenu/shapeBottomMenu'
 
 function Board()
 {
@@ -415,7 +416,9 @@ function Board()
             
             <ImageMenu display={edit !== 0 && edit.type === "img"} element={edit} editUpdate={editUpdate} setEditUpdate={setEditUpdate} deleteItem={deleteItem}/>
             
-             <BrushMenu display={edit !==0 && edit.type === "canvas"} setBrush={setBrush} brush={brush} brushMenuClosed={brushMenuClosed} element={edit} editUpdate={editUpdate} setEditUpdate={setEditUpdate}/>
+            <BrushMenu display={edit !==0 && edit.type === "canvas"} setBrush={setBrush} brush={brush} brushMenuClosed={brushMenuClosed} element={edit} editUpdate={editUpdate} setEditUpdate={setEditUpdate}/>
+
+            <ShapeBottomMenu display={edit !==0 && edit.type === "shape"} element={edit} editUpdate={editUpdate} setEditUpdate={setEditUpdate} deleteItem={deleteItem} />
 
         </ClearElementEditContext.Provider>
         </GlobalLoadingContext.Provider>

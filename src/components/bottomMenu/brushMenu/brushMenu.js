@@ -98,7 +98,7 @@ function BrushMenu(props)
             </div>
             <div className={`${styles.item} ${styles.bgColorItem}`} onClick={e=>setShowColorMenu(!showColorMenu)}>
                 <div className={`${styles.bgColorPreview} ${brush.color}`}></div>
-                {showColorMenu && <BgColorMenu brush={true} color={brush.color} changeBgColor={changePencil}/>}
+                {showColorMenu && <BgColorMenu withoutTransparent={true} brush={true} color={brush.color} changeBgColor={changePencil}/>}
             </div>
 
             <div className={styles.line}></div>

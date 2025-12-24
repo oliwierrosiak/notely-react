@@ -25,13 +25,13 @@ function TextMenu(props)
 
             }
             else{
-                return 18
+                return 14
             }
 
         }
         else
         {
-            return 18
+            return 14
         }
     }
 
@@ -234,11 +234,14 @@ function TextMenu(props)
     },[])
 
     useEffect(()=>{
-        setAlign(alignSetter())
-        setFontSize(fontSizeSetter())
-        setColor(colorSetter())
-        setBgColor(bgColorSetter())
-        setFontFamily(fontFamilySetter())
+        if(props.element)
+        {
+            setAlign(alignSetter())
+            setFontSize(fontSizeSetter())
+            setColor(colorSetter())
+            setBgColor(bgColorSetter())
+            setFontFamily(fontFamilySetter())
+        }
     },[props.element])
 
     const alignClicked = (e) =>

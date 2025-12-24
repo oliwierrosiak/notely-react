@@ -1,0 +1,64 @@
+.container
+{
+    position: fixed;
+    bottom: 2rem;
+    left:50%;
+    translate: -50% 0;
+    height: 3.8rem;
+    padding: .3rem .5rem;
+    background-color: rgb(76, 76, 76);
+    border-radius: 1rem;
+    transform: translate(0,300%);
+    transition: all .5s ease;
+    display: flex;
+    justify-content: center;
+    align-items: center;
+    gap:.8rem;
+    color: white;
+}
+.container::selection
+{
+    background: none;
+}
+.containerDisplay
+{
+    transform: translate(0%,0%);
+}
+.item
+{
+    width: 2.5rem;
+    height: 2.5rem;
+    background-color: rgb(117, 117, 117);
+    display: flex;
+    justify-content: center;
+    align-items: center;
+    border-radius: 1rem;
+    cursor: pointer;
+    transition: all .3s ease;
+    position: relative;
+}
+.deleteSVG
+{
+    fill: rgb(255, 0, 0);
+    width: 55%;
+    height: 55%;
+    transition: fill .3s ease;
+}
+.line
+{
+    width: .3rem;
+    height: 80%;
+    background-color: rgb(117, 117, 117);
+    border-radius: 10px;
+}
+.bgColorPreview
+{
+    width: 1.6rem;
+    height: 1.6rem;
+    border-radius: 50%;
+    border: .25rem solid rgb(65, 65, 65);
+}
+.colorItem
+{
+    position: relative;
+}

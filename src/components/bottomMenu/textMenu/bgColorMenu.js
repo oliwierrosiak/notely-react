@@ -67,7 +67,7 @@ function BgColorMenu(props)
             <div className={`${styles.bgColorMenuItem} bgPink3 ${props.color === "bgPink3"?styles.selectedBgColorItem:''}`} onClick={e=>colorClicked('bgPink3')}></div>
             <div className={`${styles.bgColorMenuItem} bgPink2 ${props.color === "bgPink2"?styles.selectedBgColorItem:''}`} onClick={e=>colorClicked('bgPink2')}></div>
             <div className={`${styles.bgColorMenuItem} bgPink1 ${props.color === "bgPink1"?styles.selectedBgColorItem:''}`} onClick={e=>colorClicked('bgPink1')}></div>
-            {!props.brush &&
+            {!props.withoutTransparent &&
             <div className={`${styles.bgColorMenuItem} bgBlack6 ${props.color === "bgBlack6"?styles.selectedBgColorItem:''}`} onClick={e=>colorClicked('bgBlack6')}>
                 <img src={transparentImg} className={styles.transparentImg}/>
             </div>}

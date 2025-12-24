@@ -159,11 +159,14 @@ function ImageMenu(props)
     }
 
     useEffect(()=>{
-        setBorderColor(borderColorSetter())
-        setBorderWidth(borderWidthSetter())
-        setBorderRadius(borderRadiusSetter())
-        setBrightness(brightnessSetter())
-        setContrast(contrastSetter())
+        if(props.element)
+        {
+            setBorderColor(borderColorSetter())
+            setBorderWidth(borderWidthSetter())
+            setBorderRadius(borderRadiusSetter())
+            setBrightness(brightnessSetter())
+            setContrast(contrastSetter())
+        }
     },[props.element])
 
     useEffect(()=>{
