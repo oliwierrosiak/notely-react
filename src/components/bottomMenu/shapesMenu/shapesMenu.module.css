@@ -32,12 +32,17 @@
 {
     width: 3rem;
     height: 3rem;
-    background-color: yellow;
+    /* background-color: yellow; */
     cursor: pointer;
+}
+.item:hover>.svg
+{
+    fill:rgb(255, 255, 255);
 }
 .svg
 {
-    width: 90%;
-    height: 90%;
-    fill: rgb(255, 0, 0);
+    width: 100%;
+    height: 100%;
+    fill: rgb(178, 178, 178);
+    transition: fill .3s ease;
 }

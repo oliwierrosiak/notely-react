@@ -2,6 +2,7 @@ import { useEffect, useRef, useContext } from 'react'
 import styles from './shapeElement.module.css'
 import ClearElementEditContext from '../../context/clearEdit'
 import SquareIcon from '../../assets/svg/shapes/square'
+import Square2 from '../../assets/svg/shapes/square2'
 
 function ShapeElement(props)
 {
@@ -28,14 +29,12 @@ function ShapeElement(props)
         props.item.resizeElement(props.board,containerRef.current,props.movingLocked)
     }
 
-    useEffect(()=>{
-        console.log(props.item.getRotate())
-    },[props.shapeUpdater])
-
     return(
         <div className={`element editOn ${styles.element}`} style={props.item.getStyles()} onMouseDown={e=>changePosition(e.target.closest('div'))} onMouseUp={setSolidPosition} onClick={e=>checkEditMode(e.target)} ref={containerRef}>
 
-            {props.item.item === "square"?<SquareIcon class={`${styles.svg} ${props.item.getClass()}`} stl={props.item.getRotate()}/>:''}
+            {props.item.item === "square" && <SquareIcon class={`${styles.svg} ${props.item.getClass()}`} style={props.item.getRotate()}/>}
+            {props.item.item === "square2" && <Square2 class={`${styles.svg} ${props.item.getClass()}`} style={props.item.getRotate()}/>}
+            
             
 
             <div className={styles.resize} onMouseDown={resizeElement}></div>

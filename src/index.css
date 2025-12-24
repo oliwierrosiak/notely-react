@@ -128,208 +128,166 @@ img
 .bgRed1
 {
   background-color: rgb(113, 0, 0);
-  fill: rgb(113, 0, 0);
-
 }
 .bgRed2
 {
   background-color: rgb(189, 0, 0);
-  fill: rgb(189, 0, 0);
 }
 .bgRed3
 {
   background-color: rgb(255, 0, 0);
-  fill: rgb(255, 0, 0);
 }
 .bgRed4
 {
   background-color: rgb(252, 29, 29);
-  fill: rgb(252, 29, 29);
 }
 .bgRed5
 {
   background-color: rgb(253, 77, 77);
-  fill: rgb(253, 77, 77);
 }
 .bgRed6
 {
   background-color: rgb(249, 136, 136);
-  fill: rgb(249, 136, 136);
 }
 .bgOrange1
 {
   background-color: rgb(142, 92, 0);
-  fill: rgb(142, 92, 0);
 }
 .bgOrange2
 {
   background-color: rgb(199, 129, 0);
-  fill: rgb(199, 129, 0);
 }
 .bgOrange3
 {
   background-color: rgb(255, 166, 0);
-  fill: rgb(255, 166, 0);
 }
 .bgOrange4
 {
   background-color: rgb(253, 180, 43);
-  fill: rgb(253, 180, 43);
 }
 .bgOrange5
 {
   background-color: rgb(255, 190, 69);
-  fill: rgb(255, 190, 69);
 }
 .bgOrange6
 {
   background-color: rgb(247, 198, 105);
-  fill: rgb(247, 198, 105);
 }
 .bgYellow1
 {
   background-color: rgb(105, 105, 0);
-  fill: rgb(105, 105, 0);
 }
 .bgYellow2
 {
   background-color: rgb(179, 179, 0);
-  fill: rgb(179, 179, 0);
 }
 .bgYellow3
 {
   background-color: rgb(255, 255, 0);
-  fill: rgb(255, 255, 0);
 }
 .bgYellow4
 {
   background-color: rgb(255, 255, 63);
-  fill: rgb(255, 255, 63);
 }
 .bgYellow5
 {
   background-color: rgb(249, 249, 91);
-  fill: rgb(249, 249, 91);
 }
 .bgYellow6
 {
   background-color: rgb(248, 248, 131);
-  fill: rgb(248, 248, 131);
 }
 .bgGreen1
 {
   background-color: rgb(0, 65, 0);
-  fill: rgb(0, 65, 0);
 }
 .bgGreen2
 {
   background-color: rgb(0, 131, 0);
-  fill: rgb(0, 131, 0);
 }
 .bgGreen3
 {
   background-color: rgb(0, 255, 0);
-  fill: rgb(0, 255, 0);
 }
 .bgGreen4
 {
   background-color: rgb(71, 249, 71);
-  fill: rgb(71, 249, 71);
 }
 .bgGreen5
 {
   background-color: rgb(139, 255, 139);
-  fill: rgb(139, 255, 139);
 }
 .bgGreen6
 {
   background-color: rgb(150, 255, 150);
-  fill: rgb(150, 255, 150);
 }
 .bgBlue1
 {
   background-color: rgb(0, 0, 110);
-  fill: rgb(0, 0, 110);
 }
 .bgBlue2
 {
   background-color: rgb(0, 0, 169);
-  fill: rgb(0, 0, 169);
 }
 .bgBlue3
 {
   background-color: rgb(0, 0, 255);
-  fill: rgb(0, 0, 255);
 }
 .bgBlue4
 {
   background-color: rgb(40, 40, 255);
-  fill: rgb(40, 40, 255);
 }
 .bgBlue5
 {
   background-color: rgb(77, 77, 255);
-  fill: rgb(77, 77, 255);
 }
 .bgBlue6
 {
   background-color: rgb(133, 133, 250);
-  fill: rgb(133, 133, 250);
 }
 .bgPink1
 {
   background-color: rgb(100, 0, 88);
-  fill: rgb(100, 0, 88);
 }
 .bgPink2
 {
   background-color: rgb(154, 0, 136);
-  fill: rgb(154, 0, 136);
 }
 .bgPink3
 {
   background-color: rgb(255, 0, 225);
-  fill: rgb(255, 0, 225);
 }
 .bgPink4
 {
   background-color: rgb(237, 54, 253);
-  fill: rgb(237, 54, 253);
 }
 .bgPink5
 {
   background-color: rgb(255, 112, 238);
-  fill: rgb(255, 112, 238);
 }
 .bgPink6
 {
   background-color: rgb(250, 133, 236);
-  fill: rgb(250, 133, 236);
 }
 .bgBlack1
 {
   background-color: rgb(0, 0, 0);
-  fill: rgb(0, 0, 0);
 }
 .bgBlack2
 {
   background-color: rgb(54, 54, 54);
-  fill: rgb(54, 54, 54);
 }
 .bgBlack3
 {
   background-color: rgb(148, 148, 148);
-  fill: rgb(148, 148, 148);
 }
 .bgBlack4
 {
   background-color: rgb(192, 192, 192);
-  fill: rgb(192, 192, 192);
 }
 .bgBlack5
 {
   background-color: rgb(255, 255, 255);
-  fill: rgb(255, 255, 255);
 }
 .bgBlack6
 {
@@ -691,4 +649,168 @@ img
 {
   width: 100% !important;
   height: 100% !important;
+}
+.fillRed1
+{
+  fill: rgb(113, 0, 0);
+}
+.fillRed2
+{
+  fill: rgb(189, 0, 0);
+}
+.fillRed3
+{
+  fill: rgb(255, 0, 0);
+}
+.fillRed4
+{
+  fill: rgb(252, 29, 29);
+}
+.fillRed5
+{
+  fill: rgb(253, 77, 77);
+}
+.fillRed6
+{
+  fill: rgb(249, 136, 136);
+}
+.fillOrange1
+{
+  fill: rgb(142, 92, 0);
+}
+.fillOrange2
+{
+  fill: rgb(199, 129, 0);
+}
+.fillOrange3
+{
+  fill: rgb(255, 166, 0);
+}
+.fillOrange4
+{
+  fill: rgb(253, 180, 43);
+}
+.fillOrange5
+{
+  fill: rgb(255, 190, 69);
+}
+.fillOrange6
+{
+  fill: rgb(247, 198, 105);
+}
+.fillYellow1
+{
+  fill: rgb(105, 105, 0);
+}
+.fillYellow2
+{
+  fill: rgb(179, 179, 0);
+}
+.fillYellow3
+{
+  fill: rgb(255, 255, 0);
+}
+.fillYellow4
+{
+  fill: rgb(255, 255, 63);
+}
+.fillYellow5
+{
+  fill: rgb(249, 249, 91);
+}
+.fillYellow6
+{
+  fill: rgb(248, 248, 131);
+}
+.fillGreen1
+{
+  fill: rgb(0, 65, 0);
+}
+.fillGreen2
+{
+  fill: rgb(0, 131, 0);
+}
+.fillGreen3
+{
+  fill: rgb(0, 255, 0);
+}
+.fillGreen4
+{
+  fill: rgb(71, 249, 71);
+}
+.fillGreen5
+{
+  fill: rgb(139, 255, 139);
+}
+.fillGreen6
+{
+  fill: rgb(150, 255, 150);
+}
+.fillBlue1
+{
+  fill: rgb(0, 0, 110);
+}
+.fillBlue2
+{
+  fill: rgb(0, 0, 169);
+}
+.fillBlue3
+{
+  fill: rgb(0, 0, 255);
+}
+.fillBlue4
+{
+  fill: rgb(40, 40, 255);
+}
+.fillBlue5
+{
+  fill: rgb(77, 77, 255);
+}
+.fillBlue6
+{
+  fill: rgb(133, 133, 250);
+}
+.fillPink1
+{
+  fill: rgb(100, 0, 88);
+}
+.fillPink2
+{
+  fill: rgb(154, 0, 136);
+}
+.fillPink3
+{
+  fill: rgb(255, 0, 225);
+}
+.fillPink4
+{
+  fill: rgb(237, 54, 253);
+}
+.fillPink5
+{
+  fill: rgb(255, 112, 238);
+}
+.fillPink6
+{
+  fill: rgb(250, 133, 236);
+}
+.fillBlack1
+{
+  fill: rgb(0, 0, 0);
+}
+.fillBlack2
+{
+  fill: rgb(54, 54, 54);
+}
+.fillBlack3
+{
+  fill: rgb(148, 148, 148);
+}
+.fillBlack4
+{
+  fill: rgb(192, 192, 192);
+}
+.fillBlack5
+{
+  fill: rgb(255, 255, 255);
 }

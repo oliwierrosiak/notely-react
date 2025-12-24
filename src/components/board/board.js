@@ -115,7 +115,7 @@ function Board()
     const addShape = (shape) =>
     {
         const localElements = [...elements]
-        const item = new ShapeElementClass(['bgBlack4'],shape)
+        const item = new ShapeElementClass(['fillBlack4'],shape)
         localElements.push(item)
         setEdit(item)
         setElements(localElements)

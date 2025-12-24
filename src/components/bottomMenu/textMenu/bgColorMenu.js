@@ -11,6 +11,11 @@ function BgColorMenu(props)
         return str
     }
 
+    const shapesClassNameSetter = (color) =>{
+        const value = color.split('bg')[1]
+        return `fill${value}`
+    }
+
     const colorClicked = (color) =>{
         if(props.brush)
         {
@@ -18,12 +23,12 @@ function BgColorMenu(props)
         }
 
         const classes = props.item.class
-        const filtered = classes.filter(x => x.includes('bg') || x.includes('borderBg'))
+        const filtered = classes.filter(x => x.includes('bg') || x.includes('borderBg') || x.includes('fill'))
         filtered.forEach(x => {
             props.item.removeClass(x)
         });
         borderClassNameSetter(color)
-        const currentColor = props.border?`border${borderClassNameSetter(color)}`:color
+        const currentColor = props.border?`border${borderClassNameSetter(color)}`:props.shapes?shapesClassNameSetter(color):color
         props.item.addClass(currentColor)
         props.changeBgColor(currentColor)
     }

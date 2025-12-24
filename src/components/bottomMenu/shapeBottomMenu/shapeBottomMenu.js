@@ -8,12 +8,12 @@ function ShapeBottomMenu(props)
     const colorSetter = () =>{
         if(props.element.class)
         {
-            const colorClass = props.element.class.find(x=>x.includes('bg'))
-            return colorClass || "bgBlack4"
+            const colorClass = props.element.class.find(x=>x.includes('fill'))
+            return colorClass || "fillBlack4"
         }
         else
         {
-            return "bgBlack4"
+            return "fillBlack4"
         }
     }
 
@@ -28,10 +28,18 @@ function ShapeBottomMenu(props)
         }
     }
 
+    const [color,setColor] = useState(colorSetter())
+
+    const colorNameSetter = () =>{
+        const array = color.split('fill')[1]
+        return `bg${array}`
+    }
+
     const [state,setState] = useState(false)
     const [rotate,setRotate] = useState(rotateSetter())
     const [showColorMenu,setShowColorMenu] = useState(false)
-    const [color,setColor] = useState(colorSetter())
+    const [colorName,setColorName] = useState(colorNameSetter())
+
 
     const inputRef = useRef()
 
@@ -62,6 +70,10 @@ function ShapeBottomMenu(props)
             setRotate(rotateSetter())
         }
     },[props.element])
+
+    useEffect(()=>{
+        setColorName(colorNameSetter())
+    },[color])
 
     const setRotateValue = (e) =>
     {
@@ -102,6 +114,8 @@ function ShapeBottomMenu(props)
         }
     }
 
+    
+
     return(
         <div className={`${styles.container} ${props.display?styles.containerDisplay:''}`}>
 
@@ -111,8 +125,8 @@ function ShapeBottomMenu(props)
             </div>
 
             <div className={`${styles.item} ${styles.colorItem}`} onClick={e=>setShowColorMenu(!showColorMenu)}>
-                <div className={`${styles.bgColorPreview} ${color}`}></div>
-                {showColorMenu && <BgColorMenu withoutTransparent={true} item={props.element} changeBgColor={changeColor} color={color}/>}
+                <div className={`${styles.bgColorPreview} ${colorName}`}></div>
+                {showColorMenu && <BgColorMenu shapes={true} withoutTransparent={true} item={props.element} changeBgColor={changeColor} color={colorName}/>}
             </div>
 
             <div className={styles.line}>
