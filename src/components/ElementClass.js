@@ -146,7 +146,7 @@ class ElementClass
     {
         if(!e.classList.contains('editOn') && e.classList.contains('element'))
         {
-            clearElementEdit(item)
+            clearElementEdit()
             e.classList.add(`editOn`)
             setEdit(item)
         }

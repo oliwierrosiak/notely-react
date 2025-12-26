@@ -44,8 +44,15 @@ function ImgElement(props)
         }
     },[])
 
+    useEffect(()=>{
+        if(error)
+        {
+            clearElementEdit()
+        }
+    },[error])
+
     return(
-       <div className={`element editOn ${styles.element} ${props.item.getClass()}`} style={props.item.getStyles()} onMouseDown={e=>changePosition(e.target)} onMouseUp={setSolidPosition} onClick={e=>checkEditMode(e.target)} ref={containerRef}>
+       <div className={`element editOn ${styles.element} ${props.item.getClass()} ${error?styles.errorContainerSizes:''}`} style={props.item.getStyles()} onMouseDown={e=>changePosition(e.target)} onMouseUp={setSolidPosition} onClick={e=>checkEditMode(e.target)} ref={containerRef}>
 
             {props.item.mimetype.includes('image/')?
             <img style={props.item.getBrightnessAndContrast()} src={props.item.link} onLoad={e=>{setPhotoLoaded(true);props.item.setProportion(e.target)}} onError={e=>{setError(true);setPhotoLoaded(true)}} onDragStart={e=>e.preventDefault()} className={styles.img} onClick={e=>checkEditMode(e.target.closest('div'))} onMouseDown={e=>changePosition(e.target.closest('div'))} onMouseUp={setSolidPosition}/>
@@ -62,7 +69,7 @@ function ImgElement(props)
                 <h2>Błąd ładowania</h2>
             </div>}
 
-            <div className={styles.resize} onMouseDown={resizeElement}></div>
+            {!error && <div className={styles.resize} onMouseDown={resizeElement}></div>}
         
         </div>
     )

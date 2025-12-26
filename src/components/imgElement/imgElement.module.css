@@ -76,11 +76,17 @@
 {
     background: none;
 }
+.errorContainerSizes
+{
+    width: 15rem !important;
+    height: 15rem !important;
+}
 .error>h2
 {
     font-weight: 900;
-    font-size: 28px;
+    font-size: 1.8rem;
     text-align: center;
+  font-family: "Cause", cursive;
 }
 .errorSVG
 {

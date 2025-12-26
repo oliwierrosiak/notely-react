@@ -66,7 +66,6 @@ function Board()
     const elementSetter= (array) =>{
         const localElements = [...elements]
         array.forEach(x=>{
-            console.log(x.type)
             switch(x.type)
             {
                 case 'text':
