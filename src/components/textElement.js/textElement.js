@@ -8,7 +8,7 @@ function TextElement(props)
 
     const containerRef = useRef()
 
-    const [textValue,setTextValue] = useState('') 
+    const [textValue,setTextValue] = useState(props.item.text?props.item.text:'') 
 
     const changePosition = (e)=>{
         props.movingLocked.current = true
@@ -33,10 +33,17 @@ function TextElement(props)
     },[textValue])
 
     useEffect(()=>{
-        props.item.setPositionRelativeToScreen()
-        const {left,top} = props.item.getStyles()
-        containerRef.current.style.left = left
-        containerRef.current.style.top = top
+        if(!props.item.left && !props.item.top)
+        {
+            props.item.setPositionRelativeToScreen()
+            const {left,top} = props.item.getStyles()
+            containerRef.current.style.left = left
+            containerRef.current.style.top = top
+        }
+        else
+        {
+            clearEdit()
+        }
     },[])
 
 

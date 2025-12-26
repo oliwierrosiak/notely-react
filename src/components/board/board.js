@@ -56,12 +56,23 @@ function Board()
     const panStartY = useRef(0)
 
     const zoomSpeed = 0.001
-    const minScale = window.innerWidth/window.innerHeight / 100
+    const minScale = window.innerWidth / window.innerHeight / 100
     const maxScale = 3
 
     const navigate = useNavigate()
 
     const params = useParams()
+
+    const setTextElement = (array) =>{
+        const texts = array.filter(x=>x.type === "text")
+        const localElements = [...elements]
+        texts.forEach(x=>{
+            localElements.push(new TextElementClass(x))
+        })
+        setElements(localElements)
+    }
+
+   
 
     const getData = async() =>{
         try
@@ -69,6 +80,7 @@ function Board()
             const data = await axios.get(`${ApiAddress}/getBoardData/${params.id}`)
             setLoading(false)
             setProjectName(data.data.title)
+            setTextElement(data.data.content)
         }
         catch(ex)
         {
@@ -76,14 +88,6 @@ function Board()
         }
     }
 
-    const addTextItem = () =>
-    {
-        const localTextElement = [...elements]
-        const item = new TextElementClass(['fontSize14','alignLeft','colorBlack','bgYellow6','fontArial'])
-        localTextElement.push(item)
-        setEdit(item)
-        setElements(localTextElement)
-    }
 
     const clearElementEdit = () =>{
         const elements = [...document.querySelectorAll('.element')]
@@ -100,12 +104,13 @@ function Board()
         }
     }
 
-    const boardClicked = (e) =>{
-        if(e.target.classList.contains(styles.board) || e.target.classList.contains('canvas'))
-        {
-            clearElementEdit()
-            setShowAddingImgForm(false)
-        }
+    const addTextItem = () =>
+    {
+        const localTextElement = [...elements]
+        const item = new TextElementClass({class:['fontSize14','alignLeft','colorBlack','bgYellow6','fontArial']})
+        localTextElement.push(item)
+        setEdit(item)
+        setElements(localTextElement)
     }
 
     const deleteItem = (id) =>
@@ -126,6 +131,15 @@ function Board()
         setElements(localTextElement)
     }
 
+    const addShape = (shape) =>
+    {
+        const localElements = [...elements]
+        const item = new ShapeElementClass(['fillBlack4'],shape)
+        localElements.push(item)
+        setEdit(item)
+        setElements(localElements)
+    }
+
     const brushClicked = () =>{
         const localElement = [...elements]
         const canvas = localElement.find(x=>x.type==="canvas")
@@ -136,13 +150,12 @@ function Board()
         setEdit(0)
     }
 
-    const addShape = (shape) =>
-    {
-        const localElements = [...elements]
-        const item = new ShapeElementClass(['fillBlack4'],shape)
-        localElements.push(item)
-        setEdit(item)
-        setElements(localElements)
+    const boardClicked = (e) =>{
+        if(e.target.classList.contains(styles.board) || e.target.classList.contains('canvas'))
+        {
+            clearElementEdit()
+            setShowAddingImgForm(false)
+        }
     }
 
 
@@ -167,6 +180,47 @@ function Board()
 
     }
 
+
+        const sendFileToServer = async(file) =>{
+        try
+        {
+            const data = new FormData()
+            data.append('img',file)
+            setGlobalLoading(true)
+            const response = await axios.post(`${ApiAddress}/boardImg`,data)
+            setGlobalLoading(false)
+            addImg(response.data)
+        }
+        catch(ex)
+        {
+            setGlobalLoading(false)
+            addMessage("Błąd przesyłania pliku","error")
+        }
+    }
+
+    const drop = (e) =>
+    {
+        e.preventDefault()
+        const file = e.dataTransfer.files[0] || null
+        if(file && (file.type.includes('image/') || file.type.includes('video/')))
+        {
+            const url = e.dataTransfer.getData("text/uri-list") || e.dataTransfer.getData("text/plain");
+            if(url)
+            {
+                addImg({link:url,mimetype:'image/*'})
+            }
+            else
+            {
+                sendFileToServer(file)
+            }
+        }
+        else
+        {
+            addMessage("Nieprawidłowy format pliku","error")
+        }
+        
+        setDisplayDragElement(false)
+    }
 
 
     const setBoardTransformation = () =>
@@ -217,53 +271,6 @@ function Board()
         }
         boardRef.current.removeEventListener('mousemove',mouseMoveListener.current)
     }
-
-
-
-    
-    const sendFileToServer = async(file) =>{
-        try
-        {
-            const data = new FormData()
-            data.append('img',file)
-            setGlobalLoading(true)
-            const response = await axios.post(`${ApiAddress}/boardImg`,data)
-            setGlobalLoading(false)
-            addImg(response.data)
-        }
-        catch(ex)
-        {
-            setGlobalLoading(false)
-            addMessage("Błąd przesyłania pliku","error")
-        }
-    }
-
-    const drop = (e) =>
-    {
-        e.preventDefault()
-        const file = e.dataTransfer.files[0] || null
-        if(file && (file.type.includes('image/') || file.type.includes('video/')))
-        {
-            const url = e.dataTransfer.getData("text/uri-list") || e.dataTransfer.getData("text/plain");
-            if(url)
-            {
-                addImg({link:url,mimetype:'image/*'})
-            }
-            else
-            {
-                sendFileToServer(file)
-            }
-        }
-        else
-        {
-            addMessage("Nieprawidłowy format pliku","error")
-        }
-        
-        setDisplayDragElement(false)
-    }
-
-
-
 
     const centerBoard = () =>{
         translateXRef.current = (viewport.current.clientWidth - boardRef.current.clientWidth*scaleRef.current) / 2
@@ -368,21 +375,6 @@ function Board()
             e.preventDefault()
         }
     }
-
-    const updateContent = async()=>{
-        try
-        {
-            await axios.post(`${ApiAddress}/updateNoteContent/${params.id}`,{content:elements})
-        }
-        catch(ex)
-        {
-
-        }
-    }
-
-    useEffect(()=>{
-        // updateContent()
-    },[elements])
 
     useLayoutEffect(()=>{
          translateXRef.current = (viewport.current.clientWidth - boardRef.current.clientWidth) / 2

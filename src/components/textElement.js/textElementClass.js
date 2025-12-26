@@ -2,9 +2,10 @@ import ElementClass from "../ElementClass"
 
 class TextElementClass extends ElementClass
 {
-    constructor(classNames)
+    constructor(config)
     {
-        super(classNames)
+        super(config)
+        this.text = config.text
         this.type = 'text'
     }   
 

@@ -3,11 +3,15 @@ import ApiAddress from "../ApiAddress"
 
 class ElementClass
 {
-    constructor(classNames)
+    constructor(config)
     {
-        this.class = classNames ? [...classNames] : []
+        this.class = config.class ? [...config.class] : []
         const id = Math.floor(Math.random()*100)
-        this.id = `${new Date().getTime()}${id}`
+        this.id = config.id || `${new Date().getTime()}${id}`
+        this.left = config.left?config.left:0
+        this.top = config.top?config.top:0
+        this.width = config.width?config.width:""
+        this.height = config.height?config.height:""
         this.moveHandler = ()=>{}
         this.resizeHandler = ()=>{}
     }   
@@ -49,7 +53,6 @@ class ElementClass
 
     setPositionRelativeToScreen()
     {
-        
         const [translateX,translateY,scale] = this.getTranslate()
         const left = ((window.innerWidth/2 - translateX) / scale)/5000*100
         const top = ((window.innerHeight/2 - translateY) / scale)/5000*100
