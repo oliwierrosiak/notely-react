@@ -123,13 +123,26 @@ function Board()
         setElements(localTextElement)
     }
 
+    const deletePhotoFromAWS = async (link) =>{
+        try
+        {
+            await axios.post(`${ApiAddress}/deleteAWSMedia`,{link})
+        }
+        catch(ex){}
+    }
+
     const deleteItem = async(id) =>
     {
         const localElements = [...elements]
         const idx = localElements.findIndex(x=>x.id === id)
+        const awsLink = localElements[idx].type === "img" && localElements[idx].link?.includes('https://interactive-board-storage.s3.eu-north-1.amazonaws.com') ?localElements[idx].link:null
         localElements.splice(idx,1)
         setElements([...localElements])
         setEdit(0)
+        if(awsLink)
+        {
+            deletePhotoFromAWS(awsLink)
+        }
         try
         {
             await axios.delete(`${ApiAddress}/deleteBoardItem/${params.id}/${id}`)
