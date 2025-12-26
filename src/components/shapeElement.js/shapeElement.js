@@ -73,10 +73,17 @@ function ShapeElement(props)
     }
 
     useEffect(()=>{
-        props.item.setPositionRelativeToScreen()
-        const {left,top} = props.item.getStyles()
-        containerRef.current.style.left = left
-        containerRef.current.style.top = top
+        if(!props.item.left && !props.item.top)
+        {
+            props.item.setPositionRelativeToScreen()
+            const {left,top} = props.item.getStyles()
+            containerRef.current.style.left = left
+            containerRef.current.style.top = top
+        }
+        else
+        {
+            clearEdit()
+        }
     },[])
 
     return(

@@ -2,11 +2,12 @@ import ElementClass from "../ElementClass";
 
 class ShapeElementClass extends ElementClass
 {
-    constructor(className,item)
+    constructor(config)
     {
-        super(className)
+        super(config)
         this.type = "shape"
-        this.item = item
+        this.item = config.item
+        this.rotate = config.rotate?config.rotate:0
     }
 
     resizeAction(e,containerRef,board,movingLocked)

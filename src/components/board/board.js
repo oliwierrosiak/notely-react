@@ -74,6 +74,9 @@ function Board()
                 case 'img':
                     localElements.push(new ImgElementClass(x))
                     break;
+                case 'shape':
+                    localElements.push(new ShapeElementClass(x))
+                    break
             }
         })
         setElements(localElements)
@@ -141,7 +144,7 @@ function Board()
     const addShape = (shape) =>
     {
         const localElements = [...elements]
-        const item = new ShapeElementClass(['fillBlack4'],shape)
+        const item = new ShapeElementClass({class:['fillBlack4'],item:shape})
         localElements.push(item)
         setEdit(item)
         setElements(localElements)
