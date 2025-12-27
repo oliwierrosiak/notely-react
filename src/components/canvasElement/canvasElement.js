@@ -1,39 +1,22 @@
-import { Canvas, CircleBrush, PatternBrush, PencilBrush, SprayBrush } from 'fabric'
+import { Canvas, CircleBrush, PatternBrush, PencilBrush, SprayBrush, version } from 'fabric'
 import { useEffect, useRef, useState } from 'react'
 import brushColors from './brushColors'
 import cursor from '../../assets/img/cursor.png'
+import EraserBrush from './eraser'
 
 function CanvasElement(props)
 {
     const canvasRef = useRef()
     const canvasObj = useRef()
-    const currentScale = useRef({x:1,y:1})
 
-    const [brushInitialWidth,setBrushInitialWidth] = useState(window.innerWidth/20000)
-    const initialSizes = {width:document.documentElement.clientWidth,height:document.documentElement.clientHeight}
-
-    const getBrushWidth = (width = props.brush.width) =>{
-        return brushInitialWidth * width
+    const getBrushWidth = () =>{
+        return 0.2*props.brush.width
     }
 
     const getBrushColor = () =>
     {
         return brushColors[props.brush.color]
     }
-
-    const resize = () =>{
-        canvasObj.current.setWidth(2500)
-        canvasObj.current.setHeight(2500)
-
-        setBrushInitialWidth(window.innerWidth/40000)
-    }
-
-    useEffect(()=>{
-        if(canvasObj.current?.freeDrawingBrush)
-        {
-            canvasObj.current.freeDrawingBrush.width = getBrushWidth();
-        }
-    },[brushInitialWidth])
 
     const objectAddedToCanvas = (e) =>{
         const obj = e.target
@@ -47,28 +30,24 @@ function CanvasElement(props)
             isDrawingMode:props.drawing
         })
         canvas.preserveObjectStacking = true;
-        canvas.backgroundColor = "transparent";
         canvas.renderOnAddRemove = true;
         canvas.selection = false
         canvas.skipTargetFind = false
         canvas.freeDrawingCursor = `url(${cursor}) 16 16, auto`;
         canvas.selection = false;
         canvas.renderOnAddRemove = false;
+        canvas.backgroundColor = "transparent"
         canvas.on('object:added',objectAddedToCanvas)
-
+        canvas.setWidth(3000)
+        canvas.setHeight(3000)
         canvasObj.current = canvas
-
-        resize()
+        
     }
 
     useEffect(()=>{
-       
         createCanvas()
-        window.addEventListener("resize",resize)
-
-         return () => {
+        return () => {
             canvasObj.current.dispose();
-            window.removeEventListener("resize",resize)
         };
     },[])
 
@@ -92,7 +71,7 @@ function CanvasElement(props)
             case 'circle':
                 return new CircleBrush(canvasObj.current)
             case 'eraser':
-                return new PencilBrush(canvasObj.current)
+                return new EraserBrush(canvasObj.current)
         }
     }
 
@@ -102,8 +81,7 @@ function CanvasElement(props)
             canvasObj.current.freeDrawingBrush = getBrushType()
             if(props.brush.type === "eraser")
             {
-                canvasObj.current.freeDrawingBrush.width = getBrushWidth(180)
-                canvasObj.current.freeDrawingBrush.color = `rgb(255,255,255)`
+                canvasObj.current.freeDrawingBrush.width = getBrushWidth()
             }
             else
             {
