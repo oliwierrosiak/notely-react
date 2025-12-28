@@ -1,8 +1,8 @@
 import { useEffect, useState } from 'react'
 import styles from './message.module.css'
-import InfoIcon from '../../assets/svg/infoIcon';
-import ErrorIcon from '../../assets/svg/errorIcon';
-import CloseIcon from '../../assets/svg/closeIcon';
+import InfoIcon from '../../../assets/svg/infoIcon';
+import ErrorIcon from '../../../assets/svg/errorIcon';
+import CloseIcon from '../../../assets/svg/closeIcon';
 
 function Message(props)
 {

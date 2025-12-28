@@ -1,9 +1,9 @@
 import { useContext, useState } from 'react'
 import styles from './addingImgForm.module.css'
 import axios from 'axios'
-import ApiAddress from '../../ApiAddress'
-import MessageContext from '../../context/messageContext'
-import GlobalLoadingContext from '../../context/globalLoadingContext'
+import ApiAddress from '../../../ApiAddress'
+import MessageContext from '../../../context/messageContext'
+import GlobalLoadingContext from '../../../context/globalLoadingContext'
 
 function AddingImgForm(props)
 {

@@ -1,4 +1,4 @@
-import transparentImg from '../../../assets/img/transparent.png'
+import transparentImg from '../../../../assets/img/transparent.png'
 import styles from './textMenu.module.css'
 
 function BgColorMenu(props)

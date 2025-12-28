@@ -1,5 +1,5 @@
 import axios from "axios"
-import ApiAddress from "../ApiAddress"
+import ApiAddress from "../../ApiAddress"
 
 class ElementClass
 {

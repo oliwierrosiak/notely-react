@@ -1,5 +1,5 @@
 import { useEffect, useRef, useState } from 'react'
-import DeleteIcon from '../../../assets/svg/deleteIcon'
+import DeleteIcon from '../../../../assets/svg/deleteIcon'
 import styles from './shapeBottomMenu.module.css'
 import BgColorMenu from '../textMenu/bgColorMenu'
 

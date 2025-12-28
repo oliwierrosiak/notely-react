@@ -1,13 +1,13 @@
 import { useEffect, useState } from 'react'
 import styles from './imageMenu.module.css'
-import DeleteIcon from '../../../assets/svg/deleteIcon'
+import DeleteIcon from '../../../../assets/svg/deleteIcon'
 import BgColorMenu from '../textMenu/bgColorMenu'
 import borderColors from './borderMenuColors.module.css'
 import CornerMenu from './cornerMenu/cornerMenu'
 import BorderRadius from './cornerMenu/borderRadius'
 import RangeSlider from './rangeSlider/rangeSlider'
-import BrightnessIcon from '../../../assets/svg/brightnessIcon'
-import ContrastIcon from '../../../assets/svg/contrastIcon'
+import BrightnessIcon from '../../../../assets/svg/brightnessIcon'
+import ContrastIcon from '../../../../assets/svg/contrastIcon'
 
 function ImageMenu(props)
 {

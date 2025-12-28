@@ -2,10 +2,10 @@ import { useContext, useEffect, useRef, useState } from 'react'
 import styles from './brushMenu.module.css'
 import RangeSlider from '../imageMenu/rangeSlider/rangeSlider'
 import BgColorMenu from '../textMenu/bgColorMenu'
-import LineBrushIcon from '../../../assets/svg/lineBrushIcon'
-import EraserIcon from '../../../assets/svg/eraserIcon'
-import ArrowIcon from '../../../assets/svg/arrowIcon'
-import CanvasHistoryContext from '../../../context/canvasHistory'
+import LineBrushIcon from '../../../../assets/svg/lineBrushIcon'
+import EraserIcon from '../../../../assets/svg/eraserIcon'
+import ArrowIcon from '../../../../assets/svg/arrowIcon'
+import CanvasHistoryContext from '../../../../context/canvasHistory'
 
 function BrushMenu(props)
 {

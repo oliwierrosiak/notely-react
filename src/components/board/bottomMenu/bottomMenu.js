@@ -1,16 +1,16 @@
 import styles from './bottomMenu.module.css'
 import AddingImgForm from '../addingImgForm/addingImgForm'
 import { useContext, useEffect, useState } from 'react'
-import ClearElementEditContext from '../../context/clearEdit'
-import ZoomInIcon from '../../assets/svg/zoomInIcon'
-import ZoomOutIcon from '../../assets/svg/zoomOutIcon'
-import NoteIcon from '../../assets/svg/noteIcon'
-import BrushIcon from '../../assets/svg/lineBrushIcon'
-import ImageIcon from '../../assets/svg/imageIcon'
-import ShapesIcon from '../../assets/svg/shapesIcon'
+import ClearElementEditContext from '../../../context/clearEdit'
+import ZoomInIcon from '../../../assets/svg/zoomInIcon'
+import ZoomOutIcon from '../../../assets/svg/zoomOutIcon'
+import NoteIcon from '../../../assets/svg/noteIcon'
+import BrushIcon from '../../../assets/svg/lineBrushIcon'
+import ImageIcon from '../../../assets/svg/imageIcon'
+import ShapesIcon from '../../../assets/svg/shapesIcon'
 import ShapesMenu from './shapesMenu/shapesMenu'
 import BgColorMenu from './textMenu/bgColorMenu'
-import imgTemplatePreview from '../../assets/img/preview.png'
+import imgTemplatePreview from '../../../assets/img/preview.png'
 import BackgroundTemplateMenu from './backgroundTemplateMenu'
 
 function BottomMenu(props)
@@ -54,11 +54,11 @@ function BottomMenu(props)
 
     const windowClick = (e) =>{
         const div = e.target.closest(`div`)
-        if(!div.classList.contains(styles.bgColor) && !div.classList.contains(styles.templatePreview))
+        if(div && !div.classList.contains(styles.bgColor) && !div.classList.contains(styles.templatePreview))
         {
             setDisplayBackgroundTemplateMenu(false)
         }
-        if(!div.classList.contains(styles.bgColor) && !div.classList.contains(styles.colorPreview))
+        if(div && !div.classList.contains(styles.bgColor) && !div.classList.contains(styles.colorPreview))
         {
             setShowBoardColorMenu(false)
         }

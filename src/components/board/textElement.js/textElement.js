@@ -1,6 +1,6 @@
 import { useContext, useEffect, useRef, useState } from 'react'
 import styles from './textElement.module.css'
-import ClearElementEditContext from '../../context/clearEdit'
+import ClearElementEditContext from '../../../context/clearEdit'
 
 function TextElement(props)
 {

@@ -1,8 +1,8 @@
 import { useContext, useEffect, useRef, useState } from 'react'
 import styles from './imgElement.module.css'
-import ImgLoadingIcon from '../../assets/svg/imgLoadingIcon'
-import ImgErrorIcon from '../../assets/svg/imgErrorIcon'
-import ClearElementEditContext from '../../context/clearEdit'
+import ImgLoadingIcon from '../../../assets/svg/imgLoadingIcon'
+import ImgErrorIcon from '../../../assets/svg/imgErrorIcon'
+import ClearElementEditContext from '../../../context/clearEdit'
 
 function ImgElement(props)
 {

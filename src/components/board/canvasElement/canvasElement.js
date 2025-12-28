@@ -1,9 +1,9 @@
 import { Canvas, PencilBrush, Path } from 'fabric'
 import { useContext, useEffect, useRef, useState } from 'react'
 import brushColors from './brushColors'
-import cursor from '../../assets/img/cursor.png'
+import cursor from '../../../assets/img/cursor.png'
 import EraserBrush from './eraser'
-import CanvasHistoryContext from '../../context/canvasHistory'
+import CanvasHistoryContext from '../../../context/canvasHistory'
 
 function CanvasElement(props)
 {

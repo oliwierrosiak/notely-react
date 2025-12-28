@@ -2,12 +2,12 @@ import { useEffect, useState } from 'react'
 import styles from './textMenu.module.css'
 import ColorMenu from './colorMenu'
 import BgColorMenu from './bgColorMenu'
-import DeleteIcon from '../../../assets/svg/deleteIcon'
+import DeleteIcon from '../../../../assets/svg/deleteIcon'
 import FontFamilyMenu from './fontFamilyMenu'
-import AlignCenterIcon from '../../../assets/svg/alignCenterIcon'
-import AlignJustifyIcon from '../../../assets/svg/alignJustifyIcon'
-import AlignLeftIcon from '../../../assets/svg/alignLeftIcon'
-import AlignRightIcon from '../../../assets/svg/alignRightIcon'
+import AlignCenterIcon from '../../../../assets/svg/alignCenterIcon'
+import AlignJustifyIcon from '../../../../assets/svg/alignJustifyIcon'
+import AlignLeftIcon from '../../../../assets/svg/alignLeftIcon'
+import AlignRightIcon from '../../../../assets/svg/alignRightIcon'
 
 function TextMenu(props)
 {

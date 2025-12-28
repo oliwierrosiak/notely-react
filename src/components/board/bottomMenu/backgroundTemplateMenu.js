@@ -1,12 +1,12 @@
 import styles from './backgroundTemplateMenu.module.css'
-import template1 from '../../assets/img/preview10.png'
-import template2 from '../../assets/img/preview20.png'
-import template3 from '../../assets/img/preview30.png'
-import template4 from '../../assets/img/preview40.png'
-import template5 from '../../assets/img/preview50.png'
-import template6 from '../../assets/img/preview60.png'
-import template7 from '../../assets/img/preview70.png'
-import template8 from '../../assets/img/preview80.png'
+import template1 from '../../../assets/img/preview10.png'
+import template2 from '../../../assets/img/preview20.png'
+import template3 from '../../../assets/img/preview30.png'
+import template4 from '../../../assets/img/preview40.png'
+import template5 from '../../../assets/img/preview50.png'
+import template6 from '../../../assets/img/preview60.png'
+import template7 from '../../../assets/img/preview70.png'
+import template8 from '../../../assets/img/preview80.png'
 
 
 function BackgroundTemplateMenu(props)
