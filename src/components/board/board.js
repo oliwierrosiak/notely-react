@@ -48,7 +48,7 @@ function Board()
     const [undoStack,setUndoStack] = useState([])
     const [redoStack,setRedoStack] = useState([])
     const [canvasHistoryUpdater,setCanvasHistoryUpdater] = useState(false)
-    const [backgroundTemplate,setBackgroundTemplate] = useState('backgroundTemplate9')
+    const [backgroundTemplate,setBackgroundTemplate] = useState()
 
     const movingLocked = useRef(false)
     const mouseMoveListener = useRef()
@@ -97,6 +97,7 @@ function Board()
             setLoading(false)
             setProjectName(data.data.title || 'Nowy projekt')
             setBoardColor(data.data.boardColor || 'bgBlack5')
+            setBackgroundTemplate(data.data.template || 'backgroundTemplate9')
             elementSetter(data.data.content)
         }
         catch(ex)
@@ -454,7 +455,7 @@ function Board()
         }
         catch(ex)
         {
-            addMessage('Nie zapisano koloru tła','errror')
+            addMessage('Nie zapisano koloru tła','error')
         }       
     }
 
@@ -462,9 +463,26 @@ function Board()
         if(boardColor)
         {
             saveBoardColor()
-
         }
     },[boardColor])
+
+    const saveBackgroundTemplate = async() =>{
+        try
+        {
+            await axios.post(`${ApiAddress}/updateNoteTemplate/${params.id}`,{template:backgroundTemplate})
+        }
+        catch(ex)
+        {
+            addMessage('Nie zapisano wzoru tła','error')
+        }    
+    }
+
+    useEffect(()=>{
+        if(backgroundTemplate)
+        {
+            saveBackgroundTemplate()
+        }
+    },[backgroundTemplate])
 
     return(
         <MessageContext.Provider value={{addMessage,removeMessage}}>
