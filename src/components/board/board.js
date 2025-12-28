@@ -31,7 +31,7 @@ function Board()
     const boardRef = useRef()
     const viewport = useRef()
 
-    const [elements,setElements] = useState([{type:'canvas',id:`${new Date().getTime()}${Math.floor(Math.random()*100)}`}])
+    const [elements,setElements] = useState([])
     const [edit,setEdit] = useState(0)
     const [editUpdate,setEditUpdate] = useState(true)
     const [showAddingImgForm,setShowAddingImgForm] = useState(false)
@@ -71,9 +71,16 @@ function Board()
 
     const elementSetter= (array) =>{
         const localElements = [...elements]
+        if(array.findIndex(x=>x.type === "canvas") == -1)
+        {
+            localElements.push({type:'canvas',id:`${new Date().getTime()}${Math.floor(Math.random()*100)}`,content:[]})
+        }
         array.forEach(x=>{
             switch(x.type)
             {
+                case 'canvas':
+                    localElements.push(x)
+                    break
                 case 'text':
                     localElements.push(new TextElementClass(x))
                     break;
@@ -87,8 +94,6 @@ function Board()
         })
         setElements(localElements)
     }
-
-   
 
     const getData = async() =>{
         try
@@ -106,19 +111,38 @@ function Board()
         }
     }
 
+    const saveCanvas = async()=>{
+        const canvas = elements.find(x=>x.type==="canvas")
+        if(canvas && canvas.content.length > 0)
+        {
+            try
+            {
+                await axios.post(`${ApiAddress}/updateNoteCanvas/${params.id}`,{canvas})
+            }   
+            catch(ex)
+            {
+            }
+        }
+    }
 
     const clearElementEdit = () =>{
+        setBrush({type:'',width:brush.width,color:brush.color})
         const elements = [...document.querySelectorAll('.element')]
         elements.forEach(x=>{
             x.classList.remove(`editOn`)
         })
-        if(edit.type !== "canvas" || !brush.type)
+        if(edit.type !== "canvas" && !brush.type)
         {
             if(edit)
             {
                 edit.updater(params.id)
             }
             setEdit(0)
+        }
+        else
+        {
+            setEdit(0)
+            saveCanvas()
         }
     }
 
@@ -185,13 +209,18 @@ function Board()
 
     const brushMenuClosed = () =>{
         setEdit(0)
+        saveCanvas()
     }
 
     const boardClicked = (e) =>{
-        if(e.target.classList.contains(styles.board) || e.target.classList.contains('canvas'))
+        if(e.target.classList.contains('canvas'))
         {
-            clearElementEdit()
-            setShowAddingImgForm(false)
+            if(!brush.type)
+            {
+                clearElementEdit()
+                setShowAddingImgForm(false)
+
+            }
         }
     }
 
@@ -414,7 +443,7 @@ function Board()
     }
 
     useLayoutEffect(()=>{
-         translateXRef.current = (viewport.current.clientWidth - boardRef.current.clientWidth) / 2
+        translateXRef.current = (viewport.current.clientWidth - boardRef.current.clientWidth) / 2
         translateYRef.current = (viewport.current.clientHeight - boardRef.current.clientHeight) / 2
         setBoardTransformation()
     },[])
@@ -484,6 +513,13 @@ function Board()
         }
     },[backgroundTemplate])
 
+    useEffect(()=>{
+        if(edit.type != 'canvas')
+        {
+            setBrush({type:'',color:brush.color,width:brush.width})
+        }
+    },[edit])
+
     return(
         <MessageContext.Provider value={{addMessage,removeMessage}}>
         <GlobalLoadingContext.Provider value={{globalLoading,setGlobalLoading}}>
@@ -508,7 +544,7 @@ function Board()
 
                 <div className={`${styles.board} board ${boardColor} ${backgroundTemplate}`} ref={boardRef} onMouseDown={boardMouseDown} onMouseUp={boardMouseUp}>
 
-                    <CanvasElement movingLocked={movingLocked} drawing={edit !== 0 && edit.type === "canvas" && brush.type !== ''} brush={brush}/>
+                    {elements.find(x=>x.type === "canvas") != -1 && elements.find(x=>x.type === "canvas")?.content && <CanvasElement item={elements.find(x=>x.type==="canvas")} movingLocked={movingLocked} drawing={edit !== 0 && edit.type === "canvas" && brush.type !== ''} brush={brush}/>}
 
                     {elements.map((x)=>{
                         if(x.type === "text")

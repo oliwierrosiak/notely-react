@@ -1,4 +1,4 @@
-import { Canvas, CircleBrush, PatternBrush, PencilBrush, SprayBrush, version } from 'fabric'
+import { Canvas, CircleBrush, PatternBrush, PencilBrush, SprayBrush, version, Path } from 'fabric'
 import { useContext, useEffect, useRef, useState } from 'react'
 import brushColors from './brushColors'
 import cursor from '../../assets/img/cursor.png'
@@ -21,18 +21,33 @@ function CanvasElement(props)
         return brushColors[props.brush.color]
     }
 
-    
-
-    const saveChanges = () =>{
-        const json = canvasObj.current.toJSON()
-         canvasHistory.setUndoStack(json);
+    function pointsToPath(points)
+    {
+        let d = `M ${points[0][0]} ${points[0][1]}`
+        for (let i = 1;i < points.length;i++)
+        {
+            d += ` L ${points[i][0]} ${points[i][1]}`
+        }
+        return d
     }
 
+    function pathToPoints(path)
+    {
+        return path.filter(cmd => cmd[0] !== 'M').map(cmd => [cmd[1], cmd[2]])
+    }
+    
+
     const objectAddedToCanvas = (e) =>{
-        const obj = e.target
-        obj.selectable = false
-        obj.evented = false
-        saveChanges()
+        const p = e.target
+
+        const serialized = {
+            points: pathToPoints(p.path),
+            color: p.stroke,
+            width: p.strokeWidth,
+            type:p.globalCompositeOperation === 'destination-out'?'eraser':'draw'
+        }
+
+        props.item.content.push(serialized)
     }
 
     const createCanvas = () =>
@@ -40,18 +55,40 @@ function CanvasElement(props)
         const canvas = new Canvas(canvasRef.current,{
             isDrawingMode:props.drawing
         })
-        canvas.preserveObjectStacking = true;
-        canvas.renderOnAddRemove = true;
-        canvas.selection = false
-        canvas.skipTargetFind = false
         canvas.freeDrawingCursor = `url(${cursor}) 16 16, auto`;
-        canvas.selection = false;
-        canvas.renderOnAddRemove = false;
         canvas.backgroundColor = "transparent"
-        canvas.on('object:added',objectAddedToCanvas)
+
         canvas.setWidth(2500)
         canvas.setHeight(2500)
         canvasObj.current = canvas
+        canvas.renderOnAddRemove = false
+        canvas.selection = false
+        canvas.skipTargetFind = true
+        canvas.preserveObjectStacking = true
+
+        props.item.content.forEach(data => {
+            const path = new Path(pointsToPath(data.points), {
+                stroke: data.color,
+                strokeWidth: data.width,
+                fill: null,
+                selectable: false,
+                evented: false
+            })
+
+            if (data.type === 'eraser')
+            {
+                path.globalCompositeOperation = 'destination-out'
+            }
+
+            canvas.add(path)
+        })
+
+        canvas.on('object:added',objectAddedToCanvas)
+
+        canvas.renderOnAddRemove = true
+        canvas.renderAll()
+        
+
         
     }
 
@@ -77,10 +114,6 @@ function CanvasElement(props)
                 return ""
             case 'brush':
                 return new PencilBrush(canvasObj.current)
-            case 'spray':
-                return new SprayBrush(canvasObj.current)
-            case 'circle':
-                return new CircleBrush(canvasObj.current)
             case 'eraser':
                 return new EraserBrush(canvasObj.current)
         }
@@ -106,7 +139,11 @@ function CanvasElement(props)
 
                 }
             }
-           
+            if(canvasObj.current.freeDrawingBrush)
+            {
+                canvasObj.current.freeDrawingBrush.decimate = 12
+
+            }
         }
     },[props.brush])
 
