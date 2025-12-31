@@ -1,7 +1,7 @@
 import { useContext, useState } from 'react'
 import styles from '../login-register.module.css'
 import PasswordEye from '../../../assets/svg/passwordEye'
-import PasswordEyeHidden from '../../../assets/svg/passwordEyeHiden'
+import PasswordEyeHidden from '../../../assets/svg/passwordEyeHidden'
 import GoogleIcon from '../../../assets/svg/googleIcon'
 import DisplayLoginContext from '../../../context/displayLogin'
 
@@ -31,19 +31,9 @@ function Login(props)
         div.classList.remove(styles.containerFocused)
          div.children[0].classList.remove(styles.inputFocused)
         div.children[1].classList.remove(styles.placeholderColorWhileFocused)
-        if(e.target.classList.contains(styles.passwordInput))
+        if(e.target.value.trim() === "")
         {
-            if(passwordValue.trim() === '')
-            {
-                div.children[1].classList.remove(styles.placeholderFocused)
-            }
-        }
-        else
-        {
-            if(loginValue.trim() === '')
-            {
-                div.children[1].classList.remove(styles.placeholderFocused)
-            }
+            div.children[1].classList.remove(styles.placeholderFocused)
         }
 
     }

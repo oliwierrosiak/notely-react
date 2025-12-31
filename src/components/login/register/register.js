@@ -1,9 +1,9 @@
 import { useContext, useReducer, useState } from 'react'
 import styles from '../login-register.module.css'
 import PasswordEye from '../../../assets/svg/passwordEye'
-import PasswordEyeHidden from '../../../assets/svg/passwordEyeHiden'
-import GoogleIcon from '../../../assets/svg/googleIcon'
+import PasswordEyeHidden from '../../../assets/svg/passwordEyeHidden'
 import DisplayLoginContext from '../../../context/displayLogin'
+import userImg from '../../../assets/img/userDefault.png'
 
 function Register(props)
 {
@@ -100,9 +100,15 @@ function Register(props)
 
                 {showPage2 && <div className={styles.page2}>
 
+                    <div className={styles.userImg}>
+                        <img src={userImg} />
+                    </div>
+
+                    <button className={styles.chooseImg} type='button'>Ustaw Zdjęcie</button>
+
                     <div className={styles.inputContainer} onClick={divClicked}>
                         <input value={values.name} onChange={e=>dispatch({action:"name",value:e.target.value})} type='text' onBlur={inputBlur} onFocus={inputFocused} className={styles.input}></input>
-                        <div className={styles.placeholder}>Podaj Nazwę</div>
+                        <div className={styles.placeholder}>Podaj Nazwę Użytkownika</div>
                     </div>
 
                 </div>}
