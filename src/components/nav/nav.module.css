@@ -68,3 +68,8 @@
     color: white;
     background: #02735E;
 }
+.loginLoading
+{
+    width: 2rem;
+    height: 2rem;
+}

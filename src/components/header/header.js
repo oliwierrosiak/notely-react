@@ -1,4 +1,4 @@
-import { useRef } from 'react'
+import { useContext, useRef } from 'react'
 import Nav from '../nav/nav'
 import styles from './header.module.css'
 import LoginPage from '../login/loginPage'

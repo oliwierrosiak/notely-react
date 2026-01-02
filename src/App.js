@@ -46,8 +46,20 @@ function App() {
     checkLogin()
   },[])
 
-  const logout = () =>{
-    console.log("logout")
+  const logout = async() =>{
+    try
+    {
+      const response = await axios.get(`${ApiAddress}/logout`,{withCredentials:true})
+      setLogged(false)
+      setLoggedUser({})
+      setAccessToken('')
+    }
+    catch(ex)
+    {
+      setLogged(false)
+      setLoggedUser({})
+      setAccessToken('')
+    }
   }
 
   return (
@@ -61,7 +73,7 @@ function App() {
         <Route path="/note/:id" element={<Board />}/>
       </Routes>
    </Router>
-   
+
     </LoginContext.Provider>
    </AccessTokenContext.Provider>
   );
