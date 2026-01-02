@@ -19,9 +19,7 @@ function Login(props)
     const [error,setError] = useState('')
 
     const displayLoginContext = useContext(DisplayLoginContext)
-
     const accessTokenContext = useContext(AccessTokenContext)
-
     const loginContext = useContext(LoginContext)
 
     const emailRef = useRef()

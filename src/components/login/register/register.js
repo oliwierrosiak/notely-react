@@ -9,6 +9,8 @@ import axios from 'axios'
 import ApiAddress from '../../../ApiAddress'
 import { divClicked,inputBlur,inputFocused } from '../inputActions'
 import LoadingIcon from '../../../assets/svg/loadingIcon'
+import LoginContext from '../../../context/loginContext'
+import AccessTokenContext from '../../../context/accessTokenContext'
 
 function Register(props)
 {
@@ -18,9 +20,14 @@ function Register(props)
     const acceptableImageTypes = ['image/png','image/jpg','image/jpeg','image/pjp','image/jfif','image/jpe','image/pjpeg']
 
     const displayLoginContext = useContext(DisplayLoginContext)
-    
+    const loginContext = useContext(LoginContext)
+    const accessTokenContext = useContext(AccessTokenContext)
+
     const fileInputRef = useRef() 
     const nameInputRef = useRef()
+    const emailInputRef = useRef()
+    const passwordInputRef = useRef()
+    const passwordRepeatRef = useRef()
 
     const reducer = (state,action) => {
 
@@ -59,7 +66,28 @@ function Register(props)
 
         try
         {
-            const response = await axios.post(`${ApiAddress}/register`,formData)
+            const response = await axios.post(`${ApiAddress}/register`,formData,{withCredentials:true})
+            accessTokenContext.setAccessToken(response.data.accessToken)
+            loginContext.setLoggedUser(response.data.user)
+            loginContext.setLogged(true)
+            displayLoginContext.setDisplayLogin('')
+            props.setLoading(false)
+            setShowPassword(false)
+            for(const key in values)
+            {
+                dispatch({type:key,value:''})
+            }
+            setTimeout(() => {
+                nameInputRef.current.focus()
+                nameInputRef.current.blur()
+                emailInputRef.current.focus()
+                emailInputRef.current.blur()
+                passwordInputRef.current.focus()
+                passwordInputRef.current.blur()
+                passwordRepeatRef.current.focus()
+                passwordRepeatRef.current.blur()
+            }, 50);
+            setUserImageLink(userImg)
         }
         catch(ex)
         {
@@ -236,14 +264,14 @@ function Register(props)
                 <div className={`${styles.page1} ${showPage2?styles.pageHidden:''}`}>
 
                     <div className={`${styles.inputContainer} ${props.loading?styles.inputContainerWhileLoading:''}`} onClick={divClicked}>
-                        <input disabled={props.loading} value={values.email} onChange={e=>dispatch({type:'email',value:e.target.value})} type="email" onBlur={inputBlur} onFocus={inputFocused} className={`${styles.input}`}></input>
+                        <input ref={emailInputRef} disabled={props.loading} value={values.email} onChange={e=>dispatch({type:'email',value:e.target.value})} type="email" onBlur={inputBlur} onFocus={inputFocused} className={`${styles.input}`}></input>
                         <div className={styles.placeholder}>Podaj email</div>
                     </div>
 
                     <div className={styles.error}>{errors.email}</div>
 
                     <div className={`${styles.inputContainer} ${props.loading?styles.inputContainerWhileLoading:''}`} onClick={divClicked}>
-                        <input disabled={props.loading} value={values.password} onChange={e=>dispatch({type:'password',value:e.target.value})} type={showPassword?'text':'password'} onBlur={inputBlur} onFocus={inputFocused} className={`${styles.input} ${styles.passwordInput}`}></input>
+                        <input ref={passwordInputRef} disabled={props.loading} value={values.password} onChange={e=>dispatch({type:'password',value:e.target.value})} type={showPassword?'text':'password'} onBlur={inputBlur} onFocus={inputFocused} className={`${styles.input} ${styles.passwordInput}`}></input>
                         <div className={styles.placeholder}>Utwórz hasło</div>
                         <div className={styles.eye} onClick={e=>setShowPassword(!showPassword)}>
                         {showPassword?<PasswordEye />:<PasswordEyeHidden />}
@@ -253,7 +281,7 @@ function Register(props)
                     <div className={styles.error}>{errors.password}</div>
 
                     <div className={`${styles.inputContainer} ${props.loading?styles.inputContainerWhileLoading:''}`} onClick={divClicked}>
-                        <input disabled={props.loading} value={values.passwordRepeat} onChange={e=>dispatch({type:'passwordRepeat',value:e.target.value})} type={showPassword?'text':'password'} onBlur={inputBlur} onFocus={inputFocused} className={`${styles.input} ${styles.passwordInput}`}></input>
+                        <input ref={passwordRepeatRef} disabled={props.loading} value={values.passwordRepeat} onChange={e=>dispatch({type:'passwordRepeat',value:e.target.value})} type={showPassword?'text':'password'} onBlur={inputBlur} onFocus={inputFocused} className={`${styles.input} ${styles.passwordInput}`}></input>
                         <div className={styles.placeholder}>Powtórz hasło</div>
                         <div className={styles.eye} onClick={e=>setShowPassword(!showPassword)}>
                             {showPassword?<PasswordEye />:<PasswordEyeHidden />}
