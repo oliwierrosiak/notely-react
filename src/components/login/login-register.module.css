@@ -75,6 +75,12 @@
     cursor: pointer;
     transition: border .5s ease;
 }
+.inputContainerWhileLoading>.input,
+.inputContainerWhileLoading>.placeholder,
+.inputContainerWhileLoading
+{
+    cursor: default;
+}
 .containerFocused
 {
      border:.3rem solid #03A678;
@@ -146,7 +152,7 @@
     border: .3rem solid #03A678;
     padding: .5rem .8rem .6rem .8rem;
     cursor: pointer;
-    transition: all .3s ease;
+    transition: background .3s ease, border .3s ease;
     z-index: 3;
     outline: none;
 }
@@ -209,6 +215,12 @@
     color: #F27405;
     text-decoration: underline .1rem #F27405;
 }
+.linkWhileLoading
+{
+    color: #03A678 !important;
+    text-decoration: underline .1rem #03A678 !important;
+    cursor: default;
+}
 .page1
 {
      width: 100%;
@@ -247,6 +259,11 @@
 {
     border:.4rem solid #03A678;
 }
+.userImgWhileLoading:hover
+{
+    border:.4rem solid #02735E;
+    cursor: default;
+}
 .userImg>img
 {
     width: 100%;
@@ -271,6 +288,11 @@
 {
     opacity: 1;
 }
+.userImgWhileLoading:hover>.imgOverlay
+{
+    opacity: 0;
+    cursor: default;
+}
 .chooseImg
 {
     width: 60%;
@@ -282,7 +304,7 @@
     outline: none;
     border:.3rem solid #02735E;
     color: rgb(212, 212, 212);
-    margin-bottom: 2.5rem;
+    margin-bottom: 2.8rem;
     cursor: pointer;
     transition: all .3s ease;
     font-family: "Cause", cursive;
@@ -294,6 +316,17 @@
     background-color: #03A678;
     border: .3rem solid #03A678;
     color: white;
+}
+.chooseImgWhileLoading:hover
+{
+    border:.3rem solid #02735E;
+    background: #02735E;
+    color: rgb(212, 212, 212);
+    cursor: default;
+}
+.chooseImgWhileLoading:hover>.fileInput
+{
+    cursor: default;
 }
 .pageHidden
 {
@@ -333,4 +366,29 @@
     font-family: "Jost", sans-serif;
     font-size: 1.2rem;
     text-align: center;
+}
+.error3
+{
+    width: 100%;
+    color: #fc3333;
+    font-weight: 700;
+    font-family: "Jost", sans-serif;
+    font-size: 1.2rem;
+    text-align: center;
+    margin-top: .5rem;
+}
+.loading
+{
+    width: 3.5rem;
+    height: 3.5rem;
+}
+.btnLoading
+{
+    background-color: rgb(48, 48, 48) !important;
+    border: .3rem solid rgb(48, 48, 48) !important;
+    padding: 0;
+    display: flex;
+    justify-content: center;
+    align-items: center;
+    cursor: default;
 }

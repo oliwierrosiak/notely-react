@@ -1,4 +1,4 @@
-import { useState } from 'react'
+import { useEffect, useState } from 'react'
 import styles from '../login-register.module.css'
 import {divClicked,inputBlur,inputFocused} from '../inputActions'
 
@@ -18,6 +18,10 @@ function PasswordForgotten(props)
             console.log("wyślij")
         }
     }
+
+    useEffect(()=>{
+        setError('')
+    },[props.display])
 
     return(
         <div className={`${styles.loginForm} ${styles.loginForm2} ${props.display?styles.display:''}`}>

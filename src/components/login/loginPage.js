@@ -1,4 +1,4 @@
-import { useContext } from 'react'
+import { useContext, useState } from 'react'
 import styles from './loginPage.module.css'
 import DisplayLoginContext from '../../context/displayLogin'
 import ArrowIcon from '../../assets/svg/arrowIcon'
@@ -12,9 +12,11 @@ function LoginPage(props)
 {
     const displayLoginContext = useContext(DisplayLoginContext)
 
+    const [loading,setLoading] = useState(false)
+
     return(
         <div className={`${styles.container} ${displayLoginContext.displayLogin?styles.displayContainer:''}`}>
-            <div className={styles.back} onClick={e=>displayLoginContext.setDisplayLogin('')}>
+            <div className={`${styles.back} ${loading?styles.backWhileLoading:''}`} onClick={e=>!loading && displayLoginContext.setDisplayLogin('')}>
                 <ArrowIcon class={styles.backSVG}/>
             </div>
 
@@ -24,9 +26,9 @@ function LoginPage(props)
                 <ImageBackground class={styles.backgroundSVG}/>
             </div>
 
-            <Login display={displayLoginContext.displayLogin === "login"} />
-            <Register display={displayLoginContext.displayLogin === "register"} />
-            <PasswordForgotten display={displayLoginContext.displayLogin === 'passwordForgotten'} />
+            <Login loading={loading} setLoading={setLoading} display={displayLoginContext.displayLogin === "login"} />
+            <Register loading={loading} setLoading={setLoading} display={displayLoginContext.displayLogin === "register"} />
+            <PasswordForgotten loading={loading} setLoading={setLoading} display={displayLoginContext.displayLogin === 'passwordForgotten'} />
 
         </div>
     )

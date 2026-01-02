@@ -8,6 +8,7 @@ import CameraIcon from '../../../assets/svg/cameraIcon'
 import axios from 'axios'
 import ApiAddress from '../../../ApiAddress'
 import { divClicked,inputBlur,inputFocused } from '../inputActions'
+import LoadingIcon from '../../../assets/svg/loadingIcon'
 
 function Register(props)
 {
@@ -46,6 +47,7 @@ function Register(props)
 
     const sendData = async() =>
     {
+        props.setLoading(true)
         const formData = new FormData()
         formData.append('email',values.email)
         formData.append('password',values.password)
@@ -62,7 +64,7 @@ function Register(props)
         catch(ex)
         {
             const localErrors = {...errors}
-            if(ex.response.data.errors.email || ex.response.data.errors.password || ex.response.data.errors.name)
+            if(ex.response?.data.errors.email || ex.response?.data.errors.password || ex.response?.data.errors.name)
             {
                 localErrors.email = ex.response.data.errors.email
                 localErrors.password = ex.response.data.errors.password
@@ -75,8 +77,9 @@ function Register(props)
             }
             else
             {
-                localErrors.name = `Wystąpił bład serwera`
+                localErrors.name = `Wystąpił błąd serwera`
                 setErrors({...localErrors})
+                props.setLoading(false)
             }
         }
     }
@@ -151,6 +154,10 @@ function Register(props)
 
     const validatePage2 = () =>{
         
+        if(props.loading)
+        {
+            return
+        }
         const localErrors = {
         name:'',
         email:'',
@@ -228,15 +235,15 @@ function Register(props)
 
                 <div className={`${styles.page1} ${showPage2?styles.pageHidden:''}`}>
 
-                    <div className={styles.inputContainer} onClick={divClicked}>
-                        <input value={values.email} onChange={e=>dispatch({type:'email',value:e.target.value})} type="email" onBlur={inputBlur} onFocus={inputFocused} className={`${styles.input}`}></input>
+                    <div className={`${styles.inputContainer} ${props.loading?styles.inputContainerWhileLoading:''}`} onClick={divClicked}>
+                        <input disabled={props.loading} value={values.email} onChange={e=>dispatch({type:'email',value:e.target.value})} type="email" onBlur={inputBlur} onFocus={inputFocused} className={`${styles.input}`}></input>
                         <div className={styles.placeholder}>Podaj email</div>
                     </div>
 
                     <div className={styles.error}>{errors.email}</div>
 
-                    <div className={styles.inputContainer} onClick={divClicked}>
-                        <input value={values.password} onChange={e=>dispatch({type:'password',value:e.target.value})} type={showPassword?'text':'password'} onBlur={inputBlur} onFocus={inputFocused} className={`${styles.input} ${styles.passwordInput}`}></input>
+                    <div className={`${styles.inputContainer} ${props.loading?styles.inputContainerWhileLoading:''}`} onClick={divClicked}>
+                        <input disabled={props.loading} value={values.password} onChange={e=>dispatch({type:'password',value:e.target.value})} type={showPassword?'text':'password'} onBlur={inputBlur} onFocus={inputFocused} className={`${styles.input} ${styles.passwordInput}`}></input>
                         <div className={styles.placeholder}>Utwórz hasło</div>
                         <div className={styles.eye} onClick={e=>setShowPassword(!showPassword)}>
                         {showPassword?<PasswordEye />:<PasswordEyeHidden />}
@@ -245,8 +252,8 @@ function Register(props)
 
                     <div className={styles.error}>{errors.password}</div>
 
-                    <div className={styles.inputContainer} onClick={divClicked}>
-                        <input value={values.passwordRepeat} onChange={e=>dispatch({type:'passwordRepeat',value:e.target.value})} type={showPassword?'text':'password'} onBlur={inputBlur} onFocus={inputFocused} className={`${styles.input} ${styles.passwordInput}`}></input>
+                    <div className={`${styles.inputContainer} ${props.loading?styles.inputContainerWhileLoading:''}`} onClick={divClicked}>
+                        <input disabled={props.loading} value={values.passwordRepeat} onChange={e=>dispatch({type:'passwordRepeat',value:e.target.value})} type={showPassword?'text':'password'} onBlur={inputBlur} onFocus={inputFocused} className={`${styles.input} ${styles.passwordInput}`}></input>
                         <div className={styles.placeholder}>Powtórz hasło</div>
                         <div className={styles.eye} onClick={e=>setShowPassword(!showPassword)}>
                             {showPassword?<PasswordEye />:<PasswordEyeHidden />}
@@ -259,34 +266,34 @@ function Register(props)
 
                 {showPage2 && <div className={styles.page2}>
 
-                    <div className={styles.userImg} onClick={e=>fileInputRef.current.click()}>
+                    <div className={`${styles.userImg} ${props.loading?styles.userImgWhileLoading:''}`} onClick={e=>fileInputRef.current.click()}>
                         <img src={userImageLink} />
                         <div className={styles.imgOverlay}>
                             <CameraIcon />
                         </div>
                     </div>
 
-                    <button className={styles.chooseImg} type='button'>
-                        <input ref={fileInputRef} type='file' className={styles.fileInput} accept='image/png, image/jpg, image/jpeg' onChange={fileChosen}/>
+                    <button className={`${styles.chooseImg} ${props.loading?styles.chooseImgWhileLoading:''}`} type='button'>
+                        <input disabled={props.loading} ref={fileInputRef} type='file' className={styles.fileInput} accept='image/png, image/jpg, image/jpeg' onChange={fileChosen}/>
                         Ustaw Zdjęcie
                     </button>
 
 
-                    <div className={styles.inputContainer} onClick={divClicked}>
-                        <input ref={nameInputRef} value={values.name} onChange={e=>dispatch({type:"name",value:e.target.value})} type='text' onBlur={inputBlur} onFocus={inputFocused} className={styles.input}></input>
+                    <div className={`${styles.inputContainer} ${props.loading?styles.inputContainerWhileLoading:''}`} onClick={divClicked}>
+                        <input disabled={props.loading} ref={nameInputRef} value={values.name} onChange={e=>dispatch({type:"name",value:e.target.value})} type='text' onBlur={inputBlur} onFocus={inputFocused} className={styles.input}></input>
                         <div className={styles.placeholder}>Podaj Nazwę Użytkownika</div>
                     </div>
 
-                    <div className={styles.error}>{errors.name}</div>
+                    <div className={styles.error3}>{errors.name}</div>
 
                 </div>}
 
-                <button className={styles.loginBtn}>{showPage2?"Zarejestruj się":"Dalej"}</button>
+                <button className={`${styles.loginBtn} ${props.loading?styles.btnLoading:''}`}>{showPage2?props.loading?<LoadingIcon class={styles.loading}/>:"Zarejestruj się":"Dalej"}</button>
 
             </form>
 
             <div className={styles.bottomLink}>
-                Masz już konto? <span className={styles.link} onClick={e=>displayLoginContext.setDisplayLogin('login')}>
+                Masz już konto? <span className={`${styles.link} ${props.loading?styles.linkWhileLoading:''}`} onClick={e=>!props.loading && displayLoginContext.setDisplayLogin('login')}>
                     Zaloguj się!
                 </span>
             </div>

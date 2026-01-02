@@ -42,6 +42,14 @@
 {
     fill: #cdcdcd;
 }
+.backWhileLoading
+{
+    cursor: default;
+}
+.backWhileLoading>.backSVG
+{
+    fill: rgb(75, 75, 75) !important;
+}
 .image
 {
     position: absolute;
