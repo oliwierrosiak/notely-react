@@ -8,6 +8,7 @@ import { divClicked,inputBlur,inputFocused } from '../inputActions'
 import LoadingIcon from '../../../assets/svg/loadingIcon'
 import axios from 'axios'
 import ApiAddress from '../../../ApiAddress'
+import AccessTokenContext from '../../../context/accessTokenContext'
 
 function Login(props)
 {
@@ -18,17 +19,28 @@ function Login(props)
 
     const displayLoginContext = useContext(DisplayLoginContext)
 
+    const accessTokenContext = useContext(AccessTokenContext)
+
     const sendData = async(e) =>
     {
         try
         {
             props.setLoading(true)
             setShowPassword(false)
-            const response = await axios.post(`${ApiAddress}/login`,{email:loginValue,password:passwordValue})
+            const response = await axios.post(`${ApiAddress}/login`,{email:loginValue,password:passwordValue},{withCredentials:true})
+            accessTokenContext.setAccessToken(response.data.accessToken)
+            console.log("logged")
         }
         catch(ex)
         {
-            console.log(ex)
+            if(ex?.response?.data?.status === 401)
+            {
+                setError('Nieprawidłowe dane')
+            }
+            else
+            {
+                setError("Wystąpił błąd serwera")
+            }
             props.setLoading(false)
         }
     }
