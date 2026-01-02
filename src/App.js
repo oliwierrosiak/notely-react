@@ -25,7 +25,7 @@ function App() {
     catch(ex)
     {
       setAccessToken('')
-       setLoginLoading(false)
+      setLoginLoading(false)
     }
   }
 
@@ -65,7 +65,7 @@ function App() {
   return (
 
     <AccessTokenContext.Provider value={{accessToken,setAccessToken}}>
-    <LoginContext.Provider value={{logged,loggedUser,loginLoading,logout}}>
+    <LoginContext.Provider value={{logged,setLogged,loggedUser,setLoggedUser,loginLoading,logout}}>
 
     <Router>
       <Routes>

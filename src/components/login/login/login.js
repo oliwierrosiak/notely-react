@@ -1,4 +1,4 @@
-import { useContext, useState } from 'react'
+import { useContext, useRef, useState } from 'react'
 import styles from '../login-register.module.css'
 import PasswordEye from '../../../assets/svg/passwordEye'
 import PasswordEyeHidden from '../../../assets/svg/passwordEyeHidden'
@@ -9,6 +9,7 @@ import LoadingIcon from '../../../assets/svg/loadingIcon'
 import axios from 'axios'
 import ApiAddress from '../../../ApiAddress'
 import AccessTokenContext from '../../../context/accessTokenContext'
+import LoginContext from '../../../context/loginContext'
 
 function Login(props)
 {
@@ -21,6 +22,11 @@ function Login(props)
 
     const accessTokenContext = useContext(AccessTokenContext)
 
+    const loginContext = useContext(LoginContext)
+
+    const emailRef = useRef()
+    const passwordRef = useRef()
+
     const sendData = async(e) =>
     {
         try
@@ -29,7 +35,18 @@ function Login(props)
             setShowPassword(false)
             const response = await axios.post(`${ApiAddress}/login`,{email:loginValue,password:passwordValue},{withCredentials:true})
             accessTokenContext.setAccessToken(response.data.accessToken)
-            console.log("logged")
+            loginContext.setLoggedUser(response.data.user)
+            loginContext.setLogged(true)
+            displayLoginContext.setDisplayLogin('')
+            setLoginValue('')
+            setPasswordValue('')
+            props.setLoading(false)
+            setTimeout(() => {
+                emailRef.current.focus()
+                emailRef.current.blur()
+                passwordRef.current.focus()
+                passwordRef.current.blur()
+            }, 50);
         }
         catch(ex)
         {
@@ -72,12 +89,12 @@ function Login(props)
             <form className={styles.form} noValidate onSubmit={submit}>
 
                 <div className={`${styles.inputContainer} ${styles.emailInputContainer} ${props.loading?styles.inputContainerWhileLoading:''}`} onClick={divClicked}>
-                    <input disabled={props.loading} value={loginValue} onChange={e=>setLoginValue(e.target.value)} type='email' onBlur={inputBlur} onFocus={inputFocused} className={styles.input}></input>
+                    <input ref={emailRef} disabled={props.loading} value={loginValue} onChange={e=>setLoginValue(e.target.value)} type='email' onBlur={inputBlur} onFocus={inputFocused} className={styles.input}></input>
                     <div className={styles.placeholder}>Podaj email</div>
                 </div>
 
                 <div className={`${styles.inputContainer} ${props.loading?styles.inputContainerWhileLoading:''}`} onClick={divClicked}>
-                    <input disabled={props.loading} value={passwordValue} onChange={e=>setPasswordValue(e.target.value)} type={showPassword?'text':'password'} onBlur={inputBlur} onFocus={inputFocused} className={`${styles.input} ${styles.passwordInput}`}></input>
+                    <input ref={passwordRef} disabled={props.loading} value={passwordValue} onChange={e=>setPasswordValue(e.target.value)} type={showPassword?'text':'password'} onBlur={inputBlur} onFocus={inputFocused} className={`${styles.input} ${styles.passwordInput}`}></input>
                     <div className={styles.placeholder}>Podaj hasło</div>
                     <div className={styles.eye} onClick={e=>!props.loading && setShowPassword(!showPassword)}>
                         {showPassword?<PasswordEye />:<PasswordEyeHidden />}
