@@ -1,4 +1,4 @@
-import { useEffect, useId, useLayoutEffect, useRef, useState } from 'react'
+import { useContext, useEffect, useId, useLayoutEffect, useRef, useState } from 'react'
 import BottomMenu from '../bottomMenu/bottomMenu'
 import styles from './board.module.css'
 import TextElement from '../textElement.js/textElement'
@@ -22,9 +22,11 @@ import { useNavigate, useParams } from 'react-router-dom'
 import ShapeElementClass from '../shapeElement.js/shapeElementClass'
 import ShapeElement from '../shapeElement.js/shapeElement'
 import ShapeBottomMenu from '../bottomMenu/shapeBottomMenu/shapeBottomMenu'
-import LoadingIcon from '../../../assets/svg/loadingIcon'
 import ErrorIcon from '../../../assets/svg/errorIcon'
 import CanvasHistoryContext from '../../../context/canvasHistory'
+import LoggedMenu from '../../nav/loggedMenu/loggedMenu'
+import LoginContext from '../../../context/loginContext'
+import DisplayLoginContext from '../../../context/displayLogin'
 
 function Board()
 {
@@ -66,6 +68,9 @@ function Board()
     const minScale = window.innerWidth / window.innerHeight / 100
     const maxScale = 3
 
+    const loginContext = useContext(LoginContext)
+    const displayLoginContext = useContext(DisplayLoginContext)
+
     const navigate = useNavigate()
 
     const params = useParams()
@@ -101,11 +106,11 @@ function Board()
         try
         {
             const data = await axios.get(`${ApiAddress}/getBoardData/${params.id}`)
-            setLoading(false)
             setProjectName(data.data.title || 'Nowy projekt')
             setBoardColor(data.data.boardColor || 'bgBlack5')
             setBackgroundTemplate(data.data.template || 'backgroundTemplate9')
             elementSetter(data.data.content)
+            setLoading(false)
         }
         catch(ex)
         {
@@ -445,14 +450,28 @@ function Board()
     }
 
     useLayoutEffect(()=>{
+
         translateXRef.current = (viewport.current.clientWidth - boardRef.current.clientWidth) / 2
         translateYRef.current = (viewport.current.clientHeight - boardRef.current.clientHeight) / 2
         setBoardTransformation()
     },[])
 
     useEffect(()=>{
-       
-        getData()
+        if(!loginContext.loginLoading)
+        {
+            if(loginContext.logged)
+            {
+                getData()
+            }
+            else
+            {
+                navigate('/')
+            }
+
+        }
+    },[loginContext.loginLoading])
+
+    useEffect(()=>{
         if(viewport.current)
         {
             viewport.current.addEventListener("wheel",zoom,{passive:false})
@@ -530,6 +549,10 @@ function Board()
 
             <div className={styles.back} onClick={e=>navigate('/')}>
                 <ArrowIcon class={styles.arrowSvg}/>
+            </div>
+
+            <div className={styles.loggedMenu}>
+                <LoggedMenu />
             </div>
 
             {displayLoading && <div className={`${styles.loading} ${!loading?styles.loadingHide:''}`}>

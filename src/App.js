@@ -6,6 +6,7 @@ import AccessTokenContext from "./context/accessTokenContext";
 import axios from "axios";
 import ApiAddress from "./ApiAddress";
 import LoginContext from "./context/loginContext";
+import DisplayLoginContext from "./context/displayLogin";
 
 function App() {
 
@@ -13,6 +14,7 @@ function App() {
   const [logged,setLogged] = useState(false)
   const [loggedUser,setLoggedUser] = useState({})
   const [loginLoading,setLoginLoading] = useState(true)
+  const [displayLogin,setDisplayLogin] = useState('')
 
   const getUserData = async(accessToken) =>{
     try
@@ -66,6 +68,7 @@ function App() {
 
     <AccessTokenContext.Provider value={{accessToken,setAccessToken}}>
     <LoginContext.Provider value={{logged,setLogged,loggedUser,setLoggedUser,loginLoading,logout}}>
+    <DisplayLoginContext.Provider value={{displayLogin,setDisplayLogin}}>
 
     <Router>
       <Routes>
@@ -74,6 +77,7 @@ function App() {
       </Routes>
    </Router>
 
+    </DisplayLoginContext.Provider>
     </LoginContext.Provider>
    </AccessTokenContext.Provider>
   );

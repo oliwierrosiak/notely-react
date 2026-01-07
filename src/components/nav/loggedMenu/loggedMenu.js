@@ -40,7 +40,7 @@ function LoggedMenu(props)
                     </button>
 
 
-                    <button className={styles.logoutBtn} onClick={e=>loginContext.logout()}>
+                    <button className={styles.logoutBtn} onClick={e=>{loginContext.logout() && navigate('/')}}>
                         <LogoutIcon class={styles.logoutIcon}/>
                         Wyloguj się
                     </button>

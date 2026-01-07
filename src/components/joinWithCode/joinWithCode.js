@@ -92,7 +92,6 @@ function JoinWithCode(props)
 
     const btnClicked = async(e) =>
     {
-        console.log('click')
         setError('')
         setLoading(true)
         let fullCode = []
