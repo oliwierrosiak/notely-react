@@ -107,10 +107,18 @@ function JoinWithCode(props)
                 throw new Error()
             }
             const response = await axios.get(`${ApiAddress}/joinWithCode/${fullCode}`)
-            props.setDisplayRedirectPageAnimation(true)
-            setTimeout(()=>{
-                navigate(`/note/${response.data.id}`)
-            },1000)
+            if(response.data.password)
+            {
+                console.log("password required")
+            }
+            else
+            {
+                props.setDisplayRedirectPageAnimation(true)
+                setTimeout(()=>{
+                    navigate(`/note/${response.data.id}`)
+                },1000)
+
+            }
         }
         catch(ex)
         {
