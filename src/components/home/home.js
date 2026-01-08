@@ -9,16 +9,17 @@ function Home()
     
     const [displayJoinWithCode,setDisplayJoinWithCode] = useState(false)
     const [displayRedirectPageAnimation,setDisplayRedirectPageAnimation] = useState(false)
-    const [displayNotePassword,setDisplayNotePassword] = useState(true)
+    const [displayNotePassword,setDisplayNotePassword] = useState(false)
+    const [noteIdMemory,setNoteIdMemory] = useState('')
 
     return(
         <div className={styles.container}>
 
                 <Header setDisplayJoinWithCode={setDisplayJoinWithCode}/>
 
-                {displayJoinWithCode && <JoinWithCode setDisplayJoinWithCode={setDisplayJoinWithCode} setDisplayRedirectPageAnimation={setDisplayRedirectPageAnimation} setDisplayNotePassword={setDisplayNotePassword}/>}
+                {displayJoinWithCode && <JoinWithCode setDisplayJoinWithCode={setDisplayJoinWithCode} setDisplayRedirectPageAnimation={setDisplayRedirectPageAnimation} setDisplayNotePassword={setDisplayNotePassword} setNoteIdMemory={setNoteIdMemory}/>}
 
-                {displayNotePassword && <NotePassword setDisplayNotePassword={setDisplayNotePassword}/>}
+                {displayNotePassword && <NotePassword setDisplayNotePassword={setDisplayNotePassword} noteIdMemory={noteIdMemory} setDisplayRedirectPageAnimation={setDisplayRedirectPageAnimation} setNoteIdMemory={setNoteIdMemory}/>}
 
                 <div className={`${styles.redirectPage} ${displayRedirectPageAnimation?styles.redirectPageDisplay:''}`}></div>
 

@@ -109,11 +109,13 @@ function JoinWithCode(props)
             const response = await axios.get(`${ApiAddress}/joinWithCode/${fullCode}`)
             if(response.data.password)
             {
+                props.setNoteIdMemory(response.data.id)
                 props.setDisplayNotePassword(true)
-                 props.setDisplayJoinWithCode(false)
+                props.setDisplayJoinWithCode(false)
             }
             else
             {
+                
                 props.setDisplayRedirectPageAnimation(true)
                 setTimeout(()=>{
                     navigate(`/note/${response.data.id}`)
@@ -123,6 +125,7 @@ function JoinWithCode(props)
         }
         catch(ex)
         {
+            console.log(ex)
             if(ex?.response?.data?.status === 404)
             {
                 setError("Nie znaleziono kodu notatki")

@@ -1,11 +1,12 @@
 import styles from './notePassword.module.css'
 import ArrowIcon from '../../assets/svg/arrowIcon'
-import { useState, useRef } from 'react'
+import { useState, useRef, useEffect } from 'react'
 import PasswordEye from '../../assets/svg/passwordEye'
 import PasswordEyeHidden from '../../assets/svg/passwordEyeHidden'
 import LoadingIcon from '../../assets/svg/loadingIcon'
 import axios from 'axios'
 import ApiAddress from '../../ApiAddress'
+import { useNavigate } from 'react-router-dom'
 
 function NotePassword(props)
 {
@@ -16,6 +17,9 @@ function NotePassword(props)
 
     const input = useRef()
     const fill = useRef()
+    const btn = useRef()
+
+    const navigate = useNavigate()
 
     const overlayClicked = (e) =>
     {
@@ -47,14 +51,30 @@ function NotePassword(props)
         setError('')
         setShowPassword(false)
         setLoading(true)
+        
         try
         {
-            const response = await axios.post(`${ApiAddress}/compareNotePassword`,{password})
+            if(!props.noteIdMemory)
+            {
+                throw new Error()
+            }
+            const response = await axios.post(`${ApiAddress}/compareNotePassword`,{noteId:props.noteIdMemory,password})
+            props.setDisplayRedirectPageAnimation(true)
+                setTimeout(()=>{
+                    navigate(`/note/${response.data.id}`)
+                },1000) 
         }
         catch(ex)
         {
-            console.log(ex)
-            setError('Wystąpił błąd serwera')
+            if(ex?.status === 401)
+            {
+                setError('Błędne hasło')
+            }
+            else
+            {
+                setError('Wystąpił błąd serwera')
+
+            }
             setLoading(false)
         }
     }
@@ -70,6 +90,21 @@ function NotePassword(props)
             sendData()
         }
     }
+
+    const windowEvent = (e) =>{
+        if(e.key === "Enter")
+        {
+            btn.current.click()
+        }
+    }
+
+    useEffect(()=>{
+        window.addEventListener("keydown",windowEvent)
+        return()=>{
+            window.removeEventListener("keydown",windowEvent)
+            props.setNoteIdMemory('')
+        }
+    },[])
 
     return(
         <div className={styles.overlay} onClick={overlayClicked}>
@@ -95,7 +130,7 @@ function NotePassword(props)
 
                 {error && <div className={styles.error}>{error}</div>}
 
-                <button className={`${styles.btn} ${loading?styles.btnWhileLoading:''}`} onClick={validate}>
+                <button ref={btn} className={`${styles.btn} ${loading?styles.btnWhileLoading:''}`} onClick={validate}>
                     {loading?<LoadingIcon class={styles.loadingIcon}/>:"Dołącz"}
                 </button>
 
