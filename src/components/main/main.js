@@ -41,7 +41,7 @@ function Header(props)
     {
         if(loginContext.logged)
         {
-            console.log('create')
+            props.setDisplayAddingNote(true)
         }
         else
         {

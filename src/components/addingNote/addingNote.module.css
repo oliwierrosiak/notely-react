@@ -1,0 +1,258 @@
+.overlay
+{
+    position: fixed;
+    top:0;
+    left:0;
+    bottom: 0;
+    right: 0;
+    background-color: #32323252;
+    backdrop-filter: blur(10px);
+    z-index: 4;
+    display: flex;
+    justify-content: center;
+    align-items: center;
+}
+.container
+{
+    background-color: #014040;
+    backdrop-filter: blur(10px);
+    padding: 2rem 3rem 3rem 3rem;
+    display: flex;
+    flex-direction: column;
+    align-items: center;
+    justify-content: center;
+    border:.6rem solid #03A678;
+    border-radius: 2.5rem;
+    gap:1.8rem;
+    position: relative;
+    width: 40rem;
+}
+.back
+{
+    position: absolute;
+    top:2.2rem;
+    left:1rem;
+    width: 3rem;
+    height: 3rem;
+    cursor: pointer;
+}
+.backSVG
+{
+     width: 100%;
+    height: 100%;
+    fill: rgb(108, 108, 108);
+    transition:fill .3s ease
+}
+.back:hover>.backSVG
+{
+    fill: #cdcdcd;
+}
+.backWhileLoading
+{
+    cursor: default;
+}
+.backWhileLoading>.backSVG
+{
+    fill: rgb(90, 90, 90) !important;
+}
+.header
+{
+    width: 100%;
+    text-align: center;
+    color: white;
+    font-weight: 900;
+    font-family: "Cause", cursive;
+    font-size: 3rem;
+
+}
+
+.inputContainer{
+    margin: 0;
+}
+.visibilityContainer
+{
+    width: 100%;
+    display: flex;
+    flex-wrap: wrap;
+    justify-content: center;
+    align-items: center;
+    gap:1rem;
+}
+.visibilityHeader
+{
+    width: 100%;
+    color: white;
+    font-weight: 700;
+    font-size: 2rem;
+    text-align: center;
+    font-family: "Cause", cursive;
+        display: flex;
+    justify-content: center;
+    align-items: center;
+    gap:.4rem;
+}
+.info
+{
+    color: white;
+    width: 1.5rem;
+    height: 1.5rem;
+    padding: .5rem;
+    border-radius: 50%;
+    display: flex;
+    justify-content: center;
+    align-items: center;
+    font-size: 1.1rem;
+    font-weight: 900;
+    border:.2rem solid white;
+    translate: 0 -25%;
+    font-family: "Jost", sans-serif;
+    position: relative;
+    cursor: default;
+}
+.info::selection
+{
+    background: none;
+}
+.explanationContainer
+{
+    position: absolute;
+    display: none;
+    left:0rem;
+    top:-1.5rem;
+    width: 14rem;
+    justify-content: flex-end;
+   
+}
+.infoContainer
+{
+    width: 12rem;
+    padding: .3rem;
+    background-color: red;
+    border-radius: 1rem;
+    border:.3rem solid #03A678;
+    background: #02735E;
+     font-size: .8rem;
+    font-weight: 400;
+}
+.info:hover>.explanationContainer
+{
+    display: flex;
+}
+
+.visibilityBtn
+{
+    font-size: 1.8rem;
+    color: white;
+    padding: .5rem .8rem;
+    background: rgb(91, 91, 91);
+    outline: none;
+    border:0;
+    border-radius: 1rem;
+    font-family: "Jost", sans-serif;
+    font-weight: 700;
+    cursor: pointer;
+    transition: background .3s ease;
+}
+.visibilityBtn:hover
+{
+    background:rgb(105, 105, 105);
+}
+.selectedBtn
+{
+    background: #02735E;
+}
+.selectedBtn:hover
+{
+    background: #02735E;
+}
+.passwordContainer
+{
+    display: flex;
+    flex-wrap: wrap;
+    justify-content: center;
+    align-items: center;
+    gap:1.8rem .8rem;
+    width: 100%;
+    margin-top: .8rem;
+    margin-bottom: .2rem;
+}
+.checkbox
+{
+    width: 2rem;
+    height: 2rem;
+    border-radius: .7rem;
+    border: .3rem solid rgb(105, 105, 105);
+    cursor: pointer;
+    transition: all .3s ease;
+    background: rgb(64, 64, 64);
+}
+.checkboxChecked
+{
+    background: #02735E;
+    border: .3rem solid #03A678;
+}
+.checkboxDescription
+{
+    font-size: 1.5rem;
+    color: white;
+    font-family: "Jost", sans-serif;
+    cursor: pointer;
+}
+.checkboxDescription::selection
+{
+    background: none;
+}
+.create
+{
+    width: 100%;
+    font-size: 1.8rem;
+    color: white;
+    background: #02735E;
+    border-radius: 1.2rem;
+    font-weight: 900;
+    border: .3rem solid #03A678;
+    padding: .5rem .8rem .6rem .8rem;
+    cursor: pointer;
+    transition: background .3s ease, border .3s ease;
+    z-index: 3;
+    outline: none;
+    margin-top: .2rem;
+}
+.create:hover
+{
+    background: #F27405;
+    border: .3rem solid #F27405;
+}
+.passwordDisabled
+{
+    cursor: default;
+    color: grey;
+}
+.eyeDisabled
+{
+    cursor: default;
+}
+.inputContainerDisabled
+{
+    border:.3rem solid rgb(103, 103, 103);
+    cursor: default;
+}
+.btnLoading
+{
+    background-color: rgb(48, 48, 48) !important;
+    border: .3rem solid rgb(48, 48, 48) !important;
+    padding: 0;
+    display: flex;
+    justify-content: center;
+    align-items: center;
+    cursor: default;
+}
+.error
+{
+    width: 100%;
+    color: #fc3333;
+    font-weight: 700;
+    font-family: "Jost", sans-serif;
+    font-size: 1.5rem;
+    text-align: center;
+}

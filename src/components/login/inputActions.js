@@ -20,7 +20,7 @@ export const inputFocused = (e) =>{
 export const inputBlur = (e) =>{
         const div = e.target.closest(`.${styles.inputContainer}`)
         div.classList.remove(styles.containerFocused)
-     div.children[0].classList.remove(styles.inputFocused)
+        div.children[0].classList.remove(styles.inputFocused)
         div.children[1].classList.remove(styles.placeholderColorWhileFocused)
         if(e.target.value.trim() === "")
         {

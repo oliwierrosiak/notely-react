@@ -125,7 +125,6 @@ function JoinWithCode(props)
         }
         catch(ex)
         {
-            console.log(ex)
             if(ex?.response?.data?.status === 404)
             {
                 setError("Nie znaleziono kodu notatki")
@@ -154,7 +153,7 @@ function JoinWithCode(props)
     },[])
 
     return(
-        <div className={styles.overlay} onClick={overlayClicked}>
+        <article className={styles.overlay} onClick={overlayClicked}>
 
             <div className={styles.container}>
 
@@ -190,7 +189,7 @@ function JoinWithCode(props)
                 </button>
             </div>
 
-        </div>
+        </article>
     )
 }
 
