@@ -80,7 +80,7 @@ function Login(props)
     }
 
     return(
-        <div className={`${styles.loginForm} ${props.display?styles.display:''}`}>
+        <section className={`${styles.loginForm} ${props.display?styles.display:''}`}>
 
             <h1 className={styles.header}>Logowanie</h1>
 
@@ -119,7 +119,7 @@ function Login(props)
                     Zarejestruj się!
                 </span>
             </div>
-        </div>
+        </section>
     )
 }
 

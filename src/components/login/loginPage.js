@@ -15,7 +15,7 @@ function LoginPage(props)
     const [loading,setLoading] = useState(false)
 
     return(
-        <div className={`${styles.container} ${displayLoginContext.displayLogin?styles.displayContainer:''}`}>
+        <article className={`${styles.container} ${displayLoginContext.displayLogin?styles.displayContainer:''}`}>
             <div className={`${styles.back} ${loading?styles.backWhileLoading:''}`} onClick={e=>!loading && displayLoginContext.setDisplayLogin('')}>
                 <ArrowIcon class={styles.backSVG}/>
             </div>
@@ -30,7 +30,7 @@ function LoginPage(props)
             <Register loading={loading} setLoading={setLoading} display={displayLoginContext.displayLogin === "register"} />
             <PasswordForgotten loading={loading} setLoading={setLoading} display={displayLoginContext.displayLogin === 'passwordForgotten'} />
 
-        </div>
+        </article>
     )
 }
 

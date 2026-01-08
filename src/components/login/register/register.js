@@ -259,7 +259,7 @@ function Register(props)
     },[showPage2])
 
     return(
-        <div className={`${styles.loginForm} ${props.display?styles.display:''}`}>
+        <section className={`${styles.loginForm} ${props.display?styles.display:''}`}>
             <h1 className={styles.header}>Rejestracja</h1>
 
             <form className={`${styles.form} ${styles.registerForm}`} onSubmit={submit} noValidate>
@@ -329,7 +329,7 @@ function Register(props)
                 </span>
             </div>
 
-        </div>
+        </section>
     )
 }
 

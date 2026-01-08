@@ -1,5 +1,5 @@
 import { useState } from 'react'
-import Header from '../header/header'
+import Header from '../main/main'
 import styles from './home.module.css'
 import JoinWithCode from '../joinWithCode/joinWithCode'
 import NotePassword from '../notePassword/notePassword'

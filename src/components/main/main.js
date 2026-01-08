@@ -1,9 +1,10 @@
-import { useContext, useRef } from 'react'
+import { useContext, useRef, useState } from 'react'
 import Nav from '../nav/nav'
-import styles from './header.module.css'
+import styles from './main.module.css'
 import LoginPage from '../login/loginPage'
 import LoginContext from '../../context/loginContext'
 import DisplayLoginContext from '../../context/displayLogin'
+import NotesMenu from '../notesMenu/notesMenu'
 
 function Header(props)
 {
@@ -12,6 +13,8 @@ function Header(props)
 
     const loginContext = useContext(LoginContext)
     const displayLoginContext = useContext(DisplayLoginContext)
+
+    const [displayNotesMenu,setDisplayNotesMenu] = useState(1)
 
     const btnHovered = (target) =>{
         target === "1"?btn1HoverRef.current.classList.add(styles.buttonHoverDisplay):btn2HoverRef.current.classList.add(styles.buttonHoverDisplay)
@@ -47,15 +50,15 @@ function Header(props)
     }
 
     return(
-        <header className={styles.header}>
+        <div className={styles.header}>
             
-            <div className={styles.overlay}>
+            <main className={styles.overlay}>
 
                 <LoginPage />
 
                 <Nav />
 
-                <div className={styles.menu}>
+                <header className={styles.menu}>
                 <button className={styles.menuBtn} onMouseEnter={e=>btnHovered('1')} onMouseLeave={btnUnHover} onClick={codeClicked}>
                     <div className={styles.buttonHover} ref={btn1HoverRef}></div>
                     <p>Dołącz za pomocą kodu</p>
@@ -66,11 +69,14 @@ function Header(props)
                     <p>Utwórz nową notatkę</p>
                     
                 </button>
-            </div>
-            </div>
+            </header>
+
+            <NotesMenu display={displayNotesMenu} setDisplayNotesMenu={setDisplayNotesMenu}/>
+
+            </main>
 
             
-        </header>
+        </div>
     )
 }
 
