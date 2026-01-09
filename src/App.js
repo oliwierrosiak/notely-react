@@ -7,6 +7,7 @@ import axios from "axios";
 import ApiAddress from "./ApiAddress";
 import LoginContext from "./context/loginContext";
 import DisplayLoginContext from "./context/displayLogin";
+import refreshToken from "./components/auth/refreshToken";
 
 function App() {
 
@@ -16,10 +17,11 @@ function App() {
   const [loginLoading,setLoginLoading] = useState(true)
   const [displayLogin,setDisplayLogin] = useState('')
 
-  const getUserData = async(accessToken) =>{
+  const getUserData = async() =>{
     try
     {
-      const response = await axios.get(`${ApiAddress}/getUserData`,{headers:{Authorization:`Bearer ${accessToken}`}})
+      const token = await refreshToken()
+      const response = await axios.get(`${ApiAddress}/getUserData`,{headers:{Authorization:`Bearer ${token}`}})
       setLogged(true)
       setLoggedUser(response.data)
       setLoginLoading(false)
@@ -32,22 +34,8 @@ function App() {
     }
   }
 
-  const checkLogin = async()=>{
-    try
-    {
-        const response = await axios.get(`${ApiAddress}/refreshToken`,{headers:{"Authorization":`Bearer ${sessionStorage.getItem("refreshToken")}`}})
-        setAccessToken(response.data.token)
-        getUserData(response.data.token)
-    }
-    catch(ex)
-    {
-       setLoginLoading(false)
-       sessionStorage.removeItem('refreshToken')
-    }
-  }
-
   useEffect(()=>{
-    checkLogin()
+    getUserData()
   },[])
 
   const logout = async() =>{

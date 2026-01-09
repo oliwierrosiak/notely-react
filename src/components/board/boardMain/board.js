@@ -106,15 +106,30 @@ function Board()
         try
         {
             const data = await axios.get(`${ApiAddress}/getBoardData/${params.id}`)
+            if(data.data.visibility === "private" && data.data.admin !== loginContext.loggedUser.email)
+            {
+                const error = new Error("Unauthorized")
+                error.status = 403
+                throw error
+            }
             setProjectName(data.data.title || 'Nowy projekt')
             setBoardColor(data.data.boardColor || 'bgBlack5')
             setBackgroundTemplate(data.data.template || 'backgroundTemplate9')
             elementSetter(data.data.content)
             setLoading(false)
+            console.log(data)
         }
         catch(ex)
         {
-            setLoadingError(true)
+            if(ex.status === 403)
+            {
+                navigate('/')
+            }
+            else
+            {
+                setLoadingError(true)
+
+            }
         }
     }
 
