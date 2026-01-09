@@ -68,7 +68,7 @@ function Register(props)
         {
             const response = await axios.post(`${ApiAddress}/register`,formData,{withCredentials:true})
             accessTokenContext.setAccessToken(response.data.accessToken)
-            console.log(response.data.user)
+            sessionStorage.setItem('refreshToken',response.data.refreshToken)
             loginContext.setLoggedUser(response.data.user)
             
             displayLoginContext.setDisplayLogin('')

@@ -27,6 +27,7 @@ function App() {
     catch(ex)
     {
       setAccessToken('')
+      sessionStorage.removeItem('refreshToken')
       setLoginLoading(false)
     }
   }
@@ -34,13 +35,14 @@ function App() {
   const checkLogin = async()=>{
     try
     {
-        const response = await axios.post(`${ApiAddress}/refreshToken`,{},{withCredentials:true})
+        const response = await axios.get(`${ApiAddress}/refreshToken`,{headers:{"Authorization":`Bearer ${sessionStorage.getItem("refreshToken")}`}})
         setAccessToken(response.data.token)
         getUserData(response.data.token)
     }
     catch(ex)
     {
        setLoginLoading(false)
+       sessionStorage.removeItem('refreshToken')
     }
   }
 
@@ -51,9 +53,10 @@ function App() {
   const logout = async() =>{
     try
     {
-      const response = await axios.get(`${ApiAddress}/logout`,{withCredentials:true})
+      const response = await axios.delete(`${ApiAddress}/logout`,{headers:{"Authorization":`Bearer ${sessionStorage.getItem('refreshToken')}`}})
       setLogged(false)
       setLoggedUser({})
+      sessionStorage.removeItem('refreshToken')
       setAccessToken('')
     }
     catch(ex)
@@ -61,6 +64,7 @@ function App() {
       setLogged(false)
       setLoggedUser({})
       setAccessToken('')
+      sessionStorage.removeItem('refreshToken')
     }
   }
 

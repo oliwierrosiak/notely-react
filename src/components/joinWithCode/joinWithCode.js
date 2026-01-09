@@ -1,10 +1,15 @@
 import styles from './joinWithCode.module.css'
 import ArrowIcon from '../../assets/svg/arrowIcon'
-import { useEffect, useReducer, useRef, useState } from 'react'
+import { useContext, useEffect, useReducer, useRef, useState } from 'react'
 import LoadingIcon from '../../assets/svg/loadingIcon'
 import axios from 'axios'
 import ApiAddress from '../../ApiAddress'
 import { useNavigate } from 'react-router-dom'
+import AccessTokenContext from '../../context/accessTokenContext'
+import tokenAuth from '../auth/refreshToken'
+import refreshToken from '../auth/refreshToken'
+import LoginContext from '../../context/loginContext'
+import DisplayLoginContext from '../../context/displayLogin'
 
 function JoinWithCode(props)
 {
@@ -47,6 +52,9 @@ function JoinWithCode(props)
     const [joinBtnEnabled,setJoinBtnEnable] = useState(false)
     const [loading,setLoading] = useState(false)
     const [error,setError] = useState('')
+    const accessTokenContext = useContext(AccessTokenContext)
+    const loginContext = useContext(LoginContext)
+    const displayLoginContext = useContext(DisplayLoginContext)
 
     const btnRef = useRef()
 
@@ -106,7 +114,9 @@ function JoinWithCode(props)
             {
                 throw new Error()
             }
-            const response = await axios.get(`${ApiAddress}/joinWithCode/${fullCode}`)
+            const token = await refreshToken()
+            const response = await axios.get(`${ApiAddress}/joinWithCode/${fullCode}`,{headers:{Authorization:`Bearer ${token}`}})
+            accessTokenContext.setAccessToken(token)
             if(response.data.password)
             {
                 props.setNoteIdMemory(response.data.id)
@@ -125,6 +135,12 @@ function JoinWithCode(props)
         }
         catch(ex)
         {
+            if(ex.status === 401)
+            {
+                props.setDisplayJoinWithCode(false)
+                loginContext.logout()
+                displayLoginContext.setDisplayLogin('login')
+            }
             if(ex?.response?.data?.status === 404)
             {
                 setError("Nie znaleziono kodu notatki")

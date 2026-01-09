@@ -59,7 +59,7 @@ function AddingNote(props)
                 title,
                 visibility,
                 password:passwordEnabled?password:null,
-                admin:loginContext.loggedUser.id
+                admin:loginContext.loggedUser.email
             }
             const response = await axios.post(`${ApiAddress}/createNote`,requestBody)
             setNoteCode(response.data.code)
