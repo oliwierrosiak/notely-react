@@ -23,7 +23,7 @@ function Home()
 
                 {displayNotePassword && <NotePassword setDisplayNotePassword={setDisplayNotePassword} noteIdMemory={noteIdMemory} setDisplayRedirectPageAnimation={setDisplayRedirectPageAnimation} setNoteIdMemory={setNoteIdMemory}/>}
 
-                {displayAddingNote && <AddingNote setDisplayAddingNote={setDisplayAddingNote}/>}
+                {displayAddingNote && <AddingNote setDisplayAddingNote={setDisplayAddingNote} setDisplayRedirectPageAnimation={setDisplayRedirectPageAnimation}/>}
 
                 <div className={`${styles.redirectPage} ${displayRedirectPageAnimation?styles.redirectPageDisplay:''}`}></div>
 

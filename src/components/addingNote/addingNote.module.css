@@ -27,6 +27,10 @@
     position: relative;
     width: 40rem;
 }
+.containerWidth{
+    width: 65rem;
+    gap:1.5rem;
+}
 .back
 {
     position: absolute;
@@ -63,9 +67,12 @@
     font-weight: 900;
     font-family: "Cause", cursive;
     font-size: 3rem;
-
+    cursor: default;
 }
-
+.header::selection
+{
+    background: none;
+}
 .inputContainer{
     margin: 0;
 }
@@ -255,4 +262,109 @@
     font-family: "Jost", sans-serif;
     font-size: 1.5rem;
     text-align: center;
+}
+.code
+{
+    font-size: 4.5rem;
+    color: white;
+    text-shadow: .25rem .2rem 0rem #F27405;
+    font-weight: 900;
+    letter-spacing: .1rem;
+    font-family: "Cause", cursive;
+}
+.link
+{
+    color: white;
+    font-weight: 700;
+    font-size: 1.5rem;
+    cursor: pointer;
+    display: flex;
+    gap:.6rem;
+    align-items: center;
+    font-family: "Cause", cursive;
+    text-shadow: 0rem 0rem .3rem #000000;
+}
+.copyContainer
+{
+    width: 1.5rem;
+    height: 1.5rem;
+    position: relative;
+}
+.copyIcon
+{
+    fill: rgb(255, 255, 255);
+    width: 100%;
+    height: 100%;
+    transition: fill .3s ease;
+}
+.copyContainer:hover>.copyIcon
+{
+    fill: #F27405;
+}
+.copySuccessInfo
+{
+    position: absolute;
+    left:50%;
+    top:-3.5rem;
+    translate: -50% 0%;
+    font-size: 1.5rem;
+    padding: .3rem .5rem;
+    border-radius: .5rem;
+    background-color: #F27405;
+    opacity: 0;
+    transition: opacity .3s ease;
+    cursor: default;
+}
+.copySuccessInfo::selection
+{
+    background: none;
+}
+.triangle
+{
+    position: absolute;
+    bottom:-.7rem;
+    left:50%;
+    translate: -50% 0%;
+    width: 0; 
+    height: 0; 
+    border-right: 0.8rem solid transparent;
+    border-left: .8rem solid transparent; 
+    border-top:.8rem solid #F27405; 
+}
+.showCopyInfo
+{
+    opacity: 1;
+}
+.codeDescription
+{
+    margin: .8rem 0 1.2rem 0;
+    font-size: 1.5rem;
+    text-align: center;
+    color: rgb(208, 208, 208);
+    cursor: default;
+}
+.codeDescription::selection
+{
+    background: none;
+}
+.joinBtn
+{
+    width: 50%;
+    font-size: 1.8rem;
+    color: white;
+    background: #02735E;
+    border-radius: 1.2rem;
+    font-weight: 900;
+    border: .3rem solid #03A678;
+    padding: .5rem .8rem .6rem .8rem;
+    cursor: pointer;
+    transition: background .3s ease, border .3s ease;
+    z-index: 3;
+    outline: none;
+    margin-top: .2rem;
+}
+.joinBtn:hover
+{
+    background: #F27405;
+    border: .3rem solid #F27405;
 }
