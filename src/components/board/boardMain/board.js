@@ -123,7 +123,11 @@ function Board()
             setNoteId(data.data._id)
             if(data.data.notePassword == "true")
             {   
-                setPasswordExits(true)
+                const authorizedNotes = JSON.parse(sessionStorage.getItem('authorizedNotes'))
+                if(!authorizedNotes || !authorizedNotes.includes(data.data._id))
+                {
+                    setPasswordExits(true)
+                }
             }
             setLoading(false)
             

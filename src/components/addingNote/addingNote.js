@@ -66,6 +66,9 @@ function AddingNote(props)
             setNoteId(response.data.id)
             setNoteLink(`http://localhost:3000/note/${response.data.id}`)
             setShowNoteCode(true)
+            const authorizedNotes = JSON.parse(sessionStorage.getItem('authorizedNotes')) || []
+            authorizedNotes.push(response.data.id)
+            sessionStorage.setItem('authorizedNotes',JSON.stringify(authorizedNotes))
             setLoading(false)
         }   
         catch(ex)

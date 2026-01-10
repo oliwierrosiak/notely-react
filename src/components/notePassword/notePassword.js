@@ -69,6 +69,9 @@ function NotePassword(props)
             const token = await refreshToken()
             const response = await axios.post(`${ApiAddress}/compareNotePassword`,{noteId:props.noteIdMemory,password},{headers:{"Authorization":`Bearer ${token}`}})
             accessTokenContext.setAccessToken(token)
+            const authorizedNotes = JSON.parse(sessionStorage.getItem('authorizedNotes')) || []
+            authorizedNotes.push(props.noteIdMemory)
+            sessionStorage.setItem('authorizedNotes',JSON.stringify(authorizedNotes))
             if(props.boardPassword)
             {
                 props.setDisplayNotePassword(false)
@@ -84,6 +87,7 @@ function NotePassword(props)
         }
         catch(ex)
         {
+            console.log(ex)
             if(ex.status === 401)
             {
                 

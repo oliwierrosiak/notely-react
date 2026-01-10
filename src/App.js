@@ -45,6 +45,7 @@ function App() {
       setLogged(false)
       setLoggedUser({})
       sessionStorage.removeItem('refreshToken')
+      sessionStorage.removeItem('authorizedNotes')
       setAccessToken('')
     }
     catch(ex)
@@ -53,6 +54,7 @@ function App() {
       setLoggedUser({})
       setAccessToken('')
       sessionStorage.removeItem('refreshToken')
+      sessionStorage.removeItem('authorizedNotes')
     }
   }
 
