@@ -31,7 +31,7 @@ function NotePassword(props)
 
     const overlayClicked = (e) =>
     {
-        if(e.target.classList.contains(styles.overlay) && !loading)
+        if(e.target.classList.contains(styles.overlay) && !loading && !props.boardPassword)
         {
             props.setDisplayNotePassword(false)
         }
@@ -69,16 +69,29 @@ function NotePassword(props)
             const token = await refreshToken()
             const response = await axios.post(`${ApiAddress}/compareNotePassword`,{noteId:props.noteIdMemory,password},{headers:{"Authorization":`Bearer ${token}`}})
             accessTokenContext.setAccessToken(token)
-            props.setDisplayRedirectPageAnimation(true)
+            if(props.boardPassword)
+            {
+                props.setDisplayNotePassword(false)
+            }
+            else
+            {
+                props.setDisplayRedirectPageAnimation(true)
                 setTimeout(()=>{
                     navigate(`/note/${response.data.id}`)
                 },1000) 
+            }
+            
         }
         catch(ex)
         {
             if(ex.status === 401)
             {
+                
                 props.setDisplayNotePassword(false)
+                if(props.boardPassword)
+                {
+                    navigate('/')   
+                }
                 loginContext.logout()
                 displayLoginContext.setDisplayLogin('login')
             }
@@ -118,15 +131,34 @@ function NotePassword(props)
         window.addEventListener("keydown",windowEvent)
         return()=>{
             window.removeEventListener("keydown",windowEvent)
-            props.setNoteIdMemory('')
+            if(!props.boardPassword)
+            {
+                props.setNoteIdMemory('')
+
+            }
         }
     },[])
+
+    const backClicked = (e) =>
+    {
+        if(!loading)
+        {
+            if(props.boardPassword)
+            {
+                navigate('/')
+            }
+            else
+            {
+                props.setDisplayNotePassword(false)
+            }
+        }
+    }
 
     return(
         <div className={styles.overlay} onClick={overlayClicked}>
             <div className={styles.container}>
 
-                <div className={`${styles.back} ${loading?styles.backWhileLoading:''}`} onClick={e=>!loading && props.setDisplayNotePassword(false)}>
+                <div className={`${styles.back} ${loading?styles.backWhileLoading:''}`} onClick={backClicked}>
                     <ArrowIcon class={styles.backSVG}/>
                 </div>
 

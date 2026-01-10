@@ -27,6 +27,7 @@ import CanvasHistoryContext from '../../../context/canvasHistory'
 import LoggedMenu from '../../nav/loggedMenu/loggedMenu'
 import LoginContext from '../../../context/loginContext'
 import DisplayLoginContext from '../../../context/displayLogin'
+import NotePassword from '../../notePassword/notePassword'
 
 function Board()
 {
@@ -51,7 +52,9 @@ function Board()
     const [redoStack,setRedoStack] = useState([])
     const [canvasHistoryUpdater,setCanvasHistoryUpdater] = useState(false)
     const [backgroundTemplate,setBackgroundTemplate] = useState()
-
+    const [noteCode,setNoteCode] = useState('')
+    const [passwordExist,setPasswordExits] = useState(false)
+    const [noteId,setNoteId] = useState('')
 
     const movingLocked = useRef(false)
     const mouseMoveListener = useRef()
@@ -112,12 +115,18 @@ function Board()
                 error.status = 403
                 throw error
             }
+            setNoteCode(data.data.code)
             setProjectName(data.data.title || 'Nowy projekt')
             setBoardColor(data.data.boardColor || 'bgBlack5')
             setBackgroundTemplate(data.data.template || 'backgroundTemplate9')
             elementSetter(data.data.content)
+            setNoteId(data.data._id)
+            if(data.data.notePassword == "true")
+            {   
+                setPasswordExits(true)
+            }
             setLoading(false)
-            console.log(data)
+            
         }
         catch(ex)
         {
@@ -556,11 +565,26 @@ function Board()
         }
     },[edit])
 
+    const noteCodeFormatted=(code)=>{
+        const codeArray = String(code).split('')
+        const newCode = []
+        codeArray.forEach((x,idx)=>{
+            if(idx === 3)
+            {
+                newCode.push('-')
+            }
+            newCode.push(x)
+        })
+        return newCode.join('')
+    }
+
     return(
         <MessageContext.Provider value={{addMessage,removeMessage}}>
         <GlobalLoadingContext.Provider value={{globalLoading,setGlobalLoading}}>
         <ClearElementEditContext.Provider value={clearElementEdit}>
         <CanvasHistoryContext value={{undoStack,setUndoStack,redoStack,setRedoStack,update:canvasHistoryUpdater,setUpdate:setCanvasHistoryUpdater}}>
+
+            {passwordExist && <NotePassword setDisplayNotePassword={setPasswordExits} boardPassword={true} noteIdMemory={noteId}/>}
 
             <div className={styles.back} onClick={e=>navigate('/')}>
                 <ArrowIcon class={styles.arrowSvg}/>
@@ -579,6 +603,8 @@ function Board()
             </div>}
 
             <input type='text'className={styles.projectName} value={projectName} onChange={e=>setProjectName(e.target.value)} onFocus={projectNameInputFocused} onBlur={projectNameInputBlur} />
+
+            <p className={styles.code}>{noteCodeFormatted(noteCode)}</p>
 
             <div className={`${styles.viewport} viewport`} ref={viewport} onDragEnter={e=>setDisplayDragElement(true)} >
 
