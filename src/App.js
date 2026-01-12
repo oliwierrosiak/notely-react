@@ -8,6 +8,7 @@ import ApiAddress from "./ApiAddress";
 import LoginContext from "./context/loginContext";
 import DisplayLoginContext from "./context/displayLogin";
 import refreshToken from "./components/auth/refreshToken";
+import Profile from "./components/profile/profile";
 
 function App() {
 
@@ -68,6 +69,7 @@ function App() {
       <Routes>
         <Route path="/" element={<Home />}/>
         <Route path="/note/:id" element={<Board />}/>
+        <Route path='/profile/:id' element={<Profile />}/>
       </Routes>
    </Router>
 

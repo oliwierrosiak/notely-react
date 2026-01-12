@@ -9,7 +9,7 @@
     border-radius: 2rem;
     overflow: hidden;
     box-shadow: 0 0 1rem .5rem #02735E;
-    border: .5rem solid #2A2F27;
+    border: .5rem solid #03A678;
 }
 .overlay
 {
@@ -19,9 +19,6 @@
     right: 0;
     bottom: 0;
     background-color: #2a2f2793;
-    display: flex;
-    justify-content: center;
-    align-items: center;
 }
 .menu
 {
