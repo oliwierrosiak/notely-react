@@ -28,6 +28,7 @@ import LoggedMenu from '../../nav/loggedMenu/loggedMenu'
 import LoginContext from '../../../context/loginContext'
 import DisplayLoginContext from '../../../context/displayLogin'
 import NotePassword from '../../notePassword/notePassword'
+import refreshToken from '../../auth/refreshToken'
 
 function Board()
 {
@@ -108,7 +109,8 @@ function Board()
     const getData = async() =>{
         try
         {
-            const data = await axios.get(`${ApiAddress}/getBoardData/${params.id}`)
+            const token = await refreshToken()
+            const data = await axios.get(`${ApiAddress}/getBoardData/${params.id}`,{headers:{"Authorization":`Bearer ${token}`}})
             if(data.data.visibility === "private" && data.data.admin !== loginContext.loggedUser.email)
             {
                 const error = new Error("Unauthorized")
@@ -134,7 +136,13 @@ function Board()
         }
         catch(ex)
         {
-            if(ex.status === 403)
+            if(ex.status === 401)
+            {
+                navigate('/')
+                loginContext.logout()
+                displayLoginContext.setDisplayLogin('login')
+            }
+            else if(ex.status === 403)
             {
                 navigate('/')
             }

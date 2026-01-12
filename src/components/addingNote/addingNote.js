@@ -130,6 +130,7 @@ function AddingNote(props)
         return()=>{
             window.removeEventListener("keydown",windowEvent)
             clearTimeout(showInfoTimeoutRef.current)
+            props.setNotesUpdater(Math.random())
         }
     },[])
 

@@ -26,7 +26,7 @@ function Home()
 
                 {displayNotePassword && <NotePassword notePassword={false} setDisplayNotePassword={setDisplayNotePassword} noteIdMemory={noteIdMemory} setDisplayRedirectPageAnimation={setDisplayRedirectPageAnimation} setNoteIdMemory={setNoteIdMemory}/>}
 
-                {displayAddingNote && <AddingNote setDisplayAddingNote={setDisplayAddingNote} setDisplayRedirectPageAnimation={setDisplayRedirectPageAnimation}/>}
+                {displayAddingNote && <AddingNote setNotesUpdater={setNotesUpdater} setDisplayAddingNote={setDisplayAddingNote} setDisplayRedirectPageAnimation={setDisplayRedirectPageAnimation}/>}
 
                 {displayNoteEdit && <EditNote setNotesUpdater={setNotesUpdater} note={displayNoteEdit} setDisplayNoteEdit={setDisplayNoteEdit}/>}
 
