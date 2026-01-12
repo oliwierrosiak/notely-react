@@ -43,6 +43,10 @@ function NotesMenu(props)
         getData()
     },[])
 
+    useEffect(()=>{
+        getData()
+    },[props.notesUpdater])
+
     return(
         <article className={`${styles.container} ${props.display?styles.display:''}`}>
             <div className={styles.arrowContainer} onClick={e=>props.setDisplayNotesMenu(!props.display)}>

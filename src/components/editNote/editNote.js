@@ -75,8 +75,8 @@ function EditNote(props)
             }
             const token = await refreshToken()
             await axios.put(`${ApiAddress}/updateNote/${props.note._id}`,{...requestBody},{headers:{'Authorization':`Bearer ${token}`}})
+            props.setNotesUpdater(Math.random())
             props.setDisplayNoteEdit(false)
-            await props.editGetData()
         }
         catch(ex)
         {
