@@ -1,7 +1,7 @@
 import { useContext, useEffect, useRef, useState } from 'react'
 import styles from './profile.module.css'
 import LoginContext from '../../context/loginContext'
-import { useNavigate } from 'react-router-dom'
+import { Form, useNavigate } from 'react-router-dom'
 import inputStyles from '../login/login-register.module.css'
 import userDefaultImg from '../../assets/img/userDefault.png'
 import ImgLoadingIcon from '../../assets/svg/imgLoadingIcon'
@@ -9,46 +9,115 @@ import CameraIcon from '../../assets/svg/cameraIcon'
 import { divClicked, inputBlur, inputFocused } from '../login/inputActions'
 import CheckMarkIcon from '../../assets/svg/checkmarkIcon'
 import LogoutIcon from '../../assets/svg/logoutIcon'
+import refreshToken from '../auth/refreshToken'
+import axios from 'axios'
+import ApiAddress from '../../ApiAddress'
+import LoadingIcon from '../../assets/svg/loadingIcon'
+import ErrorIcon from '../../assets/svg/errorIcon'
+import DisplayLoginContext from '../../context/displayLogin'
 
 function Profile()
 {
     const loginContext = useContext(LoginContext)
+    const displayLogin = useContext(DisplayLoginContext)
 
     const navigate = useNavigate('')
 
     const [userPhoto,setUserPhoto] = useState()
     const [userPhotoLoaded,setUserPhotoLoaded] = useState()
     const [name,setName] = useState('')
+    const [loading,setLoading] = useState(true)
+    const [error,setError] = useState(false)
+    const [photoError,setPhotoError] = useState('')
 
     const fileInputRef = useRef()
     const nameInputRef = useRef()
 
-    useEffect(()=>{
-        if(!loginContext.logged && !loginContext.loginLoading)
+    const acceptableImageTypes = ['image/png','image/jpg','image/jpeg','image/pjp','image/jfif','image/jpe','image/pjpeg']
+
+    const getData = async()=>{
+        try
         {
-            navigate('/')
-        }
-        if(loginContext.loggedUser && !loginContext.loginLoading)
-        {
-            setUserPhoto(loginContext.loggedUser.img||userDefaultImg)
-            setName(loginContext.loggedUser.name)
+            const token = await refreshToken()
+            const response = await axios.get(`${ApiAddress}/getUserData`,{headers:{Authorization:`Bearer ${token}`}})
+            setUserPhoto(response.data.img || userDefaultImg)
+            setName(response.data.name)
+            setLoading(false)
             setTimeout(() => {
                 nameInputRef.current.focus()
                 nameInputRef.current.blur()
-                
             }, 50);
+        }   
+        catch(ex)
+        {
+            if(ex.status === 401)
+            {
+                navigate('/')
+                displayLogin.setDisplayLogin('login')
+            }
+            else
+            {
+                setError(true)
+            }
         }
-    },[loginContext.loginLoading])
+    }
+
+    const sendNewPhoto = async(file)=>{
+        try
+        {
+            const formData = new FormData()
+            formData.append('photo',file)
+            const token = await refreshToken()
+            const response = await axios.put(`${ApiAddress}/updateUserPhoto`,formData,{headers:{"Authorization":`Bearer ${token}`}})
+            setLoading(true)
+            getData()
+        }
+        catch(ex)
+        {
+            setUserPhotoLoaded(true)
+            setPhotoError("Błąd aktualizacji zdjęcia")
+        }
+    }
+
+    const photoChanged = (e) =>{
+        setPhotoError('')
+        if(e.target.files[0])
+        {
+            if(acceptableImageTypes.includes(e.target.files[0].type))
+            {
+                setUserPhotoLoaded(false)
+                sendNewPhoto(e.target.files[0])
+            }
+            else
+            {
+                setPhotoError('Niewłaściwy typ pliku')
+            }
+        }
+        
+    }
 
     const logout = (e) =>{
         navigate('/')
         loginContext.logout()
     }
 
+    useEffect(()=>{
+        getData()
+    },[])
+
     return(
         <div className={styles.container}>
             <main className={styles.main}>
                     <div className={styles.logo}></div>
+                    {loading?<div className={styles.loadingContainer}>
+                        {error?
+                        <>
+                            <ErrorIcon class={styles.errorIcon}/>
+                            <h2 className={styles.errorHeader}>Wystąpił błąd ładowania</h2>
+                        </>
+                        :
+                        <LoadingIcon class={styles.pageLoading}/>}
+                    </div>:<>
 
                     <div className={styles.section}>
                         
@@ -63,10 +132,10 @@ function Profile()
                                 </div>
                             </div>
 
-                            {/* <div className={styles.error}>Niewłaściwy typ pliku</div> */}
+                            {photoError && <div className={styles.error}>{photoError}</div>}
 
                             <button className={styles.changePhoto}>
-                                <input type='file' ref={fileInputRef} className={styles.inputFile}/>
+                                <input disabled={!userPhotoLoaded} onChange={photoChanged} type='file' ref={fileInputRef} className={styles.inputFile} accept='image/png, image/jpg, image/jpeg'/>
                                 Zmień Zdjęcie
                             </button>
 
@@ -107,6 +176,8 @@ function Profile()
                         <button className={`${styles.btn} ${styles.deleteBtn}`}>Usuń Konto</button>
 
                     </div>
+
+                    </>}
             </main>
         </div>
         
