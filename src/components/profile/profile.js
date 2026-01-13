@@ -16,7 +16,8 @@ import LoadingIcon from '../../assets/svg/loadingIcon'
 import ErrorIcon from '../../assets/svg/errorIcon'
 import DisplayLoginContext from '../../context/displayLogin'
 import ArrowIcon from '../../assets/svg/arrowIcon'
-import Message from '../board/message/message'
+import InfoIcon from '../../assets/svg/infoIcon'
+import CloseIcon from '../../assets/svg/closeIcon'
 
 function Profile()
 {
@@ -33,8 +34,9 @@ function Profile()
     const [photoError,setPhotoError] = useState('')
     const [nameLoading,setNameLoading] = useState(false)
     const [nameError,setNameError] = useState('')
-    const [resetPasswordError,setResetPasswordError] = useState('bład')
 
+    const [message,setMessage] = useState({type:'',text:''})
+    const [displayMessage,setDisplayMessage] = useState(false)
 
     const fileInputRef = useRef()
     const nameInputRef = useRef()
@@ -149,12 +151,60 @@ function Profile()
         getData()
     },[])
 
+    const closeMessage = () =>{
+        setDisplayMessage(false)
+         setTimeout(() => {
+           setMessage({text:'',type:''})
+        }, 300);
+    }
+
+    const addMessage = (type,text) =>{
+        setMessage({type,text})
+        setDisplayMessage(true)
+        setTimeout(() => {
+                setDisplayMessage(false)
+
+                setTimeout(() => {
+                    setMessage({type:'',text:''})
+                }, 300);
+            }, 3500);
+        
+    }
+
+    const passwordReset = async() =>{
+        if(displayMessage) return
+        try
+        {
+            const token = await refreshToken()
+            const response = await axios.get(`${ApiAddress}/sendResetPasswordLink`,{headers:{"Authorization":`Bearer ${token}`}})
+        }
+        catch(ex)
+        {
+            addMessage('error','Nie udało się zresetować hasła')
+        }
+    }
+
     return(
         <div className={styles.container}>
             <div className={styles.messageContainer}>
-            <Message />
+                <div className={`${styles.message} ${displayMessage?styles.displayMessage:''}`}>
+                    <div className={styles.icon}>
+                        {message.type === "info" && <InfoIcon />}
+                        {message.type === "error" && <ErrorIcon />}
+                    </div>
+                    <div className={styles.text}>
+                        {message.text}
+                    </div>
+                    <div className={styles.close} onClick={closeMessage}>
+                        <CloseIcon />
+                    </div>
+                    <div className={styles.progress}>
+                        <div className={`${styles.progressFill} ${displayMessage?styles.progressFilled:''}`}></div>
+                    </div>
+                </div>
 
             </div>
+
             <main className={styles.main}>
 
                 
@@ -221,7 +271,7 @@ function Profile()
 
                         
 
-                        <button className={`${styles.btn} ${styles.resetBtn}`}>Resetuj Hasło</button>
+                        <button onClick={passwordReset} className={`${styles.btn} ${styles.resetBtn}`}>Resetuj Hasło</button>
 
                         <button className={`${styles.btn} ${styles.logoutBtn}`} onClick={logout}>
                             <LogoutIcon class={styles.logoutIcon}/>
@@ -234,6 +284,7 @@ function Profile()
 
                     </>}
             </main>
+
         </div>
         
     )

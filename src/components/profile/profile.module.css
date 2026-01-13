@@ -21,7 +21,7 @@
     border: .5rem solid #03A678;
     display: grid;
     grid-template-columns: 1fr 1fr;
-    grid-template-rows: 1fr 3fr;
+    grid-template-rows: 1fr 4fr;
     align-items: center;
     justify-items: center;
 }
@@ -64,7 +64,7 @@
     align-items: center;
     transition: border .3s ease;
     cursor: pointer;
-    margin-bottom: 1rem;
+    margin-bottom: 1.2rem;
 }
 .userImgContainer:hover
 {
@@ -120,8 +120,8 @@
 }
 .changePhoto
 {
-    margin-top: 1rem;
-    margin-bottom: 2rem;
+    margin-top: 1.2rem;
+    margin-bottom: 2.5rem;
     font-size: 2rem;
     color: white;
     padding: .8rem 1.8rem;
@@ -157,7 +157,7 @@
     align-items: center;
     flex-wrap: wrap;
     gap:1.5rem 0;
-    margin-bottom: 1rem;
+    margin-bottom: .6rem;
 }
 .nameInputContainer
 {
@@ -206,11 +206,11 @@
 }
 .resetBtn
 {
-    margin-top: 1rem;
+    margin-top: 1.8rem;
 }
 .logoutBtn
 {
-    margin: 2rem 0;
+    margin: 2.4rem 0;
 }
 .resetBtn:hover
 {
@@ -327,14 +327,98 @@
 }
 .messageContainer
 {
-    background-color: red;
     position: absolute;
-    right: 1rem;
-    bottom: 1rem;
+    right: 3rem;
+    bottom: 3rem;
     width: 25rem;
     display: flex;
     flex-direction: column;
-    align-items: center;
+    align-items: flex-end;
     justify-content: center;
     z-index: 2;
+}
+
+
+
+.message
+{
+    transform: translate(30rem,0);
+    transition: transform .3s ease;
+    display: grid;
+    grid-template-columns: 1.7rem auto 1.6rem;
+    /* width: auto; */
+    width: max-content;
+    max-width: 25rem;
+    padding: .4rem .3rem .6rem .5rem;
+    grid-template-rows: 1fr;
+    background-color: rgb(76, 76, 76);
+    border-radius: .8rem;
+    position: relative;
+    overflow: hidden;
+    gap:.4em;
+    justify-items: center;
+    align-items: center;
+}
+.displayMessage
+{
+    transform: translate(0,0);
+}
+.text
+{
+    color: white;
+    text-align: center;
+    display: flex;
+    justify-content: center;
+    align-items: center;
+    font-size: 1.2rem;
+    font-weight: 700;
+    font-family: "Jost", sans-serif;
+}
+.icon
+{
+    margin-right: .15rem;
+    display: flex;
+    justify-content: center;
+    align-items: center;
+}
+.close
+{
+    cursor: pointer;
+    display: flex;
+    justify-content: center;
+    align-items: center;
+}
+.close>svg>path
+{
+    fill: rgb(174, 174, 174);
+    transition: fill .3s ease;
+}
+.close:hover>svg>path
+{
+    fill: rgb(214, 214, 214);
+}
+.progress
+{
+    position: absolute;
+    bottom: 0;
+    left:0;
+    right: 0;
+    height: .25rem;
+    border-radius: 10px;
+    
+}
+.progressFill
+{
+    position: absolute;
+    top:0;
+    bottom: 0;
+    left: 0;
+    width: 0%;
+    transition: width 3s linear .3s;
+    border-radius: 10px;
+    background-color: rgb(144, 144, 144);
+}
+.progressFilled
+{
+    width: 100%;
 }
