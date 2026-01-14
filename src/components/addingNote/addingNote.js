@@ -134,7 +134,7 @@ function AddingNote(props)
 
                 <h1 className={styles.header}>Dodawanie Notatki</h1>
 
-                <div className={`${inputStyles.inputContainer} ${styles.inputContainer} ${inputStyles.emailInputContainer} ${loading?inputStyles.inputContainerWhileLoading:''}`} onClick={divClicked}>
+                <div className={`${inputStyles.inputContainer} ${styles.inputContainer} ${loading?inputStyles.inputContainerWhileLoading:''}`} onClick={divClicked}>
                     <input disabled={loading} value={title} onChange={e=>setTitle(e.target.value)} type='text' onBlur={inputBlur} onFocus={inputFocused} className={inputStyles.input}></input>
                     <div className={inputStyles.placeholder}>Uwtórz nazwę</div>
                 </div>

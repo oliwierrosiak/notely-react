@@ -19,6 +19,7 @@ import ArrowIcon from '../../assets/svg/arrowIcon'
 import InfoIcon from '../../assets/svg/infoIcon'
 import CloseIcon from '../../assets/svg/closeIcon'
 import DeletingAccountConfirm from './deletingAccountConfirm.js/deletingAccountConfirm'
+import logo from '../../assets/img/notely.png'
 
 function Profile()
 {
@@ -217,7 +218,7 @@ function Profile()
                 <ArrowIcon class={styles.backSVG}/>
                 </div>
 
-                    <div className={styles.logo}></div>
+                    <img src={logo} className={styles.logo}/>
                     {loading?<div className={styles.loadingContainer}>
                         {error?
                         <>

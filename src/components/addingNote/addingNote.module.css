@@ -35,7 +35,7 @@
 {
     position: absolute;
     top:2.2rem;
-    left:1rem;
+    left:1.5rem;
     width: 3rem;
     height: 3rem;
     cursor: pointer;
@@ -355,7 +355,7 @@
     background: #02735E;
     border-radius: 1.2rem;
     font-weight: 900;
-    border: .3rem solid #03A678;
+    border: .4rem solid #03A678;
     padding: .5rem .8rem .6rem .8rem;
     cursor: pointer;
     transition: background .3s ease, border .3s ease;
@@ -366,5 +366,5 @@
 .joinBtn:hover
 {
     background: #F27405;
-    border: .3rem solid #F27405;
+    border: .4rem solid #F27405;
 }

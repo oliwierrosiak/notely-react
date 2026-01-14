@@ -6,10 +6,10 @@ import axios from 'axios'
 import ApiAddress from '../../ApiAddress'
 import { useNavigate } from 'react-router-dom'
 import AccessTokenContext from '../../context/accessTokenContext'
-import tokenAuth from '../auth/refreshToken'
 import refreshToken from '../auth/refreshToken'
 import LoginContext from '../../context/loginContext'
 import DisplayLoginContext from '../../context/displayLogin'
+import logo from '../../assets/img/notely.png'
 
 function JoinWithCode(props)
 {
@@ -178,9 +178,7 @@ function JoinWithCode(props)
                     <ArrowIcon class={styles.backSVG}/>
                 </div>
 
-                <div className={styles.logo}>
-
-                </div>
+                <img src={logo} className={styles.logo}/>
 
                 <div className={styles.codeContainer}>
 

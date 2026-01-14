@@ -1,6 +1,6 @@
 .nav
 {
-    height: 15rem;
+    height: 16rem;
     position: absolute;
     left:0;
     right: 0;
@@ -18,18 +18,20 @@
     bottom: 0;
     left:50%;
     translate: -50% 0;
-    height: 10rem;
-    width: 20rem;
-    background-color: rgba(255, 255, 0, 0.454);
+    width: 35rem;
+    background-color: rgba(0, 0, 0, 0.453);
+    border-radius: 5rem;
+    padding: 0 2rem;
+    box-shadow: 0 0 2rem 2rem rgba(0, 0, 0, 0.453);
     transition: all .3s ease;
 }
 .logoWhileMenuIsDisplaying
 {
-    height: 5rem;
-    width: 10rem;
-    left:1rem;
-    bottom: 50%;
+    width: 12rem;
+    left:2rem;
+    bottom: 60%;
     translate: 0% 50%;
+    padding: 0;
 }
 .loginMenu
 {

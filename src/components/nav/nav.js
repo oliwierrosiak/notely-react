@@ -4,6 +4,7 @@ import DisplayLoginContext from '../../context/displayLogin'
 import LoginContext from '../../context/loginContext'
 import ImgLoadingIcon from '../../assets/svg/imgLoadingIcon'
 import LoggedMenu from './loggedMenu/loggedMenu'
+import logo from '../../assets/img/notely.png'
 
 function Nav(props)
 {
@@ -13,7 +14,8 @@ function Nav(props)
 
     return(
         <nav className={`${styles.nav} ${props.displayNotesMenu?styles.navWhileMenuIsDisplaying:''}`}>
-            <div className={`${styles.logo} ${props.displayNotesMenu?styles.logoWhileMenuIsDisplaying:''}`}></div>
+            <img src={logo} className={`${styles.logo} ${props.displayNotesMenu?styles.logoWhileMenuIsDisplaying:''}`}/>
+
             <div className={styles.loginMenu}>
                 {loginContext.loginLoading?
                 <ImgLoadingIcon class={styles.loginLoading}/>

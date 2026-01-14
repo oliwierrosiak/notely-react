@@ -17,7 +17,6 @@ import ImgLoadingIcon from '../../../assets/svg/imgLoadingIcon'
 import MessageContext from '../../../context/messageContext'
 import GlobalLoadingContext from '../../../context/globalLoadingContext'
 import ClearElementEditContext from '../../../context/clearEdit'
-import ArrowIcon from '../../../assets/svg/arrowIcon'
 import { useNavigate, useParams } from 'react-router-dom'
 import ShapeElementClass from '../shapeElement.js/shapeElementClass'
 import ShapeElement from '../shapeElement.js/shapeElement'
@@ -30,6 +29,7 @@ import DisplayLoginContext from '../../../context/displayLogin'
 import NotePassword from '../../notePassword/notePassword'
 import refreshToken from '../../auth/refreshToken'
 import formatNoteCode from '../../helpers/formatNoteCode'
+import logo from '../../../assets/img/notely60.png'
 
 function Board()
 {
@@ -587,9 +587,7 @@ function Board()
 
             {passwordExist && <NotePassword setDisplayNotePassword={setPasswordExits} boardPassword={true} noteIdMemory={noteId}/>}
 
-            <div className={styles.back} onClick={e=>navigate('/')}>
-                <ArrowIcon class={styles.arrowSvg}/>
-            </div>
+            <img src={logo} onClick={e=>navigate('/')} className={styles.logo}/>
 
             <div className={styles.loggedMenu}>
                 <LoggedMenu />
