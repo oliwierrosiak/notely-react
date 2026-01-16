@@ -8,8 +8,7 @@ import Register from './register/register'
 import PasswordForgotten from './passwordForgotten/passwordForgotten'
 import ImageBackground2 from '../../assets/svg/ImageBackground2'
 import ImageBackground3 from '../../assets/svg/imageBackground3'
-import PasswordForgottenIcon from '../../assets/svg/passwordForggotenIcon'
-import ResetPasswordIcon from '../../assets/svg/resetPassswordIcon'
+import PasswordForgottenIcon from '../../assets/svg/passwordForgottenIcon'
 
 function LoginPage(props)
 {

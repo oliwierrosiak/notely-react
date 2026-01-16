@@ -9,6 +9,7 @@ import LoginContext from "./context/loginContext";
 import DisplayLoginContext from "./context/displayLogin";
 import refreshToken from "./components/auth/refreshToken";
 import Profile from "./components/profile/profile";
+import ResetPassword from "./components/resetPassword/resetPassword";
 
 function App() {
 
@@ -70,6 +71,7 @@ function App() {
         <Route path="/" element={<Home />}/>
         <Route path="/note/:id" element={<Board />}/>
         <Route path='/profile/:id' element={<Profile />}/>
+        <Route path='/passwordreset/:id' element={<ResetPassword />}/>
       </Routes>
    </Router>
 
