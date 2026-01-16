@@ -8,6 +8,8 @@ import Register from './register/register'
 import PasswordForgotten from './passwordForgotten/passwordForgotten'
 import ImageBackground2 from '../../assets/svg/ImageBackground2'
 import ImageBackground3 from '../../assets/svg/imageBackground3'
+import PasswordForgottenIcon from '../../assets/svg/passwordForggotenIcon'
+import ResetPasswordIcon from '../../assets/svg/resetPassswordIcon'
 
 function LoginPage(props)
 {
@@ -28,8 +30,9 @@ function LoginPage(props)
             <img src={logo} className={styles.logo}/>
 
             <ImageBackground3 class={`${styles.backgroundSVG} ${displayLoginContext.displayLogin === 'register'?styles.svgDisplay:''}`}/>
-            <ImageBackground2 class={`${styles.backgroundSVG} ${displayLoginContext.displayLogin === 'passwordForgotten' || displayLoginContext.displayLogin === "login"?styles.svgDisplay:''}`}/>
-                
+            <ImageBackground2 class={`${styles.backgroundSVG} ${displayLoginContext.displayLogin === "login"?styles.svgDisplay:''}`}/>
+            <PasswordForgottenIcon class={`${styles.backgroundSVG} ${displayLoginContext.displayLogin === 'passwordForgotten'?styles.svgDisplay:''}`}/>
+
             <Login loading={loading} setLoading={setLoading} display={displayLoginContext.displayLogin === "login"} />
             <Register loading={loading} setLoading={setLoading} display={displayLoginContext.displayLogin === "register"} />
             <PasswordForgotten loading={loading} setLoading={setLoading} display={displayLoginContext.displayLogin === 'passwordForgotten'} />
