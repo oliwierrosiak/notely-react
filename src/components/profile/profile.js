@@ -171,7 +171,7 @@ function Profile()
                 setTimeout(() => {
                     setMessage({type:'',text:''})
                 }, 300);
-            }, 3500);
+            }, 4000);
         
     }
 
@@ -181,8 +181,10 @@ function Profile()
         {
             setResetPasswordLoading(true)
             const token = await refreshToken()
-            const response = await axios.get(`${ApiAddress}/sendResetPasswordLink`,{headers:{"Authorization":`Bearer ${token}`}})
+            const response = await axios.post(`${ApiAddress}/resetPassword`,{email:loginContext.loggedUser.email})
+            console.log(response)
             setResetPasswordLoading(false)
+            addMessage('info','Wysłano wiadomość email. Sprawdź swoją skrzynkę')
         }
         catch(ex)
         {
