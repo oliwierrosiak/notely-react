@@ -84,9 +84,7 @@ function ResetPassword()
 
     const validate = (e) =>
     {
-        send()
         e.preventDefault()
-        return
         setError('')
         if(password === '')
         {
