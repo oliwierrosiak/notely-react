@@ -1,0 +1,80 @@
+.container
+{
+    width: 12rem;
+    position: absolute;
+    top:5rem;
+    left:1.2rem;
+    z-index: 3;
+    display: flex;
+    flex-direction: column;
+    gap:.5rem;
+    max-height: 20rem;
+    overflow: auto;
+}
+.container::-webkit-scrollbar
+{
+    width: .5rem;
+    height: 0;
+}
+.container::-webkit-scrollbar-thumb
+{
+    border-radius: 10px;
+    background-color: #03A678;
+}
+.item
+{
+    display: flex;
+    align-items: center;
+    gap:.5rem;
+}
+.username
+{
+    font-size: 1.5rem;
+    font-weight: 700;
+    font-family: "Cause", cursive;
+    text-overflow: ellipsis;
+    white-space: nowrap;
+    width: 8rem;
+    overflow: hidden;
+    color: rgb(130, 130, 130);
+}
+.imgContainer
+{
+    width: 2.5rem;
+    height: 2.5rem;
+    border-radius: 50%;
+    border: .3rem solid #03A678;
+    display: flex;
+    justify-content: center;
+    align-items: center;
+    overflow: hidden;
+    position: relative;
+}
+.img
+{
+    width: 100%;
+}
+.loading
+{
+    position: absolute;
+    top:0;
+    left:0;
+    right: 0;
+    bottom: 0;
+    background-color: rgba(56, 56, 56, 0.461);
+    backdrop-filter: blur(2px);
+    display: flex;
+    justify-content: center;
+    align-items: center;
+    opacity: 0;
+    transition: opacity .3s ease;
+}
+.loadingDisplay
+{
+    opacity: 1;
+}
+.loadingIcon
+{
+    width: 80%;
+    height: 80%;
+}

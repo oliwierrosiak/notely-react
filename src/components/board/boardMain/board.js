@@ -30,6 +30,8 @@ import NotePassword from '../../notePassword/notePassword'
 import refreshToken from '../../auth/refreshToken'
 import formatNoteCode from '../../helpers/formatNoteCode'
 import logo from '../../../assets/img/notely60.png'
+import socket from '../socketConfig/socketConfig'
+import BoardUsers from '../boardUsers/boardUser'
 
 function Board()
 {
@@ -57,6 +59,7 @@ function Board()
     const [noteCode,setNoteCode] = useState('')
     const [passwordExist,setPasswordExits] = useState(false)
     const [noteId,setNoteId] = useState('')
+    const [noteUsers,setNoteUsers] = useState([])
 
     const movingLocked = useRef(false)
     const mouseMoveListener = useRef()
@@ -197,6 +200,7 @@ function Board()
         localTextElement.push(item)
         setEdit(item)
         setElements(localTextElement)
+        socket.emit('textAdd',{noteId:params.id})
     }
 
     const deletePhotoFromAWS = async (link) =>{
@@ -275,6 +279,7 @@ function Board()
         localMessages.push({message,type,id:id})
         messages.current = localMessages
         setUpdater(!updater)
+        
     }
 
     const removeMessage = (id) =>
@@ -291,7 +296,7 @@ function Board()
     }
 
 
-        const sendFileToServer = async(file) =>{
+    const sendFileToServer = async(file) =>{
         try
         {
             const data = new FormData()
@@ -499,6 +504,13 @@ function Board()
             if(loginContext.logged)
             {
                 getData()
+                socket.emit('login',{user:loginContext.loggedUser,noteId:params.id})
+                socket.on('usersUpdate',(userList)=>{
+                    setNoteUsers(userList)
+                })
+                socket.on('textAdded',()=>{
+                    console.log("dodaono text")
+                })
             }
             else
             {
@@ -509,6 +521,7 @@ function Board()
     },[loginContext.loginLoading])
 
     useEffect(()=>{
+        
         if(viewport.current)
         {
             viewport.current.addEventListener("wheel",zoom,{passive:false})
@@ -522,6 +535,7 @@ function Board()
             window.removeEventListener('dragstart',blockDragging)
             window.removeEventListener('wheel',blockZooming)
             viewport.current?.removeEventListener("wheel",zoom)
+            socket.emit("logout", { noteId: params.id })
         }
     },[])
 
@@ -588,6 +602,8 @@ function Board()
             {passwordExist && <NotePassword setDisplayNotePassword={setPasswordExits} boardPassword={true} noteIdMemory={noteId}/>}
 
             <img src={logo} onClick={e=>navigate('/')} className={styles.logo}/>
+
+            <BoardUsers users={noteUsers}/>
 
             <div className={styles.loggedMenu}>
                 <LoggedMenu />
