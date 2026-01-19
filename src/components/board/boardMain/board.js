@@ -172,6 +172,14 @@ function Board()
         }
     }
 
+    const sendSocket = (element) =>{
+        switch(element.type){
+            case 'text':
+                socket.emit('elementUpdate',{noteId:params.id,element:element})
+                break
+        }
+    }
+
     const clearElementEdit = () =>{
         setBrush({type:'',width:brush.width,color:brush.color})
         const elements = [...document.querySelectorAll('.element')]
@@ -182,7 +190,8 @@ function Board()
         {
             if(edit)
             {
-                edit.updater(params.id)
+                sendSocket(edit)
+                // edit.updater(params.id)
             }
             setEdit(0)
         }
@@ -200,7 +209,6 @@ function Board()
         localTextElement.push(item)
         setEdit(item)
         setElements(localTextElement)
-        socket.emit('textAdd',{noteId:params.id})
     }
 
     const deletePhotoFromAWS = async (link) =>{
@@ -499,6 +507,36 @@ function Board()
         setBoardTransformation()
     },[])
 
+    const getNewElement = (el) =>
+    {
+        switch(el.type)
+        {
+            case 'text':
+                return new TextElementClass(el)
+        }
+    }
+
+    const elementsHandler = (newElement) =>
+    {
+        const element = getNewElement(newElement)
+
+        setElements((prev)=>{
+            const index = prev.findIndex(x=>x.id === element.id)
+
+            if(index === -1)
+            {
+                return [...prev,element]
+            }
+            else
+            {
+                const newArray = [...prev]
+                newArray.splice(index,1,element)
+                return [...newArray]
+            }
+        })
+
+    }
+
     useEffect(()=>{
         if(!loginContext.loginLoading)
         {
@@ -514,6 +552,9 @@ function Board()
                 })
                 socket.on('titleUpdated',(title)=>{
                     setProjectName(title)
+                })
+                socket.on('elementUpdated',(element)=>{
+                    elementsHandler(element)
                 })
             }
             else

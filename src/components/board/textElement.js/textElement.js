@@ -8,6 +8,8 @@ function TextElement(props)
 
     const containerRef = useRef()
 
+   
+
     const [textValue,setTextValue] = useState(props.item.text?props.item.text:'') 
 
     const changePosition = (e)=>{
@@ -31,6 +33,10 @@ function TextElement(props)
     useEffect(()=>{
         props.item.setText(textValue)
     },[textValue])
+
+    useEffect(()=>{
+        setTextValue(props.item.text)
+    },[props.item.text])
 
     useEffect(()=>{
         if(!props.item.left && !props.item.top)
