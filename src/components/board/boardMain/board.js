@@ -233,7 +233,8 @@ function Board()
         }
         try
         {
-            await axios.delete(`${ApiAddress}/deleteBoardItem/${params.id}/${id}`)
+            socket.emit('elementDelete',{noteId:params.id,id})
+            // await axios.delete(`${ApiAddress}/deleteBoardItem/${params.id}/${id}`)
         }
         catch(ex)
         {}
@@ -519,6 +520,7 @@ function Board()
     const elementsHandler = (newElement) =>
     {
         const element = getNewElement(newElement)
+        console.log(element)
 
         setElements((prev)=>{
             const index = prev.findIndex(x=>x.id === element.id)
@@ -535,6 +537,18 @@ function Board()
             }
         })
 
+    }
+
+    const elementsDelete = (id) =>
+    {
+        setElements(prev=>{
+            const index = prev.findIndex(x=>x.id === id)
+            if(index !== -1)
+            {
+                prev.splice(index,1)
+                return [...prev]
+            }
+        })
     }
 
     useEffect(()=>{
@@ -555,6 +569,9 @@ function Board()
                 })
                 socket.on('elementUpdated',(element)=>{
                     elementsHandler(element)
+                })
+                socket.on('elementDeleted',(id)=>{
+                    elementsDelete(id)
                 })
             }
             else
