@@ -1,6 +1,6 @@
 import styles from './boardUsers.module.css'
 import userDefaultImg from '../../../assets/img/userDefault.png'
-import { useEffect, useState } from 'react'
+import React,{ useEffect, useState } from 'react'
 import ImgLoadingIcon from '../../../assets/svg/imgLoadingIcon'
 
 function UserItem(props)
@@ -21,4 +21,4 @@ function UserItem(props)
     )
 }
 
-export default UserItem
+export default React.memo(UserItem)

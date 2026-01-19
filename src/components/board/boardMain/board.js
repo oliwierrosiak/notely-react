@@ -472,6 +472,7 @@ function Board()
         }
         try
         {
+            socket.emit('titleUpdate',{noteId:params.id,title:projectName})
             await axios.post(`${ApiAddress}/updateNoteTitle/${params.id}`,{title:projectName})
         }
         catch(ex)
@@ -510,6 +511,9 @@ function Board()
                 })
                 socket.on('textAdded',()=>{
                     console.log("dodaono text")
+                })
+                socket.on('titleUpdated',(title)=>{
+                    setProjectName(title)
                 })
             }
             else

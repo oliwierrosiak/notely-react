@@ -1,6 +1,6 @@
 import { useContext, useEffect, useState } from 'react'
 import styles from './boardUsers.module.css'
-
+import React from 'react'
 import UserItem from './userItem'
 import LoginContext from '../../../context/loginContext'
 
@@ -25,4 +25,4 @@ function BoardUsers(props)
     )
 }
 
-export default BoardUsers
+export default React.memo(BoardUsers)
