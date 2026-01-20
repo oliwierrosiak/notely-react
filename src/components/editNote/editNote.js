@@ -45,6 +45,7 @@ function EditNote(props)
         window.addEventListener("keydown",windowEvent)
         inputRef.current.focus()
         inputRef.current.blur()
+        console.log()
         return()=>{
             window.removeEventListener("keydown",windowEvent)
         }
@@ -77,6 +78,9 @@ function EditNote(props)
             await axios.put(`${ApiAddress}/updateNote/${props.note._id}`,{...requestBody},{headers:{'Authorization':`Bearer ${token}`}})
             props.setNotesUpdater(Math.random())
             props.setDisplayNoteEdit(false)
+            const authorizedNotes = JSON.parse(sessionStorage.getItem('authorizedNotes')) || []
+            authorizedNotes.push(props.note._id)
+            sessionStorage.setItem('authorizedNotes',JSON.stringify(authorizedNotes))
         }
         catch(ex)
         {
@@ -131,8 +135,8 @@ function EditNote(props)
                 </div>
 
                 <div className={styles.passwordContainer}>
-                    <div onClick={e=>!loading && setPasswordExist(!passwordExist)} className={`${styles.checkbox} ${passwordExist?styles.checkboxChecked:''}`}></div>
-                    <p onClick={e=>!loading && setPasswordExist(!passwordExist)} className={styles.checkboxDescription}>Notatka zabezpieczona hasłem</p>
+                    <div onClick={e=>!loading && props.note.visibility !== "private" && setPasswordExist(!passwordExist)} className={`${styles.checkbox} ${passwordExist?styles.checkboxChecked:''}`}></div>
+                    <p onClick={e=>!loading && props.note.visibility !== "private" && setPasswordExist(!passwordExist)} className={styles.checkboxDescription}>Notatka zabezpieczona hasłem</p>
 
                     <div className={`${inputStyles.inputContainer} ${loading?inputStyles.inputContainerWhileLoading:''} ${passwordExist?"":styles.inputContainerDisabled}`} onClick={divClicked}>
                         <input disabled={loading || !passwordExist} value={password} onChange={e=>setPassword(e.target.value)} type={showPassword?'text':'password'} onBlur={inputBlur} onFocus={inputFocused} className={`${inputStyles.input} ${inputStyles.passwordInput} ${!passwordExist?styles.passwordDisabled:''}`}></input>

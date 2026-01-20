@@ -66,7 +66,7 @@ function MyNotesItem(props)
             </div>
             <div className={styles.title}>{props.title}</div>
             <div className={styles.code}>{formatNoteCode(props.code)}</div>
-            <div className={styles.status}>{transformStatus(props.visibility)}</div>
+            <div className={`${styles.status} ${props.visibility === "private"?styles.privateStatus:''}`}>{transformStatus(props.visibility)}</div>
             <div className={styles.line}></div>
             <div className={styles.edit} onClick={e=>props.setDisplayNoteEdit(props)}>
                 <EditIcon class={styles.editSVG}/>
