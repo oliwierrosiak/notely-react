@@ -598,6 +598,12 @@ function Board()
                 socket.on('canvasUpdated',(canvas)=>{
                     canvasHandler(canvas)
                 })
+                socket.on('boardTemplateUpdated',(template)=>{
+                    setBackgroundTemplate(template)
+                })
+                socket.on('boardColorUpdated',(color)=>{
+                    setBoardColor(color)
+                })
             }
             else
             {
@@ -639,6 +645,7 @@ function Board()
     const saveBoardColor = async()=>{
         try
         {
+            socket.emit('boardColorUpdate',{noteId:params.id,color:boardColor})
             await axios.post(`${ApiAddress}/updateNoteColor/${params.id}`,{color:boardColor})
         }
         catch(ex)
@@ -657,6 +664,7 @@ function Board()
     const saveBackgroundTemplate = async() =>{
         try
         {
+            socket.emit('boardTemplateUpdate',{noteId:params.id,template:backgroundTemplate})
             await axios.post(`${ApiAddress}/updateNoteTemplate/${params.id}`,{template:backgroundTemplate})
         }
         catch(ex)
