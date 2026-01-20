@@ -76,6 +76,22 @@
 {
     background: none;
 }
+.privateNoteButton
+{
+    color: white;
+    font-size: 1.2rem;
+    font-weight: 700;
+    padding: .5rem .8rem;
+    border-radius: .8rem;
+    background-color: #02735E;
+    font-family: "Jost", sans-serif;
+    cursor: default;
+    margin-top: .5rem;
+}
+.privateNoteButton::selection
+{
+    background: none;
+}
 .code
 {
     color: white;
@@ -176,4 +192,8 @@
     justify-content: center;
     align-items: center;
     cursor: default;
+}
+.deleteBottomMargin
+{
+    margin-bottom: 1rem;
 }

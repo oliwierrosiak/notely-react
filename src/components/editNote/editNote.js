@@ -11,6 +11,7 @@ import ApiAddress from '../../ApiAddress'
 import refreshToken from '../auth/refreshToken'
 import LoginContext from '../../context/loginContext'
 import DisplayLoginContext from '../../context/displayLogin'
+import formatNoteCode from '../helpers/formatNoteCode'
 
 function EditNote(props)
 {
@@ -51,20 +52,6 @@ function EditNote(props)
         }
     },[])
 
-    const formatCode = (code) =>
-    {
-        const newCode = []
-        const localCode = String(code).split('')
-        localCode.forEach((x,idx)=>{
-            if(idx === 3)
-            {
-                newCode.push('-')
-            }
-            newCode.push(x)
-        })
-        return newCode.join('')
-    }
-
     const sendData = async()=>{
         try
         {
@@ -103,7 +90,7 @@ function EditNote(props)
         setError('')
         if(title === '')
         {
-            setError("wpisz nazwę")
+            setError("Wpisz Nazwę")
         }
         else if(passwordExist && passwordExist != Boolean(props.note.notePassword) && password==='')
         {
@@ -126,15 +113,16 @@ function EditNote(props)
 
                 <header className={styles.header}>
                     <h1 className={styles.h1}>Edycja Notatki</h1>
-                    <h2 className={styles.code}>{formatCode(props.note.code)}</h2>
+                    {props.note.visibility === 'public' && <h2 className={styles.code}>{formatNoteCode(props.note.code)}</h2>}
+                    {props.note.visibility === 'private' && <div className={styles.privateNoteButton}>Notatka Prywatna</div>}
                 </header>
 
-                <div className={`${inputStyles.inputContainer} ${styles.inputContainer} ${inputStyles.emailInputContainer} ${loading?inputStyles.inputContainerWhileLoading:''}`} onClick={divClicked}>
+                <div className={`${inputStyles.inputContainer} ${styles.inputContainer} ${inputStyles.emailInputContainer} ${loading?inputStyles.inputContainerWhileLoading:''} ${props.note.visibility === "private"?styles.deleteBottomMargin:''}`} onClick={divClicked}>
                     <input ref={inputRef} disabled={loading} value={title} onChange={e=>setTitle(e.target.value)} type='text' onBlur={inputBlur} onFocus={inputFocused} className={inputStyles.input}></input>
                     <div className={inputStyles.placeholder}>Edytuj nazwę</div>
                 </div>
 
-                <div className={styles.passwordContainer}>
+                {props.note.visibility === "public" && <div className={styles.passwordContainer}>
                     <div onClick={e=>!loading && props.note.visibility !== "private" && setPasswordExist(!passwordExist)} className={`${styles.checkbox} ${passwordExist?styles.checkboxChecked:''}`}></div>
                     <p onClick={e=>!loading && props.note.visibility !== "private" && setPasswordExist(!passwordExist)} className={styles.checkboxDescription}>Notatka zabezpieczona hasłem</p>
 
@@ -145,7 +133,7 @@ function EditNote(props)
                         {showPassword?<PasswordEye />:<PasswordEyeHidden />}
                     </div>
                     </div>
-                </div>
+                </div>}
 
                 {error && <div className={styles.error}>{error}</div>}
 
