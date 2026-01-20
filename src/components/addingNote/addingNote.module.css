@@ -115,6 +115,7 @@
     font-family: "Jost", sans-serif;
     position: relative;
     cursor: default;
+    z-index: 2;
 }
 .info::selection
 {
@@ -127,8 +128,7 @@
     left:0rem;
     top:-1.5rem;
     width: 14rem;
-    justify-content: flex-end;
-   
+    justify-content: flex-end; 
 }
 .infoContainer
 {
@@ -138,8 +138,9 @@
     border-radius: 1rem;
     border:.3rem solid #03A678;
     background: #02735E;
-     font-size: .8rem;
+    font-size: .9rem;
     font-weight: 400;
+   
 }
 .info:hover>.explanationContainer
 {
@@ -232,7 +233,7 @@
 }
 .passwordDisabled
 {
-    cursor: default;
+    cursor: default !important;
     color: grey;
 }
 .eyeDisabled
@@ -241,8 +242,8 @@
 }
 .inputContainerDisabled
 {
-    border:.3rem solid rgb(103, 103, 103);
-    cursor: default;
+    border:.3rem solid rgb(103, 103, 103) !important;
+    cursor: default !important;
 }
 .btnLoading
 {

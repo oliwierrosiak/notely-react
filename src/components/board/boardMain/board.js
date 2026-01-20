@@ -121,7 +121,7 @@ function Board()
                 error.status = 403
                 throw error
             }
-            setNoteCode(data.data.code)
+            setNoteCode(data.data.visibility === "private"?"Notatka Prywatna":data.data.code)
             setProjectName(data.data.title || 'Nowy projekt')
             setBoardColor(data.data.boardColor || 'bgBlack5')
             setBackgroundTemplate(data.data.template || 'backgroundTemplate9')
@@ -723,7 +723,7 @@ function Board()
 
             <input type='text'className={styles.projectName} value={projectName} onChange={e=>setProjectName(e.target.value)} onFocus={projectNameInputFocused} onBlur={projectNameInputBlur} />
 
-            <p className={styles.code}>{formatNoteCode(noteCode)}</p>
+            <p className={styles.code}>{Number(noteCode) ? formatNoteCode(noteCode):noteCode}</p>
 
             <div className={`${styles.viewport} viewport`} ref={viewport} onDragEnter={e=>setDisplayDragElement(true)} >
 
