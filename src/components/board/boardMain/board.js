@@ -533,6 +533,17 @@ function Board()
             }
         })
 
+        setEdit(prev=>{
+            if(element.id === prev.id)
+            {
+                return element
+            }
+            else
+            {
+                return prev
+            }
+        })
+
     }
 
     const elementsDelete = (id) =>
