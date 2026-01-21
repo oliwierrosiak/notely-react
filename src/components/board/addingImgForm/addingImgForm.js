@@ -6,6 +6,7 @@ import MessageContext from '../../../context/messageContext'
 import GlobalLoadingContext from '../../../context/globalLoadingContext'
 import refreshToken from '../../auth/refreshToken'
 import UnauthorizedActionContext from '../../../context/unauthorizedActionContext'
+import { useNavigate } from 'react-router-dom'
 
 function AddingImgForm(props)
 {
@@ -17,6 +18,8 @@ function AddingImgForm(props)
     const [linkError,setLinkError] = useState(false)
 
     const unauthorizedActionContext = useContext(UnauthorizedActionContext)
+
+    const navigate = useNavigate()
 
     const inputFocused = (e) =>{
         e.target.placeholder = ''
@@ -65,6 +68,7 @@ function AddingImgForm(props)
         {
             if(ex.status === 401)
             {
+                navigate('/')
                 unauthorizedActionContext()
             }
             message.addMessage('Wystąpił bład serwera','error')

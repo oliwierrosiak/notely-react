@@ -1,4 +1,4 @@
-import { BrowserRouter as Router, Routes, Route } from "react-router-dom";
+import { BrowserRouter as Router, Routes, Route, useNavigate } from "react-router-dom";
 import Board from "./components/board/boardMain/board";
 import Home from "./components/home/home";
 import { useEffect, useState } from "react";
@@ -11,6 +11,7 @@ import refreshToken from "./components/auth/refreshToken";
 import Profile from "./components/profile/profile";
 import ResetPassword from "./components/resetPassword/resetPassword";
 import { GoogleOAuthProvider } from "@react-oauth/google";
+import UnauthorizedActionContext from "./context/unauthorizedActionContext";
 
 function App() {
 
@@ -67,7 +68,14 @@ function App() {
     }
   }
 
+   const authorizationError = ()=>
+    {
+        logout()
+        setDisplayLogin('login')
+    }
+
   return (
+    <UnauthorizedActionContext.Provider value={authorizationError}>
     <GoogleOAuthProvider clientId="913719262265-5glbp82il0vpm8mvpqkg7q6nul20v1a0.apps.googleusercontent.com">
     <AccessTokenContext.Provider value={{accessToken,setAccessToken}}>
     <LoginContext.Provider value={{logged,setLogged,loggedUser,setLoggedUser,loginLoading,logout}}>
@@ -86,6 +94,7 @@ function App() {
     </LoginContext.Provider>
    </AccessTokenContext.Provider>
    </GoogleOAuthProvider>
+   </UnauthorizedActionContext.Provider>
   );
 }
 

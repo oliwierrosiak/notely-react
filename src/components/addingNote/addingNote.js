@@ -12,6 +12,8 @@ import LoginContext from '../../context/loginContext'
 import CopyIcon from '../../assets/svg/copyIcon'
 import { useNavigate } from 'react-router-dom'
 import formatNoteCode from '../helpers/formatNoteCode'
+import refreshToken from '../auth/refreshToken'
+import UnauthorizedActionContext from '../../context/unauthorizedActionContext'
 
 function AddingNote(props)
 {
@@ -29,6 +31,7 @@ function AddingNote(props)
     const [noteId,setNoteId] = useState('')
 
     const loginContext = useContext(LoginContext)
+    const unauthorizedActionContext = useContext(UnauthorizedActionContext)
 
     const showInfoTimeoutRef = useRef()
     const btnRef = useRef()
@@ -62,7 +65,8 @@ function AddingNote(props)
                 password:passwordEnabled?password:null,
                 admin:loginContext.loggedUser.email
             }
-            const response = await axios.post(`${ApiAddress}/createNote`,requestBody)
+            const token = await refreshToken()
+            const response = await axios.post(`${ApiAddress}/createNote`,requestBody,{headers:{"Authorization":`Bearer ${token}`}})
             setNoteCode(response.data.code)
             setNoteId(response.data.id)
             setNoteLink(`http://localhost:3000/note/${response.data.id}`)
@@ -74,6 +78,12 @@ function AddingNote(props)
         }   
         catch(ex)
         {
+            if(ex.status === 401)
+            {
+                 props.setDisplayAddingNote(false)
+                navigate('/')
+                unauthorizedActionContext()
+            }
             setError('Wystąpił błąd serwera')
             setLoading(false)
         }

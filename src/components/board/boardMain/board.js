@@ -79,17 +79,14 @@ function Board()
 
     const loginContext = useContext(LoginContext)
     const displayLoginContext = useContext(DisplayLoginContext)
+    const authorizationError = useContext(UnauthorizedActionContext)
+
 
     const navigate = useNavigate()
 
     const params = useParams()
 
-    const authorizationError = ()=>
-    {
-        navigate('/')
-        loginContext.logout()
-        displayLoginContext.setDisplayLogin('login')
-    }
+   
 
     const elementSetter= (array) =>{
         const localElements = [...elements]
@@ -180,6 +177,7 @@ function Board()
             {
                 if(ex.status === 401)
                 {
+                    navigate('/')
                     authorizationError()
                 }
             }
@@ -201,6 +199,10 @@ function Board()
                 {
                     socket.emit('elementUpdate',{noteId:params.id,element:edit})
 
+                }
+                else
+                {
+                    navigate('/')
                 }
             }
             setEdit(0)
@@ -253,6 +255,7 @@ function Board()
         {
             if(ex.status === 401)
             {
+                navigate('/')
                 authorizationError()
             }
         }
@@ -507,6 +510,7 @@ function Board()
         {
             if(ex.status === 401)
             {
+                navigate('/')
                 authorizationError()
             }
             else
@@ -697,6 +701,7 @@ function Board()
         {
             if(ex.status === 401)
             {
+                navigate('/')
                 authorizationError()
             }
             addMessage('Nie zapisano koloru tła','error')
@@ -721,6 +726,7 @@ function Board()
         {
             if(ex.status === 401)
             {
+                navigate('/')
                 authorizationError()
             }
             addMessage('Nie zapisano wzoru tła','error')
@@ -742,7 +748,6 @@ function Board()
     },[edit])
 
     return(
-        <UnauthorizedActionContext.Provider value={authorizationError}>
         <MessageContext.Provider value={{addMessage,removeMessage}}>
         <GlobalLoadingContext.Provider value={{globalLoading,setGlobalLoading}}>
         <ClearElementEditContext.Provider value={clearElementEdit}>
@@ -823,7 +828,6 @@ function Board()
         </ClearElementEditContext.Provider>
         </GlobalLoadingContext.Provider>
         </MessageContext.Provider>
-        </UnauthorizedActionContext.Provider>
     )
 }
 
