@@ -83,6 +83,13 @@ function Board()
 
     const params = useParams()
 
+    const authorizationError = ()=>
+    {
+        navigate('/')
+        loginContext.logout()
+        displayLoginContext.setDisplayLogin('login')
+    }
+
     const elementSetter= (array) =>{
         const localElements = [...elements]
         if(array.findIndex(x=>x.type === "canvas") == -1)
@@ -474,12 +481,21 @@ function Board()
         }
         try
         {
+            const token = await refreshToken()
+            await axios.post(`${ApiAddress}/updateNoteTitle/${params.id}`,{title:projectName},{headers:{"Authorization":`Bearer ${token}`}})
             socket.emit('titleUpdate',{noteId:params.id,title:projectName})
-            await axios.post(`${ApiAddress}/updateNoteTitle/${params.id}`,{title:projectName})
         }
         catch(ex)
         {
-            addMessage('Nie udało się zmienić nazwy','error')
+            if(ex.status === 401)
+            {
+                authorizationError()
+            }
+            else
+            {
+                addMessage('Nie udało się zmienić nazwy','error')
+
+            }
         }
     }
 
