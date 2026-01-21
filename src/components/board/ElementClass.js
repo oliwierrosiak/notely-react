@@ -1,5 +1,6 @@
 import axios from "axios"
 import ApiAddress from "../../ApiAddress"
+import refreshToken from "../auth/refreshToken"
 
 class ElementClass
 {
@@ -16,13 +17,18 @@ class ElementClass
         this.resizeHandler = ()=>{}
     }   
 
-    async updater(boardId)
+    async updater(boardId,errorFunc)
     {
         try
         {
-            await axios.post(`${ApiAddress}/updateNoteContent/${boardId}`,this)
+            const token = await refreshToken()
+            await axios.post(`${ApiAddress}/updateNoteContent/${boardId}`,this,{headers:{"Authorization":`Bearer ${token}`}})
+            return true
         }
-        catch(ex){
+        catch(ex)
+        {
+            errorFunc()
+            return false
         }
     }
 

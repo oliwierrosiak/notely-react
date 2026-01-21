@@ -4,6 +4,8 @@ import axios from 'axios'
 import ApiAddress from '../../../ApiAddress'
 import MessageContext from '../../../context/messageContext'
 import GlobalLoadingContext from '../../../context/globalLoadingContext'
+import refreshToken from '../../auth/refreshToken'
+import UnauthorizedActionContext from '../../../context/unauthorizedActionContext'
 
 function AddingImgForm(props)
 {
@@ -13,6 +15,8 @@ function AddingImgForm(props)
 
     const [linkValue,setLinkValue] = useState('')
     const [linkError,setLinkError] = useState(false)
+
+    const unauthorizedActionContext = useContext(UnauthorizedActionContext)
 
     const inputFocused = (e) =>{
         e.target.placeholder = ''
@@ -51,13 +55,18 @@ function AddingImgForm(props)
         {
             const data = new FormData()
             data.append('img',file)
-            const response = await axios.post(`${ApiAddress}/boardImg`,data)
+            const token = await refreshToken()
+            const response = await axios.post(`${ApiAddress}/boardImg`,data,{headers:{"Authorization":`Bearer ${token}`}})
             props.addImg(response.data)
             setLinkValue('')
             globalLoading.setGlobalLoading(false)
         }
         catch(ex)
         {
+            if(ex.status === 401)
+            {
+                unauthorizedActionContext()
+            }
             message.addMessage('Wystąpił bład serwera','error')
             globalLoading.setGlobalLoading(false)
         }

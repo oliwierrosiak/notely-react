@@ -32,6 +32,7 @@ import formatNoteCode from '../../helpers/formatNoteCode'
 import logo from '../../../assets/img/notely60.png'
 import socket from '../socketConfig/socketConfig'
 import BoardUsers from '../boardUsers/boardUser'
+import UnauthorizedActionContext from '../../../context/unauthorizedActionContext'
 
 function Board()
 {
@@ -180,7 +181,7 @@ function Board()
         }
     }
 
-    const clearElementEdit = () =>{
+    const clearElementEdit = async() =>{
         setBrush({type:'',width:brush.width,color:brush.color})
         const elements = [...document.querySelectorAll('.element')]
         elements.forEach(x=>{
@@ -190,8 +191,12 @@ function Board()
         {
             if(edit)
             {
-                socket.emit('elementUpdate',{noteId:params.id,element:edit})
-                edit.updater(params.id)
+                const done = await edit.updater(params.id,authorizationError)
+                if(done)
+                {
+                    socket.emit('elementUpdate',{noteId:params.id,element:edit})
+
+                }
             }
             setEdit(0)
         }
@@ -714,6 +719,7 @@ function Board()
     },[edit])
 
     return(
+        <UnauthorizedActionContext.Provider value={authorizationError}>
         <MessageContext.Provider value={{addMessage,removeMessage}}>
         <GlobalLoadingContext.Provider value={{globalLoading,setGlobalLoading}}>
         <ClearElementEditContext.Provider value={clearElementEdit}>
@@ -794,6 +800,7 @@ function Board()
         </ClearElementEditContext.Provider>
         </GlobalLoadingContext.Provider>
         </MessageContext.Provider>
+        </UnauthorizedActionContext.Provider>
     )
 }
 
