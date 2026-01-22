@@ -4,7 +4,6 @@
     transition: transform .3s ease;
     display: grid;
     grid-template-columns: 1.7rem auto 1.6rem;
-    /* width: auto; */
     width: max-content;
     max-width: 25rem;
     padding: .4rem .3rem .6rem .5rem;
@@ -74,7 +73,7 @@
     width: 0%;
     transition: width 3s linear .3s;
     border-radius: 10px;
-    background-color: rgb(144, 144, 144);
+    background-color: #F27405;
 }
 .progressFilled
 {

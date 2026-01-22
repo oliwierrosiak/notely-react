@@ -37,8 +37,8 @@
 }
 .userImgContainer
 {
-    width: 14rem;
-    height: 14rem;
+    width: 15rem;
+    height: 15rem;
     border: .8rem solid #02735E;
     border-radius: 50%;
     overflow: hidden;
@@ -105,7 +105,7 @@
 {
     margin-top: 1.2rem;
     margin-bottom: 2.5rem;
-    font-size: 2.2rem;
+    font-size: 2.4rem;
     color: white;
     padding: 1rem 2.5rem;
     background: #02735E;
@@ -139,8 +139,7 @@
     justify-content: space-between;
     align-items: center;
     flex-wrap: wrap;
-    gap:.5rem 0;
-    margin-bottom: 1rem;
+    gap:2.5rem 0;
 }
 .nameInputContainer
 {
@@ -166,13 +165,13 @@
 .btn
 {
     width: 100%;
-    font-size: 2rem;
+    font-size: 2.0rem;
     font-weight: 900;
     color: white;
-    padding: .8rem 1rem;
+    padding: 1rem 1rem;
     outline: none;
     border: 0;
-    border-radius: 1.2rem;
+    border-radius: 1.5rem;
     cursor: pointer;
     transition: all .3s ease;
     font-family: "Jost", sans-serif;
@@ -189,7 +188,7 @@
 }
 .resetBtn
 {
-    margin-top: 2rem;
+    margin-top: 3rem;
 }
 .logoutBtn
 {
@@ -226,7 +225,7 @@
     color: #fc3333;
     font-weight: 700;
     font-family: "Jost", sans-serif;
-    font-size: 1.5rem;
+    font-size: 1.6rem;
     text-align: center;
     cursor: default;
 }
@@ -315,24 +314,21 @@
     position: absolute;
     right: 3rem;
     bottom: 1rem;
-    width: 25rem;
+    width: 35rem;
     display: flex;
     flex-direction: column;
     align-items: flex-end;
     justify-content: center;
     z-index: 2;
 }
-
-
-
 .message
 {
-    transform: translate(30rem,0);
+    transform: translate(35rem,0);
     transition: transform .3s ease;
     display: grid;
     grid-template-columns: 1.7rem auto 1.6rem;
     width: max-content;
-    max-width: 25rem;
+    max-width: 35rem;
     padding: .4rem .3rem .6rem .5rem;
     grid-template-rows: 1fr;
     background-color: rgb(76, 76, 76);
@@ -400,7 +396,7 @@
     width: 0%;
     transition: width 3s linear .3s;
     border-radius: 10px;
-    background-color: rgb(144, 144, 144);
+    background-color: #F27405;
 }
 .progressFilled
 {

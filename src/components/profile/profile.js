@@ -203,10 +203,6 @@ function Profile()
         }
     }
 
-    // useEffect(()=>{
-    //     addMessage("error","jakis bład testowy elo elo")
-    // },[])
-
     return(
             
             <main className={styles.main}>
