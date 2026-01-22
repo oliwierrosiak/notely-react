@@ -1,6 +1,6 @@
 .nav
 {
-    height: 16rem;
+    height: 32vh;
     position: absolute;
     left:0;
     right: 0;
@@ -14,12 +14,13 @@
 }
 .navWhileMenuIsDisplaying
 {
-    height: 8rem;
+    height: 16vh;
+    /* background-color: red; */
 }
 .logo
 {
     position: absolute;
-    bottom: 0;
+    top:50%;
     left:50%;
     translate: -50% 0;
     width: 35rem;
@@ -31,17 +32,17 @@
 }
 .logoWhileMenuIsDisplaying
 {
-    width: 12rem;
+    width: 15rem;
     left:2rem;
-    bottom: 60%;
-    translate: 0% 50%;
+    top:1.2rem;
+    translate: 0% 0%;
     padding: 0;
 }
 .loginMenu
 {
     position: absolute;
-    top:1rem;
-    right: 1rem;
+    top:1.2rem;
+    right: 1.2rem;
     display: flex;
     background-color: rgba(31, 31, 31, 0.744);
     box-shadow: 0 0 1.5rem 1.2rem rgba(31, 31, 31, 0.744);
@@ -53,7 +54,6 @@
 .line
 {
     width: .3rem;
-    height: 100%;
     background-color: rgb(79, 79, 79);
     border-radius: 10px;
     height: 2.2rem;
@@ -93,4 +93,35 @@
 {
     width: 2rem;
     height: 2rem;
+}
+@media (max-width:1200px) {
+    .logo
+    {
+        width: 42rem;
+    }
+    .loginMenu
+    {
+        gap:.8rem;
+    }
+    .line
+    {
+        width: .4rem;
+        height: 2.5rem;
+    }
+    .loginMenuBtn
+    {
+         font-size: 1.5rem;
+    }
+    .loginBtn
+    {
+        border:.35rem solid #02735E;
+    }
+    .registerBtn
+    {
+        border:.35rem solid #02735E;
+    }
+    .logoWhileMenuIsDisplaying
+    {
+        width: 16rem;
+    }
 }

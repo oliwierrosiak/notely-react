@@ -33,7 +33,7 @@
 .menuWhileMenuIsDisplaying
 {
     position: absolute;
-    top:calc(17.5vh - 2rem);
+    top:20vh;
     left:50%;
     translate: -50% -50%;
     gap:1.5rem;
@@ -109,4 +109,59 @@
 .menu::selection
 {
     background: none;
+}
+@media (max-width:1200px) {
+    .menu
+    {
+        gap:4rem;
+    }
+    .menuBtn
+    {
+        font-size: 2.4rem;
+        width: 33rem;
+        border-radius: 2rem;
+        height: 7rem;
+        border: .7rem solid #03A678;
+    }
+    .buttonHover
+    {
+        border-radius: 1.4rem;
+    }
+    .menuWhileMenuIsDisplaying
+    {
+        gap:3rem;
+    }
+    .btnWhileMenuIsDisplaying
+    {
+        font-size: 2rem;
+        height: 5.3rem;
+        width: 27rem;
+        border-radius: 1.4rem;
+        border: .5rem solid #03A678;
+    }
+    .buttonHoverWhileMenuIsDisplaying
+    {
+        border-radius: .8rem;
+    }
+    .menuBtn:hover
+    {
+        transform: translate(0,-1.1rem);
+        box-shadow: 0 1.1rem .2rem 0rem #1c1f1ac6;
+    }
+}
+@media (max-width:768px)
+{
+    .main
+    {
+        background-image: none;
+        background-color: blue;
+    }
+}
+@media(max-width:425px)
+{
+    .main
+    {
+         background-image: none;
+        background-color: green;
+    }
 }
