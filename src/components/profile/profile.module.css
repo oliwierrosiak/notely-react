@@ -422,3 +422,90 @@
 {
     background: none;
 }
+@media(max-width:1200px)
+{
+    .logo
+    {
+        height: 8rem;
+    }
+    .back
+    {
+        top:1.7rem;
+        width: 2.8rem;
+        height: 2.8rem;
+    }
+    .userImgContainer
+    {
+        width: 16rem;
+        height: 16rem;
+        border: .9rem solid #02735E;
+        margin-bottom: 1.4rem;
+    }
+    .userImgContainer:hover
+    {
+        border: .7rem solid #03A678;
+    }
+    .changePhoto
+    {
+        margin-top: 1.4rem;
+        margin-bottom: 3rem;
+        font-size: 2.6rem;
+        border-radius: 1.4rem;
+    }
+    .email
+    {
+       font-size: 2.2rem;
+    }
+    .nameInputContainer
+    {
+        width: 92%;
+    }
+    .confirm
+    {
+        width: 2.3rem;
+        height: 2.3rem;
+    }
+    .btn
+    {
+        font-size: 2.2rem;
+    }
+    .logoutIcon
+    {
+        width: 2.7rem;
+        height: 2.7rem;
+    }
+    .error
+    {
+        font-size: 1.8rem;
+    }
+    .nameContainer
+    {
+        gap: 3rem 0;
+    }
+    .messageContainer
+    {
+        width: 40rem;
+    }
+    .message
+    {
+        grid-template-columns: 1.7rem auto 1.6rem;
+        max-width: 40rem;
+    }
+    .text
+    {
+        font-size: 1.3rem;
+    }
+    .loadingContainer
+    {
+        gap:2rem;
+    }
+    .errorIcon
+    {
+        width: 8rem;
+        height: 8rem;
+    }
+    .errorHeader
+    {
+        font-size: 2.2rem;
+    }
+}

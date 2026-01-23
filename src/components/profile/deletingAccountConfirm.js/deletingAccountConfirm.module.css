@@ -6,7 +6,7 @@
     right: 0;
     bottom: 0;
     background-color: rgba(0, 0, 0, 0.316);
-    backdrop-filter: blur(10px);
+    backdrop-filter: blur(12px);
     display: flex;
     justify-content: center;
     align-items: center;
@@ -17,7 +17,6 @@
 {
     width: 40rem;
     padding: 2rem 2.5rem 2.5rem 2.5rem;
-    background-color: red;
     background-color: #014040;
     border:.6rem solid #03A678;
     border-radius: 2.5rem;
@@ -219,4 +218,63 @@
 .header::selection
 {
     background: none;
+}
+@media(max-width:1200px)
+{
+    .container
+    {
+        width: 45rem;
+        border:.6rem solid #03A678;
+        border-radius: 2.5rem;
+    }
+    .header
+    {
+        font-size: 2.7rem;
+        margin-bottom: 2rem;
+    }
+    .description
+    {
+        font-size: 1.4rem;
+        margin-bottom: 1.2rem;
+    }
+    .btnContainer
+    {
+        margin-top: 1.5rem;
+        gap:1.5rem;
+    }
+    .btn
+    {
+        font-size: 2rem;
+        border-radius: 1.4rem;
+        padding: .4rem .5rem;
+    }
+    .inputContainer
+    {
+        height: 5rem;
+    }
+    .input
+    {
+        bottom: .5rem;
+        font-size: 2.2rem;
+    }
+    .border
+    {
+        height: .5rem;
+    }
+    .back
+    {
+        top:2.2rem;
+        left:1.5rem;
+        width: 2.7rem;
+        height: 2.7rem;
+    }
+    .loadingContainer
+    {
+        height: 5rem;
+        margin: .5rem 0 1.5rem 0;
+    }
+    .error
+    {
+        font-size: 1.7rem;
+    }
 }
