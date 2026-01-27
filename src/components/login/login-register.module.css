@@ -56,17 +56,6 @@
     cursor: pointer;
     color: rgb(191, 191, 191);
 }
-.passwordForgotten:hover
-{
-    color: #03A678;
-    text-decoration: underline .1rem #03A678;
-}
-.passwordForgottenWhileLoading:hover
-{
-    text-decoration: none;
-    color: rgb(191, 191, 191);
-    cursor: default;
-}
 .emailInputContainer
 {
     margin-bottom: 2rem;
@@ -164,11 +153,6 @@
     z-index: 3;
     outline: none;
 }
-.loginBtn:hover
-{
-    background: #F27405;
-    border: .3rem solid #F27405;
-}
 .line
 {
     width: 100%;
@@ -193,15 +177,6 @@
     align-items: center;
     gap:.8rem;
 }
-.googleLogin:hover
-{
-     background: #707070;
-}
-.googleLoginWhileLoading:hover
-{
-     background: #414141;
-     cursor: default;
-}
 .googleSVG
 {
     width: 1.8rem;
@@ -222,11 +197,6 @@
     text-decoration: underline .1rem #03A678;
     transition: all .3s ease;
     cursor: pointer;
-}
-.link:hover
-{
-    color: #F27405;
-    text-decoration: underline .1rem #F27405;
 }
 .linkWhileLoading
 {
@@ -268,15 +238,6 @@
     transition: all .3s ease;
     cursor: pointer;
 }
-.userImg:hover
-{
-    border:.4rem solid #03A678;
-}
-.userImgWhileLoading:hover
-{
-    border:.4rem solid #02735E;
-    cursor: default;
-}
 .userImg>img
 {
     width: 100%;
@@ -297,15 +258,6 @@
     justify-content: center;
     align-items: center;
 }
-.userImg:hover>.imgOverlay
-{
-    opacity: 1;
-}
-.userImgWhileLoading:hover>.imgOverlay
-{
-    opacity: 0;
-    cursor: default;
-}
 .chooseImg
 {
     width: 60%;
@@ -323,23 +275,6 @@
     font-family: "Cause", cursive;
     position: relative;
     margin-top: .8rem;
-}
-.chooseImg:hover
-{
-    background-color: #03A678;
-    border: .3rem solid #03A678;
-    color: white;
-}
-.chooseImgWhileLoading:hover
-{
-    border:.3rem solid #02735E;
-    background: #02735E;
-    color: rgb(212, 212, 212);
-    cursor: default;
-}
-.chooseImgWhileLoading:hover>.fileInput
-{
-    cursor: default;
 }
 .pageHidden
 {
@@ -419,7 +354,6 @@
     margin-top: .5rem;
     text-align: center;
     cursor: default;
-
 }
 .loginBtnMargin
 {
@@ -460,7 +394,6 @@
     {
         width: 34rem;
         border-radius: 2.5rem;
-        /* gap:2rem; */
     }
     .header
     {
@@ -506,10 +439,6 @@
     .loginBtn
     {
         border: .4rem solid #03A678;
-    }
-    .loginBtn:hover
-    {
-        border: .4rem solid #F27405;
     }
     .loginBtnMargin
     {
@@ -558,14 +487,6 @@
         margin-bottom: 2.6rem;
         margin-top: 1rem;
     }
-    .chooseImg:hover
-    {
-        border: .4rem solid #03A678;
-    }
-    .chooseImgWhileLoading:hover
-    {
-        border:.4rem solid #02735E;
-    }
     .error3
     {
         font-size: 1.4rem;
@@ -603,10 +524,6 @@
     {
         font-size: 2.2rem;
         margin-top:2.5rem;
-    }
-    .passwordForgotten:hover
-    {
-        text-decoration: underline .2rem #03A678;
     }
     .emailInputContainer
     {
@@ -665,10 +582,6 @@
         height: 5rem;
         transform: scale(1.5);
     }
-    .loginBtn:hover
-    {
-        border: .7rem solid #F27405;
-    }
     .line
     {
         height: .6rem;
@@ -694,10 +607,6 @@
     {
         text-decoration: underline .2rem #03A678;
     }
-    .link:hover
-    {
-        text-decoration: underline .2rem #F27405;
-    }
     .linkWhileLoading
     {
         text-decoration: underline .2rem #03A678 !important;
@@ -707,7 +616,178 @@
         font-size:3rem;
         height: 3.5rem;
         font-weight: 900;
-        margin-top: 1rem;
+        margin-top: .5rem;
         margin-bottom: .5rem;
+    }
+    .error
+    {
+        font-size: 2.8rem;
+        height: 4rem;
+        margin-bottom: 1rem;
+        margin-top: 1rem;
+    }
+    .registerClearMargin
+    {
+        margin: 0;
+        margin-bottom:.7rem;
+    }
+    .registerHeader
+    {
+        margin-bottom: 1rem;
+    }
+    .userImg
+    {
+        width: 15rem;
+        height: 15rem;
+        border:1rem solid #02735E;
+    }
+    .chooseImg
+    {
+        width: 80%;
+        font-size: 3.5rem;
+        padding: .8rem 1.5rem;
+        border-radius: 2rem;
+        border:.8rem solid #02735E;
+        margin: 2.5rem 0 4rem 0;
+    }
+    .error3
+    {
+        font-size: 2.8rem;
+        margin-top: .8rem;
+    }
+    .passwordResetInfo
+    {
+        font-size: 3.3rem;
+        gap:2rem;
+        margin-bottom: 0rem;
+    }
+    .error2
+    {
+        font-size: 3rem;
+    }
+    .passwordForgottenClearMargin
+    {
+        margin: 0;
+    }
+    .loginForm2
+    {
+        gap:2.5rem;
+    }
+    .loginBtnWithoutMargin
+    {
+        margin: 0;
+    }
+}
+@media (hover:hover) and (pointer:fine)
+{
+    .loginBtn:hover
+    {
+        background: #F27405;
+        border: .3rem solid #F27405;
+    }
+    .googleLogin:hover
+    {
+         background: #707070;
+    }
+    .link:hover
+    {
+        color: #F27405;
+        text-decoration: underline .1rem #F27405;
+    }
+    .passwordForgotten:hover
+    {
+        color: #03A678;
+        text-decoration: underline .1rem #03A678;
+    }
+    .passwordForgottenWhileLoading:hover
+    {
+        text-decoration: none;
+        color: rgb(191, 191, 191);
+        cursor: default;
+    }
+    .googleLoginWhileLoading:hover
+    {
+         background: #414141;
+         cursor: default;
+    }
+    .userImg:hover
+    {
+        border:.5rem solid #03A678;
+    }
+    .userImgWhileLoading:hover
+    {
+        border:.5rem solid #02735E;
+        cursor: default;
+    }
+    .userImg:hover>.imgOverlay
+    {
+        opacity: 1;
+    }
+    .userImgWhileLoading:hover>.imgOverlay
+    {
+        opacity: 0;
+        cursor: default;
+    }
+    .chooseImg:hover
+    {
+        background-color: #03A678;
+        border: .3rem solid #03A678;
+        color: white;
+    }
+    .chooseImgWhileLoading:hover
+    {
+        border:.3rem solid #02735E;
+        background: #02735E;
+        color: rgb(212, 212, 212);
+        cursor: default;
+    }
+    .chooseImgWhileLoading:hover>.fileInput
+    {
+        cursor: default;
+    }
+    @media (max-width: 1200px) {
+        .loginBtn:hover
+        {
+            border: .4rem solid #F27405;
+        }
+        .chooseImg:hover
+        {
+            border: .4rem solid #03A678;
+        }
+        .chooseImgWhileLoading:hover
+        {
+            border:.4rem solid #02735E;
+        }
+        }
+    @media(max-width:768px)
+    {
+        .loginBtn:hover
+        {
+            border: .7rem solid #F27405;
+        }
+        .passwordForgotten:hover
+        {
+            text-decoration: underline .2rem #03A678;
+        }
+        .link:hover
+        {
+            text-decoration: underline .2rem #F27405;
+        }
+        .userImg:hover
+        {
+            border:1rem solid #03A678;
+        }
+        .userImgWhileLoading:hover
+        {
+            border:1rem solid #02735E;
+        }
+         .chooseImg:hover
+        {
+            border: .8rem solid #03A678;
+        }
+        .chooseImgWhileLoading:hover
+        {
+            border:.8rem solid #02735E;
+        }
     }
 }

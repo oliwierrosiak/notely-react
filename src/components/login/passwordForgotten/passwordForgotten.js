@@ -17,7 +17,7 @@ function PasswordForgotten(props)
     const send = async() =>{
         try
         {
-            const response = await axios.post(`${ApiAddress}/resetPassword`,{email:inputValue})
+            // const response = await axios.post(`${ApiAddress}/resetPassword`,{email:inputValue})
             setSent(true)
             props.setLoading(false)
         }
@@ -74,9 +74,9 @@ function PasswordForgotten(props)
 
             <div className={styles.error2}>{error}</div>
             
-            {sent?<button className={styles.loginBtn} type='button' onClick={e=>displayLoginContext.setDisplayLogin('')}>Wróc do strony głównej</button>
+            {sent?<button className={`${styles.loginBtn} ${styles.loginBtnWithoutMargin}`} type='button' onClick={e=>displayLoginContext.setDisplayLogin('')}>Wróc do strony głównej</button>
             :
-            <button className={`${styles.loginBtn} ${props.loading?styles.btnLoading:''}`}>{props.loading?<LoadingIcon class={styles.loading}/>:'Resetuj hasło'}</button>}
+            <button className={`${styles.loginBtn} ${props.loading?styles.btnLoading:''} ${styles.passwordForgottenClearMargin}`}>{props.loading?<LoadingIcon class={styles.loading}/>:'Resetuj hasło'}</button>}
 
         </form>
     )

@@ -260,7 +260,7 @@ function Register(props)
 
     return(
         <section className={`${styles.loginForm} ${props.display?styles.display:''}`}>
-            <h1 className={styles.header}>Rejestracja</h1>
+            <h1 className={`${styles.header} ${styles.registerHeader}`}>Rejestracja</h1>
 
             <form className={`${styles.form} ${styles.registerForm}`} onSubmit={submit} noValidate>
 
@@ -319,7 +319,7 @@ function Register(props)
 
                 </div>}
 
-                <button className={`${styles.loginBtn} ${props.loading?styles.btnLoading:''}`}>{showPage2?props.loading?<LoadingIcon class={styles.loading}/>:"Zarejestruj się":"Dalej"}</button>
+                <button className={`${styles.loginBtn} ${props.loading?styles.btnLoading:''} ${styles.registerClearMargin}`}>{showPage2?props.loading?<LoadingIcon class={styles.loading}/>:"Zarejestruj się":"Dalej"}</button>
 
             </form>
 
