@@ -14,10 +14,6 @@
     height: 3.5rem;
     cursor: pointer;
 }
-.noteItem:hover
-{
-    background: #25917d;
-}
 .title
 {
     font-weight: 700;
@@ -117,18 +113,10 @@
     background: rgb(175, 44, 44);
     border:.3rem solid rgb(254, 38, 38);
 }
-.confirmBtn:hover
-{
-    background: rgb(254, 38, 38);
-}
 .cancelBtn
 {
     background: #02735E;
     border:.3rem solid #03A678;
-}
-.cancelBtn:hover
-{
-    background: #03A678;
 }
 .deleteHeader
 {
@@ -155,14 +143,7 @@
     fill: rgb(255, 255, 255);
     transition: fill .3s ease;
 }
-.edit:hover>svg
-{
-    fill: #F27405;
-}
-.delete:hover>svg
-{
-    fill: rgb(255, 44, 44);
-}
+
 .privateStatus
 {
     background: #014040;
@@ -227,5 +208,100 @@
         font-size: 1.2rem;
         border-radius: .8rem;
         padding: .2rem .6rem;
+    }
+}
+@media (max-width:768px)
+{
+    .noteItem
+    {
+        grid-template-columns: 3fr 1fr 1fr .4rem 2.8rem 2.8rem;
+        gap:1.8rem;
+        padding: .7rem 2rem;
+        border-radius: 2.2rem;
+        height: 6rem;
+    }
+    .title
+    {
+        font-size: 2.4rem;
+    }
+    .code
+    {
+        font-size: 2.2rem;
+    }
+    .status
+    {
+        padding: .6rem 1rem .7rem 1.2rem;
+        border-radius: 1.5rem;
+        font-size: 2.2rem;
+    }
+    .line
+    {
+        width: .4rem;
+    }
+    .edit
+    {
+        height: 2.8rem;
+        width:2.8rem;
+    }
+    .delete
+    {
+        height: 2.8rem;
+        width:2.8rem;
+    }
+
+    .deleteConfirm
+    {
+        border-radius: 2.2rem;
+        padding: 0 2rem;
+    }
+    .btnContainer
+    {
+        gap:1rem;
+    }
+    .deleteBtn
+    {
+        font-size: 1.8rem;
+        padding: .2rem 1rem;
+        border-radius: 1.2rem;
+    }
+    .confirmBtn
+    {
+        border:.5rem solid rgb(254, 38, 38);
+    }
+    .cancelBtn
+    {
+        border:.5rem solid #03A678;
+    }
+    .deleteHeader
+    {
+        font-size: 1.9rem;
+    }
+    .editSVG
+    {
+        width: 100%;
+        height: 100%;
+    }
+}
+@media (hover:hover) and (pointer:fine)
+{
+    .noteItem:hover
+    {
+        background: #25917d;
+    }
+    .confirmBtn:hover
+    {
+        background: rgb(254, 38, 38);
+    }
+    .cancelBtn:hover
+    {
+        background: #03A678;
+    }
+    .edit:hover>svg
+    {
+        fill: #F27405;
+    }
+    .delete:hover>svg
+    {
+        fill: rgb(255, 44, 44);
     }
 }

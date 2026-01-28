@@ -168,6 +168,15 @@
     .errorHeader{
         font-size: 2rem;
     }
+    .noteIcon
+    {
+        width: 6rem;
+        height: 6rem;
+    }
+    .noneNotesHeader
+    {
+        font-size: 1.5rem;
+    }
 }
 @media (max-width:768px)
 {
@@ -251,5 +260,48 @@
         color: white;
         text-shadow: -.35rem .25rem 0 #03A678;
     }
-
+    .loading
+    {
+        width: 15rem;
+        height: 15rem;
+    }
+    .errorContainer
+    {
+        gap:2rem;
+    }
+    .errorIcon
+    {
+        width: 15rem;
+        height:15rem;
+    }
+    .errorHeader
+    {
+        font-size: 3.5rem;
+    }
+    .noneNotesContainer
+    {
+        gap:2rem;
+    }
+    .noteIcon
+    {
+        width: 18rem;
+        height: 18rem;
+    }
+    .noneNotesHeader
+    {
+        font-size: 3rem;
+    }
+    .list
+    {
+        gap:2rem;
+    }
+    .notesContainer
+    {
+        padding:0 2rem;
+    }
+    .notesContainer::-webkit-scrollbar
+    {
+        width: 1.2rem;
+        height: 0;
+    }
 }
