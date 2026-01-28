@@ -18,7 +18,12 @@ function NotesMenu(props)
     const [visited,setVisited] = useState()
     const [myNotes,setMyNotes] = useState()
 
+    const [responsiveDisplay,setResponsiveDisplay] = useState('myNotes')
+    const [smallDevice,setSmallDevice] = useState(window.innerWidth <= 768)
+
     const loginContext = useContext(LoginContext)
+
+    let touchStart = 0
 
     const getData = async()=>{
         try
@@ -40,12 +45,45 @@ function NotesMenu(props)
         }
     }
 
+    const smallDeviceSetter = (e) =>
+    {
+        const smallDevice = window.innerWidth <= 768
+        setSmallDevice(prev=>prev!=smallDevice?smallDevice:prev)
+    }
+
     useEffect(()=>{
         getData()
+        window.addEventListener('resize',smallDeviceSetter)
+        return ()=>
+        {
+            window.removeEventListener('resize',smallDeviceSetter)
+
+        }
     },[props.notesUpdater])
 
+    const touchStartFunc = (e) =>
+    {
+        touchStart = e.touches[0].clientX
+    }
+
+    const touchEndFunc = (e) =>
+    {
+        const touchEnd = e.changedTouches[0].clientX
+        if(Math.abs(touchEnd - touchStart) > window.innerWidth * 0.4)
+        {
+            if(touchEnd - touchStart > 0)
+            {
+                setResponsiveDisplay('latestVisited')
+            }
+            else
+            {
+                setResponsiveDisplay('myNotes')
+            }
+        }
+    }
+
     return(
-        <article className={`${styles.container} ${props.display?styles.display:''}`}>
+        <article onTouchStart={touchStartFunc} onTouchEnd={touchEndFunc} className={`${styles.container} ${props.display?styles.display:''}`}>
             <div className={styles.arrowContainer} onClick={e=>props.setDisplayNotesMenu(!props.display)}>
                 <ArrowIcon class={`${styles.arrow} ${props.display?styles.arrowRotated:''}`}/>
             </div>
@@ -58,9 +96,14 @@ function NotesMenu(props)
                 <h2 className={styles.errorHeader}>Wystąpił błąd serwera</h2>
             </div>
             :<>
+            
+            {smallDevice && <nav className={styles.responsiveNav}>
+                <h2 className={`${styles.smallDeviceHeader} ${responsiveDisplay === "latestVisited" ? styles.headerFocused:''}`} onClick={e=>setResponsiveDisplay('latestVisited')}>Ostatnio Odwiedzone</h2>
+                <h2 className={`${styles.smallDeviceHeader} ${responsiveDisplay === "myNotes" ? styles.headerFocused:''}`} onClick={e=>setResponsiveDisplay('myNotes')}>Twoje Notatki</h2>
+            </nav>}
 
-            <section className={styles.section}>
-                <h2>Ostatnio Odwiedzone</h2>
+            <section className={`${styles.section} ${styles.latestVisitedSection} ${responsiveDisplay === 'latestVisited'?styles.displayNotesSection:''}`}>
+                {!smallDevice && <h2>Ostatnio Odwiedzone</h2>}
                 <div className={styles.notesContainer}>
                     {visited === 404?<div className={styles.noneNotesContainer}>
                         <NoteIcon class={styles.noteIcon}/>
@@ -75,8 +118,8 @@ function NotesMenu(props)
 
             <div className={styles.line}></div>
 
-            <section className={styles.section}>
-                <h2>Twoje Notatki</h2>
+            <section className={`${styles.section} ${styles.myNotesSection} ${responsiveDisplay === 'myNotes'?styles.displayNotesSection:''}`}>
+                {!smallDevice && <h2 onClick={e=>setResponsiveDisplay('myNotes')}>Twoje Notatki</h2>}
                 <div className={styles.notesContainer}>
                     {myNotes === 404?<div className={styles.noneNotesContainer}>
                         <NoteIcon class={styles.noteIcon}/>

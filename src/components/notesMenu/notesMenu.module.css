@@ -171,6 +171,25 @@
 }
 @media (max-width:768px)
 {
+    /* .container
+{
+    position: absolute;
+    bottom: 0;
+    height: 60vh;
+    left:0rem;
+    right: 0rem;
+    background: #02735E;
+    border-top-left-radius: 2rem;
+    border-top-right-radius: 2rem;
+    transform: translate(0,100%);
+    transition: transform .5s ease;
+    z-index: 2;
+    padding: 2rem 1.5rem;
+    display: flex;
+    gap:1.5rem;
+    justify-content: center;
+    align-items: center;
+} */
     .container
     {
         height: 70vh;
@@ -178,12 +197,15 @@
         border-top-right-radius: 2rem;
         padding: 2rem 1.5rem;
         gap:1.5rem; */
+        gap:1rem;
+        padding: 2.8rem 2rem;
+        align-items: flex-start;
     }
     .arrowContainer
     {
         width: 6rem;
         height: 6rem;
-        top:-6rem;
+        top:-8rem;
     }
     .arrow
     {
@@ -192,6 +214,64 @@
     }
     .arrowRotated
     {
-        transform: rotate(180deg) scale(0.6);
+        transform: rotate(180deg) scale(0.6) translate(-3rem,0);
     }
+    .line
+    {
+        display: none;
+    }
+    .section
+    {
+        gap:0;
+        transition: transform .5s ease-in-out;
+        /* background-color: blue; */
+    }
+    .latestVisitedSection
+    {
+        position: absolute;
+        left:2rem;
+        right: 2rem;
+        top:9.5rem;
+        bottom: 2rem;
+        width: auto;
+        height: auto;
+        transform: translate(-120%,0);
+    }
+    .myNotesSection
+    {
+        position: absolute;
+        left:2rem;
+        right: 2rem;
+        top:9rem;
+        bottom: 2rem;
+        width: auto;
+        height: auto;
+        transform: translate(120%,0);
+    }
+    .displayNotesSection
+    {
+        transform: translate(0,0);
+    }
+    .responsiveNav
+    {
+        width: 100%;
+        display: flex;
+    }
+    .smallDeviceHeader
+    {
+        font-size:clamp(1px,3.3rem,25px);
+        color: rgb(171, 171, 171);
+        font-weight: 900;
+        width: 100%;
+        text-align: center;
+        font-family: "Cause", cursive;
+        cursor: default;
+        transition: all .5s ease;
+    }
+    .headerFocused
+    {
+        color: white;
+        text-shadow: -.35rem .25rem 0 #03A678;
+    }
+
 }
