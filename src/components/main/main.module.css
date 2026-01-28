@@ -154,6 +154,23 @@
     {
         background-color: #2a2f27a9;
     }
+    .menuWhileMenuIsDisplaying
+    {
+        top:15vh;
+        flex-direction: row;
+    }
+    .btnWhileMenuIsDisplaying
+    {
+        font-size: 2.4rem;
+        width: 40vw;
+        padding: 3.5rem;
+        border: .8rem solid #03A678;
+        border-radius: 2.5rem;
+    }
+    .buttonHoverWhileMenuIsDisplaying
+    {
+        border-radius: 1.8rem;
+    }
 }
 @media(max-width:450px)
 {
@@ -182,6 +199,14 @@
         {
             transform: translate(0,-1.1rem);
             box-shadow: 0 1.1rem .2rem 0rem #1c1f1ac6;
+        }
+    }
+    @media (max-width:768px)
+    {
+        .menuBtn:hover
+        {
+            transform: translate(0,-1.5rem);
+            box-shadow: 0 1.5rem .2rem 0rem #1c1f1ac6;
         }
     }
 }

@@ -53,10 +53,7 @@
 {
     opacity: 1;
 }
-.container:hover>.imgContainer
-{
-    border:.3rem solid #03A678;
-}
+
 .menuContainer
 {
     position: absolute;
@@ -88,6 +85,7 @@
     align-items: center;
     justify-content: center;
     padding: 1.2rem 1rem;
+    box-shadow: 0 0 1rem .1rem black;
 }
 .loadingSVG
 {
@@ -135,10 +133,7 @@
     font-family: "Jost", sans-serif;
 
 }
-.menuBtn:hover
-{
-    background: #03A678;
-}
+
 .logoutBtn
 {
     display: flex;
@@ -161,11 +156,6 @@
 {
     width: 2rem;
     height: 2rem;
-}
-.logoutBtn:hover
-{
-    border: .3rem solid #F27405;
-    background: #F27405;
 }
 @media (max-width:1200px) {
     .container
@@ -211,5 +201,93 @@
          font-size: 1.5rem;
         border:.35rem solid #03A678;
          border-radius: 1.1rem;
+    }
+}
+@media(max-width:768px)
+{
+    .container
+    {
+        width: 6rem;
+        height: 6rem;
+    }
+    .imgContainer
+    {
+        width: 6rem;
+        height: 6rem;
+        border:.6rem solid #02735E;
+    }
+    .imgContainer2
+    {
+        position: relative;
+        width: 12rem;
+        height: 12rem;
+        border:.8rem solid #03A678;
+    }
+    .menuContainer
+    {
+        top:7rem;
+        width: 36rem;
+        padding-top: 0;
+    }
+    .menu
+    {
+        border:.8rem solid #03A678;
+        border-radius: 2.8rem;
+        padding: 3rem 2rem;
+        box-shadow: 0 0 2rem .5rem black;
+    }
+    .name
+    {
+        font-size: 3.5rem;
+        margin-top: 1.5rem;
+    }
+    .profileSVG
+    {
+        width: 5rem;
+        height: 5rem;
+        padding-top: .7rem;
+    }
+    .menuBtn
+    {
+        font-size: 3rem;
+        margin: 2.2rem 0;
+        border:.6rem solid #03A678;
+        border-radius: 2rem;
+        padding: .4rem;
+    }
+    .logoutBtn
+    {
+        border-radius: 2rem;
+        background: #a85105;
+        font-size: 3rem;
+        border: .6rem solid #F27405;
+        padding: .8rem;
+    }
+    .logoutIcon
+    {
+        width: 3rem;
+        height: 3rem;
+    }
+}
+@media (hover:hover) and (pointer:fine)
+{
+    .container:hover>.imgContainer
+    {
+        border:.3rem solid #03A678;
+    }
+    .menuBtn:hover
+    {
+        background: #03A678;
+    }
+    .logoutBtn:hover
+    {
+        border: .3rem solid #F27405;
+        background: #F27405;
+    }
+    @media (max-width:1200px) {
+        .logoutBtn:hover
+        {
+            border: .35rem solid #F27405;
+        }
     }
 }

@@ -169,3 +169,29 @@
         font-size: 2rem;
     }
 }
+@media (max-width:768px)
+{
+    .container
+    {
+        height: 70vh;
+        /* border-top-left-radius: 2rem;
+        border-top-right-radius: 2rem;
+        padding: 2rem 1.5rem;
+        gap:1.5rem; */
+    }
+    .arrowContainer
+    {
+        width: 6rem;
+        height: 6rem;
+        top:-6rem;
+    }
+    .arrow
+    {
+        width: 6rem;
+        height: 6rem;
+    }
+    .arrowRotated
+    {
+        transform: rotate(180deg) scale(0.6);
+    }
+}
