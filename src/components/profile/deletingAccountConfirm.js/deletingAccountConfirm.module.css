@@ -37,7 +37,6 @@
     cursor: default;
     margin-bottom: 2rem;
 }
-
 .description
 {
     font-size: 1.2rem;
@@ -81,19 +80,10 @@
     background: #02735E;
     border:.4rem solid #03A678;
 }
-.cancel:hover
-{
-    background: #03A678;
-}
 .delete
 {
     background: rgb(158, 35, 35);
     border: .4rem solid rgb(203, 1, 1);
-}
-.delete:hover
-{
-    background: red;
-     border: .4rem solid red;
 }
 .inputContainer
 {
@@ -171,10 +161,6 @@
     height: 100%;
     fill: rgb(143, 143, 143);
     transition:fill .3s ease
-}
-.back:hover>.backSVG
-{
-    fill: #cdcdcd;
 }
 .backWhileLoading
 {
@@ -276,5 +262,104 @@
     .error
     {
         font-size: 1.7rem;
+    }
+}
+@media(max-width:768px)
+{
+    .container
+    {
+        width: 70rem;
+        padding: 4rem;
+        border:1rem solid #03A678;
+        border-radius: 3.5rem;
+    }
+    .header
+    {
+        font-size: 5.5rem;
+        margin-bottom: 3rem;
+    }
+    .description
+    {
+        font-size: 2.5rem;
+        margin-bottom: 2.5rem;
+        color: rgb(207, 207, 207);
+    }
+    .mark
+    {
+        text-decoration: underline .3rem rgb(255, 73, 73);
+    }
+    .btnContainer
+    {
+        margin-top: 2.5rem;
+        gap:2rem;
+    }
+    .btn
+    {
+        width: 100%;
+        font-size: 3rem;
+        border-radius: 2.5rem;
+        padding: 1rem;
+    }
+    .cancel
+    {
+        background: #02735E;
+        border:.8rem solid #03A678;
+    }
+    .delete
+    {
+        background: rgb(158, 35, 35);
+        border: .8rem solid rgb(203, 1, 1);
+    }
+    .inputContainer
+    {
+        width: 80%;
+        height: 8rem;
+        margin: 0rem 0 2.5rem 0;
+    }
+    .input
+    {
+        bottom: .8rem;
+        font-size: 3.5rem;
+    }
+    .border
+    {
+        height: .8rem;
+        border-radius: 10px;
+    }
+    .back
+    {
+        top:5rem;
+        left:3.5rem;
+        width: 4.5rem;
+        height: 4.5rem;
+    }
+    .loadingContainer
+    {
+        height: 8rem;
+         margin: 1rem 0 1.5rem 0;
+    }
+    .btnLoading
+    {
+        border: .8rem solid rgb(80, 80, 80) !important;
+    }
+    .error
+    {
+        font-size: 3rem;
+    }
+}
+@media (hover:hover) and (pointer:fine)
+{
+    .back:hover>.backSVG
+    {
+        fill: #cdcdcd;
+    }
+    .delete:hover
+    {
+        background: red;
+         border: .4rem solid red;
+    }
+    .cancel:hover
+    {
+        background: #03A678;
     }
 }

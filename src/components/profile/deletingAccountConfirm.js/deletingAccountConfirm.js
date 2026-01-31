@@ -12,7 +12,7 @@ function DeletingAccountConfirm(props)
 {
 
     const [password,setPassword] = useState('')
-    const [loading,setLoading] = useState(false)
+    const [loading,setLoading] = useState(0)
     const [error,setError] = useState('')
 
     const borderFillRef = useRef()
