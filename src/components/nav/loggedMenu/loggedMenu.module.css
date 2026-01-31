@@ -258,9 +258,9 @@
     .logoutBtn
     {
         border-radius: 2rem;
-        background: #a85105;
+        background: #d96704;
         font-size: 3rem;
-        border: .6rem solid #F27405;
+        border: .6rem solid #d96704;
         padding: .8rem;
     }
     .logoutIcon

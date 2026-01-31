@@ -1,7 +1,7 @@
 .viewport
 {
     width: 100vw;
-    height: 100vh;
+    height: 100svh;
     overflow: hidden;
     position: relative;
     background-color: #014040;
@@ -51,10 +51,6 @@
     cursor: pointer;
     z-index: 3;
     transition: transform .3s ease;  
-}
-.logo:hover
-{
-    transform: scale(1.05) rotate(-2deg);
 }
 .projectName:focus
 {
@@ -185,10 +181,6 @@
     transition: background .3s ease;
     font-family: "Jost", sans-serif;
 }
-.loadingError>button:hover
-{
-    background: rgb(112, 112, 112);
-}
 .loggedMenu
 {
     position: fixed;
@@ -256,5 +248,100 @@
     .dropHeader
     {
         font-size: 3.5rem;
+    }
+}
+@media (max-width:768px) {
+    .projectName
+    {
+        top:.5rem;
+        width: 40rem;
+        padding: .5rem 0;
+        font-size: 3rem;
+    }
+    .code
+    {
+        top:5rem;
+        font-size: 2.5rem;
+    }
+    .logo
+    {
+        top:1.5rem;
+        width: 18rem;
+    }
+    .board
+    {
+        border-radius: 20rem;
+    }
+    .dragElement
+    {
+        border-radius: 3rem;
+        border:.8rem dashed #2A2F27;
+    }
+    .dragDropIcon
+    {
+        width: 10rem;
+        height: 10rem;
+    }
+    .dropHeader
+    {
+        font-size: 5rem;
+    }
+    .globalLoading
+    {
+        width: 4rem;
+        height: 4rem;
+    }
+    .loadingError
+    {
+        gap:2rem;
+    }
+    .errorLoadingIcon
+    {
+        width: 16rem;
+        height: 16rem;
+    }
+    .loadingError>h2
+    {
+        font-size: 3.5rem;
+        margin-bottom: 1rem;
+    }
+    .loadingError>button
+    {
+        font-size: 3rem;
+        border:.8rem solid rgb(112, 112, 112);
+        padding: 1rem 2rem;
+        border-radius: 2rem;
+    }
+    .loggedMenu
+    {
+        width: 6rem;
+        height: 6rem;
+    }
+
+
+.messageContainer
+{
+    gap:.8rem;
+    display: flex;
+    flex-direction: column;
+    align-items: flex-end;
+    transition: bottom .2s ease;
+}
+.adjustBottom
+{
+    bottom: 6rem;
+}
+
+    
+}
+@media(hover:hover) and (pointer: fine)
+{
+    .loadingError>button:hover
+    {
+        background: rgb(112, 112, 112);
+    }
+    .logo:hover
+    {
+        transform: scale(1.05) rotate(-2deg);
     }
 }
