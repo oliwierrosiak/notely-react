@@ -16,6 +16,7 @@ class ElementClass
         this.moveHandler = ()=>{}
         this.touchMoveHandler = ()=>{}
         this.resizeHandler = ()=>{}
+        this.resizeTouchHandler = ()=>{}
     }   
 
     async updater(boardId,errorFunc)
@@ -195,9 +196,20 @@ class ElementClass
         this.setSizes(width,height)
     }
 
+    resizeTouchAction(e,containerRef)
+    {
+        const [translateX,translateY,scale] = this.getTranslate()
+        const width = ((e.pageX-translateX)/scale-containerRef.offsetLeft)*2
+        const height = ((e.pageY-translateY)/scale-containerRef.offsetTop)*2
+        containerRef.style.width = `${width}px`
+        containerRef.style.height = `${height}px`
+        this.setSizes(width,height)
+    }
+
     resizeMouseUp(board,movingLocked)
     {
         board.removeEventListener('mousemove',this.resizeHandler)
+        board.removeEventListener('touchmove',this.resizeTouchHandler)
         movingLocked.current = false
 
     }
@@ -205,8 +217,11 @@ class ElementClass
     resizeElement(board,containerRef,movingLocked)
     {
         this.resizeHandler = (e) => this.resizeAction(e,containerRef,board,movingLocked)
+        this.resizeTouchHandler = (e) => this.resizeTouchAction(e.changedTouches[0],containerRef)
         board.addEventListener('mousemove',this.resizeHandler)
+        board.addEventListener('touchmove',this.resizeTouchHandler)
         board.addEventListener('mouseup',e=>this.resizeMouseUp(board,movingLocked))
+        board.addEventListener('touchend',e=>this.resizeMouseUp(board,movingLocked))
         movingLocked.current = true
     }
 

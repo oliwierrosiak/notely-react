@@ -76,6 +76,16 @@ class ImgElementClass extends ElementClass
         this.setSizes(width,height*1.1)
     }
 
+    resizeTouchAction(e,containerRef)
+    {
+        const [translateX,translateY,scale] = this.getTranslate()
+        const width = ((e.pageX-translateX)/scale-containerRef.offsetLeft)*2
+        const height = width * this.proportion
+        containerRef.style.width = `${width}px`
+        containerRef.style.height = `${height*1.1}px`
+        this.setSizes(width,height*1.1)
+    }
+
     setBrightness(value)
     {
         this.brightness = value

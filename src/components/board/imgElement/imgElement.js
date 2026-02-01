@@ -70,7 +70,7 @@ function ImgElement(props)
                 <h2>Błąd ładowania</h2>
             </div>}
 
-            {!error && <div className={styles.resize} onMouseDown={resizeElement}></div>}
+            {!error && <div className={styles.resize} onMouseDown={resizeElement} onTouchStart={resizeElement}></div>}
         
         </div>
     )

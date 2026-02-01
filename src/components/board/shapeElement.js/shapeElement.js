@@ -137,7 +137,7 @@ function ShapeElement(props)
             
             
 
-            <div className={styles.resize} onMouseDown={resizeElement}></div>
+            <div className={styles.resize} onMouseDown={resizeElement} onTouchStart={resizeElement}></div>
 
         </div>
     )
