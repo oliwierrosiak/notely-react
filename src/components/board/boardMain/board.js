@@ -374,8 +374,9 @@ function Board()
 
     const boardMouseDown = (e) =>
     {
-        panStartX.current = e.clientX - translateXRef.current
-        panStartY.current = e.clientY - translateYRef.current
+        const event = e.changedTouches?e.changedTouches[0]:e
+        panStartX.current = event.clientX - translateXRef.current
+        panStartY.current = event.clientY - translateYRef.current
         mouseDownTimeStamp.current = e.timeStamp
 
         mouseMoveListener.current = (e) =>{
@@ -432,7 +433,8 @@ function Board()
 
     const boardMouseUp = (e) =>
     {
-        if(e.timeStamp-mouseDownTimeStamp.current < 100)
+        const timeStamp = e.changedTouches?e.timeStamp:e.timeStamp
+        if(timeStamp-mouseDownTimeStamp.current < 100)
         {
             boardClicked(e)
         }
@@ -808,7 +810,7 @@ function Board()
 
             <div className={`${styles.viewport} viewport`} ref={viewport} onDragEnter={e=>setDisplayDragElement(true)} >
 
-                <div className={`${styles.board} board ${boardColor} ${backgroundTemplate}`}  ref={boardRef} onTouchStart={e=>boardMouseDown(e.changedTouches[0])} onMouseDown={boardMouseDown} onMouseUp={boardMouseUp}>
+                <div className={`${styles.board} board ${boardColor} ${backgroundTemplate}`}  ref={boardRef} onTouchStart={boardMouseDown} onMouseDown={boardMouseDown} onMouseUp={boardMouseUp} onTouchEnd={boardMouseUp}>
 
                     {elements.find(x=>x.type === "canvas") != -1 && elements.find(x=>x.type === "canvas")?.content && <CanvasElement item={elements.find(x=>x.type==="canvas")} movingLocked={movingLocked} drawing={edit !== 0 && edit.type === "canvas" && brush.type !== ''} brush={brush}/>}
 
