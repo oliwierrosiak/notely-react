@@ -6,6 +6,7 @@ import LineBrushIcon from '../../../../assets/svg/lineBrushIcon'
 import EraserIcon from '../../../../assets/svg/eraserIcon'
 import ArrowIcon from '../../../../assets/svg/arrowIcon'
 import CanvasHistoryContext from '../../../../context/canvasHistory'
+import MobileDisplayContext from '../../../../context/mobileDisplayContext'
 
 function BrushMenu(props)
 {
@@ -19,6 +20,7 @@ function BrushMenu(props)
 
     const widthPreviewRef = useRef()
 
+    const mobileDisplayContext = useContext(MobileDisplayContext)
     const canvasHistory = useContext(CanvasHistoryContext)
 
     useEffect(()=>{
@@ -39,7 +41,7 @@ function BrushMenu(props)
 
     const setWidthPreviewSizes = () =>
     {
-        const value = 1.2 * (lineWidth / 100) + 0.7
+        const value = 1.2 * (lineWidth / 100) + 0.7 * (mobileDisplayContext.mobileDisplay?1.5:1)
         widthPreviewRef.current.style.width = `${value}rem`
         widthPreviewRef.current.style.height = `${value}rem`
     }

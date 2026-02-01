@@ -745,6 +745,14 @@ function Board()
         }
     },[edit])
 
+    useEffect(()=>{
+        const body = document.querySelector('body')
+        body.style.overflowY = 'hidden'
+        return()=>{
+            body.style.overflowY = 'auto'
+        }
+    },[])
+
     return(
         <MessageContext.Provider value={{addMessage,removeMessage}}>
         <GlobalLoadingContext.Provider value={{globalLoading,setGlobalLoading}}>
