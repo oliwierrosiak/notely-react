@@ -191,7 +191,7 @@
     .filterMenu
     {
         bottom: 6rem;
-        height: 4rem;
+        height: 5rem;
         border-radius: 1rem;
         gap:.5rem;
     }
@@ -233,9 +233,9 @@
         width: 3rem;
         height: 3rem;
     }
-    .closeElementDisplay
+    .closeElement
     {
-        transform: scale(1);
+        font-size: 1.8rem;
     }
 }
 @media(hover: hover) and (pointer: fine)

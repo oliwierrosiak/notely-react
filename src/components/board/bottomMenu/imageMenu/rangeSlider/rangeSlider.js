@@ -21,7 +21,12 @@ function RangeSlider(props)
 
     const  mouseMoveFuncInNumberFormat = (e) =>
     {
-        const value = ((e.clientX-container.current.getBoundingClientRect().left)/(container.current.clientWidth))
+        let event = e
+        if(e.changedTouches)
+        {
+            event = e.changedTouches[0]
+        }
+        const value = ((event.clientX-container.current.getBoundingClientRect().left)/(container.current.clientWidth))
         let valueRound = (Math.round(value*100))
         if(valueRound < 1)
         {
@@ -40,7 +45,12 @@ function RangeSlider(props)
         {
             return mouseMoveFuncInNumberFormat(e)
         }
-        const value = ((e.clientX-container.current.getBoundingClientRect().left)/(container.current.clientWidth/2))
+        let event = e
+        if(e.changedTouches)
+        {
+            event = e.changedTouches[0]
+        }
+        const value = ((event.clientX-container.current.getBoundingClientRect().left)/(container.current.clientWidth/2))
         let valueRound = (Math.round(value*100)/100)
         if(valueRound < 0)
         {
@@ -58,11 +68,14 @@ function RangeSlider(props)
     {
         setShowLabel(false)
         window.removeEventListener('mousemove',mouseMoveFunc)
+        window.removeEventListener('touchmove',mouseMoveFunc)
     }
 
     const containerClicked = (e) =>
     {
         setShowLabel(true)
+        window.addEventListener('touchmove',mouseMoveFunc)
+        window.addEventListener('touchend',setSolidPosition)
         window.addEventListener('mousemove',mouseMoveFunc)
         window.addEventListener('mouseup',setSolidPosition)
     }
@@ -70,8 +83,10 @@ function RangeSlider(props)
     useEffect(()=>{
         return ()=>{
             setShowLabel(false)
+            window.removeEventListener('touchmove',mouseMoveFunc)
             window.removeEventListener('mousemove',mouseMoveFunc)
             window.removeEventListener('mouseup',setSolidPosition)
+            window.removeEventListener('touchend',setSolidPosition)
         }
     },[])
 
@@ -94,7 +109,7 @@ function RangeSlider(props)
 
     return(
         <>
-        <div className={`${styles.container} range`} ref={container} onMouseDown={containerClicked} onClick={mouseMoveFunc}>
+        <div className={`${styles.container} range`} ref={container} onMouseDown={containerClicked} onTouchStart={containerClicked} onClick={mouseMoveFunc}>
             <div className={`${styles.fill} range`} style={{'width':`${width}%`}}></div>
             <div className={`${styles.ball} range`} style={{'left':`${width}%`}}>
                 <div className={`range ${styles.label} ${showLabel?styles.showLabel:''}`}>{props.numberFormat?width:calcWidth()}{props.numberFormat?"":'%'}</div>
