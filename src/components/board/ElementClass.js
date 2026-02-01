@@ -119,17 +119,17 @@ class ElementClass
         const [translateX,translateY,scale] = this.getTranslate()
         const left = (mouseEvent.pageX-translateX)/scale/5000*100
         const top = (mouseEvent.pageY-translateY)/scale/5000*100
-        if(left > 0 + ref.clientWidth/1.9/5000*100 && left < 100-ref.clientWidth/1.9/5000*100)
+        if(left > 0 + ref.clientWidth/5000*100 && left < 100-ref.clientWidth/5000*100)
         {
             e.style.left = `${left}%`
+            this.left = `${left}%`
         }
-        if(top > 0 + ref.clientHeight/1.9/5000*100 && top < 100-ref.clientHeight/1.9/5000*100)
+        if(top > 0 + ref.clientHeight/5000*100 && top < 100-ref.clientHeight/5000*100)
         {
             e.style.top = `${top}%`
-
+            this.top = `${top}%`
         }
-        
-        this.setPosition(left,top)
+
     }
 
     changePosition(e,board,movingLocked,ref)
