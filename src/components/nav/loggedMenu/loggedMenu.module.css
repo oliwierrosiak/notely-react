@@ -177,8 +177,8 @@
     .menu
     {
         border:.45rem solid #03A678;
-          border-radius: 1.8rem;
-          padding: 1.4rem 1.2rem;
+        border-radius: 1.8rem;
+        padding: 1.4rem 1.2rem;
     }
     .imgContainer2
     {
@@ -293,6 +293,10 @@
         .logoutBtn:hover
         {
             border: .35rem solid #F27405;
+        }
+        .container:hover>.imgContainer
+        {
+            border:.38rem solid #03A678;
         }
     }
     @media(max-width:768px)

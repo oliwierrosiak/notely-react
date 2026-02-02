@@ -704,4 +704,23 @@
             border: .7rem solid #03A678;
         }
     }
+    @media(max-width:768px)
+    {
+        .userImgContainer:hover
+        {
+            border: 1rem solid #03A678;
+        }
+        .resetBtn:hover
+        {
+            border: .8rem solid #03A678;
+        }
+        .logoutBtn:hover
+        {
+            border: .8rem solid #f7841f;
+        }
+        .deleteBtn:hover
+        {
+            border: .8rem solid rgb(255, 0, 0);
+        }
+    }
 }

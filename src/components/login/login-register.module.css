@@ -30,6 +30,7 @@
     text-shadow: -.15rem .15rem 0 #03A678;
     font-family: "Cause", cursive;
     cursor: default;
+    text-align: center;
 }
 .headerMargin
 {
