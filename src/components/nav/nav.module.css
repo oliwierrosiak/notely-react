@@ -167,6 +167,69 @@
         top:2rem;
     }
 }
+@media(max-width:450px)
+{
+    .nav
+    {
+        height: 50rem;
+        padding: .8rem 0;
+    }
+    .logo
+    {
+        top:50%;
+        left:50%;
+        translate: -50% 0;
+        width: 80vw;
+        padding: 0 0rem;
+    }
+    .loginMenu
+    {
+        top:3rem;
+        right: 0;
+        left: 0;
+        display: flex;
+        justify-content: center;
+        align-items: center;
+        box-shadow: none;
+        border-radius: 1rem;
+        gap:2rem;
+        background: none;
+    }
+    .line
+    {
+        width: .8rem;
+        border-radius: 10px;
+        height: 5.5rem;
+        z-index: 2;
+        background-color: rgb(100, 100, 100);
+    }
+    .loginMenuBtn
+    {
+        font-size: 3.5rem;
+        border-radius: 2.5rem;
+        padding: 1rem 2rem 1.5rem 2rem;
+        box-shadow: 0 0 3rem 2rem rgba(31, 31, 31, 0.744);
+        z-index: 1;
+    }
+    .loginBtn
+    {
+        border:.8rem solid #02735E;
+    }
+    .registerBtn
+    {
+        border:.8rem solid #02735E;
+    }
+
+    .loginLoading
+    {
+        position: absolute;
+        top:50%;
+        right:0;
+        translate: -50% 0;
+        width: 7rem;
+        height: 7rem;
+    }
+}
 @media (hover:hover) and (pointer:fine)
 {
     .registerBtn:hover,

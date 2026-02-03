@@ -269,6 +269,77 @@
         height: 3rem;
     }
 }
+@media(max-width:450px)
+{
+    .container
+    {
+        width: 10rem;
+        height: 10rem;
+        position: absolute;
+        top:50%;
+        right: 2rem;
+    }
+    .imgContainer
+    {
+        width: 10rem;
+        height: 10rem;
+        border:.8rem solid #02735E;
+    }
+    .imgContainer2
+    {
+        position: relative;
+        width: 16rem;
+        height: 16rem;
+        border:.8rem solid #03A678;
+    }
+    .menuContainer
+    {
+        top:0rem;
+        right: 0;
+        width: 50rem;
+        padding-top: 12rem;
+    }
+    .menu
+    {
+        border:.8rem solid #03A678;
+        border-radius: 3.5rem;
+        padding: 4rem 3rem;
+        box-shadow: 0 0 5rem 2rem black;
+    }
+    .name
+    {
+        font-size: 5rem;
+        margin-top: 2rem;
+    }
+    .profileSVG
+    {
+        width: 6rem;
+        height:6rem;
+        padding-top: .7rem;
+    }
+    .menuBtn
+    {
+        font-size: 4rem;
+        margin: 2.5rem 0;
+        border:.8rem solid #03A678;
+        border-radius: 2.5rem;
+        padding: 1rem;
+    }
+    
+    .logoutBtn
+    {
+        border-radius: 2.5rem;
+        border: .8rem solid #d96704;
+        gap:1rem;
+        font-size: 3.8rem;
+        padding: .8rem;
+    }
+    .logoutIcon
+    {
+        width: 4.5rem;
+        height: 4.5rem;
+    }
+}
 @media (hover:hover) and (pointer:fine)
 {
     .container:hover>.menuContainer

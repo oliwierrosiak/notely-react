@@ -174,10 +174,35 @@
 }
 @media(max-width:450px)
 {
-    .main
+    .overlay
     {
-         background-image: none;
-        background-color: green;
+        background-color: #2a2f27aa;
+        backdrop-filter: blur(3px);
+    }
+    .menu
+    {
+        gap:5rem;
+        top:55%;
+    }
+    .menuBtn
+    {
+        font-size: 5rem;
+        border: 1.4rem solid #03A678;
+        border-radius: 4rem;
+        width: 80vw;
+        height: auto;
+        padding: 3rem 2rem 2rem 2rem;
+    }
+    .menuBtn>p
+    {
+        position: static;
+        top: 0%;
+        left:0%;
+        translate: 0% 0%;
+    }
+    .buttonHover
+    {
+        border-radius:2.5rem;
     }
 
 }
@@ -202,6 +227,14 @@
         }
     }
     @media (max-width:768px)
+    {
+        .menuBtn:hover
+        {
+            transform: translate(0,-1.5rem);
+            box-shadow: 0 1.5rem .2rem 0rem #1c1f1ac6;
+        }
+    }
+    @media(max-width:450px)
     {
         .menuBtn:hover
         {
