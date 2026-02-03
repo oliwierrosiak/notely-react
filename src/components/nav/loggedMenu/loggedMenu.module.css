@@ -297,12 +297,12 @@
         top:0rem;
         right: 0;
         width: 50rem;
-        padding-top: 12rem;
+        padding-top: 13rem;
     }
     .menu
     {
-        border:.8rem solid #03A678;
-        border-radius: 3.5rem;
+        border:1rem solid #03A678;
+        border-radius: 4rem;
         padding: 4rem 3rem;
         box-shadow: 0 0 5rem 2rem black;
     }
@@ -325,7 +325,7 @@
         border-radius: 2.5rem;
         padding: 1rem;
     }
-    
+
     .logoutBtn
     {
         border-radius: 2.5rem;

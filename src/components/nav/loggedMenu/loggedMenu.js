@@ -26,7 +26,14 @@ function LoggedMenu(props)
 
     const windowTouchStart = (e) =>
     {
-        if(!e.target.closest(`.${styles.container}`))
+        if(e.target.closest(`.${styles.container}`))
+        {
+            if(!e.target.closest(`.${styles.menuContainer}`))
+            {
+                setDisplayMenu(prev=>!prev)
+            }
+        }
+        else
         {
             setDisplayMenu(false)
         }
@@ -43,7 +50,7 @@ function LoggedMenu(props)
     },[])
 
     return(
-        <div className={styles.container} onTouchStart={e=>setDisplayMenu(!displayMenu)}>
+        <div className={styles.container}>
 
             <div className={`${styles.menuContainer} ${displayMenu?styles.displayMenu:''}`}>
                 <div className={styles.menu}>
