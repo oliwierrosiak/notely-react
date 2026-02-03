@@ -115,7 +115,7 @@ function ResetPassword()
     return(
             <main className={styles.main}>
 
-                <img src={logo} className={styles.logo}/>
+                <img src={logo} className={styles.logo} onClick={e=>navigate('/')}/>
 
                 <ResetPasswordIcon class={styles.backgroundSVG}/>
 
