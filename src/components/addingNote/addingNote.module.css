@@ -596,6 +596,161 @@
         margin-top: 6rem;
     }
 }
+@media(max-width:450px)
+{
+    .overlay
+    {
+        background-color: #252525a9;
+    }
+    .container
+    {
+        padding: 3rem 3rem 5rem 3rem;
+        border-radius: 5rem;
+        width: 92vw;
+
+        border:1rem solid #03A678;
+    }
+    .containerWidth{
+        width: 92vw;
+    }
+    .back
+    {
+        top:5rem;
+        left:3rem;
+        width: 5rem;
+        height: 5rem;
+    }
+    .header
+    {
+        font-size: 6.5rem;
+        padding: 0 3rem;
+        margin-bottom: 4rem;
+        text-shadow: -.5rem .3rem 0 #03A678;
+    }
+    .inputContainer{
+        margin:0;
+    }
+    .visibilityContainer
+    {
+        gap:3rem 2rem;
+        margin: 4rem 0 5rem 0;
+    }
+    .visibilityHeader
+    {
+        font-size: 5rem;
+        gap:1.2rem;
+    }
+    .info
+    {
+        width: 3.8rem;
+        height: 3.8rem;
+        font-size: 2.5rem;
+        border:.5rem solid white;
+    }
+    .explanationContainer
+    {
+        left:-40rem;
+        top:7rem;
+        width: 83vw;
+        justify-content: center;
+    }
+    .infoContainer
+    {
+        width: 75vw;
+        padding: 1.2rem;
+        border-radius: 3rem;
+        border:.8rem solid #03A678;
+        font-size: 2.8rem;
+        box-shadow: 0 0 2rem 1rem rgba(0, 0, 0, 0.597);
+    }
+    .visibilityBtn
+    {
+        font-size: 4.2rem;
+        padding: .8rem 2.5rem 1.1rem 2.5rem;
+        border-radius: 2.5rem;
+    }
+    .passwordContainer
+    {
+        gap:4rem 1.5rem;
+        width: 100%;
+        margin-bottom: 3rem;
+    }
+    .checkbox
+    {
+        width: 4.5rem;
+        height: 4.5rem;
+        border-radius: 1.8rem;
+        border: .7rem solid rgb(105, 105, 105);
+    }
+    .checkboxChecked
+    {
+        border: .7rem solid #03A678;
+    }
+    .checkboxDescription
+    {
+        font-size: 2.9rem;
+        font-weight: 700;
+    }
+    .create
+    {
+        font-size: 4.5rem;
+        border-radius: 3rem;
+        border: 1rem solid #03A678;
+        padding: 2rem .8rem 2.5rem .8rem;
+        margin-top: 3rem;
+    }
+    .inputContainerDisabled
+    {
+        border:.9rem solid rgb(103, 103, 103) !important;
+    }
+    .btnLoading
+    {
+        border: 1rem solid rgb(48, 48, 48) !important;
+    }
+    .error
+    {
+        font-size: 4rem;
+    }
+    .code
+    {
+        font-size: 9rem;
+        text-shadow: none;
+        color: #F27405;
+        margin-bottom: 3rem;
+    }
+    .copyLinkBtn
+    {
+        width: auto;
+        font-size: 5rem;
+        border-radius: 2.5rem;
+        padding: .6rem 5rem 1.2rem 5rem;
+
+    }
+    .copySuccessInfo
+    {
+        top:-9.5rem;
+        font-size: 3.8rem;
+        padding: .6rem 2.5rem 1rem 2.5rem;
+        border-radius: 2rem;
+        box-shadow: 0 0 3rem 1rem rgba(0, 0, 0, 0.523);
+    }
+    .triangle
+    {
+        bottom:-1.8rem;
+        border-right: 2rem solid transparent;
+        border-left: 2rem solid transparent; 
+        border-top:2rem solid #F27405; 
+    }
+    .joinBtn
+    {
+        width: 100%;
+        font-size: 4.2rem;
+        border-radius: 3rem;
+        border: 1rem solid #03A678;
+        padding: 2rem .8rem 2.5rem .8rem;
+        margin-top: 7rem;
+    }
+}
 @media (hover:hover) and (pointer:fine)
 {
     .back:hover>.backSVG

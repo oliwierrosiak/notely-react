@@ -332,13 +332,13 @@
 {
  .overlay
     {
-        background-color: #3232328a;
+        background-color: #252525a9;
     }
     .container
     {
         padding: 3rem 3rem 5rem 3rem;
         border-radius: 5rem;
-        width: 95vw;
+        width: 92vw;
     }
     .back
     {
@@ -384,7 +384,7 @@
     }
     .checkboxDescription
     {
-        font-size: 3.2rem;
+        font-size: 2.9rem;
         font-weight: 700;
     }
     .inputContainerDisabled
