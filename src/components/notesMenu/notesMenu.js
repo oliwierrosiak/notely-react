@@ -16,7 +16,7 @@ import logo from '../../assets/img/notely.png'
 function NotesMenu(props)
 {
     const [loading,setLoading] = useState(true)
-    const [error,setError] = useState(1)
+    const [error,setError] = useState(false)
     const [visited,setVisited] = useState()
     const [myNotes,setMyNotes] = useState()
 

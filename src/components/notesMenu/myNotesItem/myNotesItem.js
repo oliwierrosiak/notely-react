@@ -1,4 +1,4 @@
-import { useContext, useState } from 'react'
+import { useContext, useEffect, useState } from 'react'
 import styles from './myNotes.module.css'
 import EditIcon from '../../../assets/svg/editIcon'
 import DeleteIcon from '../../../assets/svg/deleteIcon'
@@ -12,6 +12,7 @@ import UnauthorizedActionContext from '../../../context/unauthorizedActionContex
 function MyNotesItem(props)
 {
     const [showDeleteConfirm,setShowDeleteConfirm] = useState(false)
+    const [phoneDisplay,setPhoneDisplay] = useState(window.innerWidth<=450)
 
     const navigate = useNavigate()
 
@@ -52,6 +53,19 @@ function MyNotesItem(props)
         }
     }
 
+    const windowResize = (e) =>
+    {
+        setPhoneDisplay(window.innerWidth <= 450)
+    }
+
+    useEffect(()=>{
+        window.addEventListener('resize',windowResize)
+        return()=>
+        {
+            window.removeEventListener('resize',windowResize)
+        }
+    },[])
+
     return(
         <li className={styles.noteItem} onClick={liClicked}>
             <div className={`${styles.deleteConfirm} ${showDeleteConfirm?styles.deleteConfirmDisplay:''}`}>
@@ -62,8 +76,18 @@ function MyNotesItem(props)
                 </span>
             </div>
             <div className={styles.title}>{props.title}</div>
+            {phoneDisplay?
+            (props.visibility === "private"?null:<div className={styles.code}>{formatNoteCode(props.code)}</div>)
+            :
             <div className={styles.code}>{formatNoteCode(props.code)}</div>
+            }
+            
+            {phoneDisplay?
+            (props.visibility === "private"?<div className={`${styles.status} ${props.visibility === "private"?styles.privateStatus:''}`}>{transformStatus(props.visibility)}</div>:null)
+            :
             <div className={`${styles.status} ${props.visibility === "private"?styles.privateStatus:''}`}>{transformStatus(props.visibility)}</div>
+            }
+            
             <div className={styles.line}></div>
             <div className={styles.edit} onClick={e=>props.setDisplayNoteEdit(props)}>
                 <EditIcon class={styles.editSVG}/>

@@ -77,6 +77,24 @@
         font-size: 2.5rem;
     }
 }
+@media(max-width:450px)
+{
+    .container
+    {
+        gap:2rem;
+        border-radius: 3rem;
+        height: 9rem;
+    }
+    .title
+    {
+        font-size: 3.2rem;
+        max-width: 70%;
+    }
+    .code
+    {
+        font-size: 3.5rem;
+    }
+}
 @media (hover:hover) and (pointer:fine)
 {
     .container:hover
