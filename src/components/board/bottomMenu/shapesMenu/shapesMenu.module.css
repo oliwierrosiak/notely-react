@@ -74,6 +74,22 @@
         height: 5rem;
     }
 }
+@media(max-width:450px)
+{
+    .container
+    {
+        height: 35rem;
+        bottom: 9.5rem;
+        gap:1rem;
+        padding: 1.5rem;
+        border-radius: 2rem;
+    }
+    .item
+    {
+        width: 7rem;
+        height: 7rem;
+    }
+}
 @media(hover: hover) and (pointer: fine)
 {
     .item:hover>.svg

@@ -194,6 +194,50 @@
         font-size: 3.5rem;
     }
 }
+@media(max-width:450px)
+{
+    .container
+    {
+        height: 10rem;
+        padding: 1rem 2rem;
+        border-radius: 3rem;
+        gap:1.5rem;
+    }
+    .item
+    {
+        width: 6.5rem;
+        height: 6.5rem;
+        border-radius: 2.5rem;
+    }
+    .line
+    {
+        width:.8rem;
+        height: 65%;
+    }
+    .bgColorPreview
+    {
+        width: 4.5rem;
+        height:4.5rem;
+        border: .6rem solid rgb(65, 65, 65);
+    }
+    .itemRotate
+    {
+        width: 16rem;
+        height: 6.5rem;
+        border-radius: 2.5rem;
+        gap:.2rem;
+    }
+    .input
+    {
+        width: 7rem;
+        font-size: 4rem;
+    }
+    .degrees
+    {
+        width: 2.5rem;
+        font-size: 5rem;
+    }
+}
 @media(hover: hover) and (pointer: fine)
 {
     .itemRotate:hover
