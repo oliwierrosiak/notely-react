@@ -279,6 +279,19 @@
         top:50%;
         right: 2rem;
     }
+    .boardContainer
+    {
+        position: static;
+        top:0;
+        right: 0;
+        width: 8rem;
+        height: 8rem;
+    }
+    .boardContainer>.imgContainer
+    {
+        width: 8rem;
+        height: 8rem;
+    }
     .imgContainer
     {
         width: 10rem;

@@ -330,8 +330,92 @@
     {
         bottom: 10rem;
     }
+}
+@media(max-width:450px)
+{
+    .projectName
+    {
+        left:1.5rem;
+        translate: 0 0;
+        top:10.5rem;
+        width: 30rem;
+        padding: 0;
+        font-size: 4.2rem;
+        text-align: start;
+    }
+    .code
+    {
+        top:16.5rem;
+        translate: 0 0;
+        left:1.5rem;
+        font-size: 3rem;
+    }
+    .logo
+    {
+        top:2rem;
+        width: 30rem;
+    }
+    .dragElement
+    {
+        border-radius: 5rem;
+        border:1rem dashed #2A2F27;
+    }
+    .dragDropIcon
+    {
+        width: 12rem;
+        height: 12rem;
+    }
 
-    
+
+    .globalLoading
+    {
+        width: 5rem;
+        height: 5rem;
+        bottom: 2.5rem;
+        right: 1rem;
+    }
+
+
+    .loadingError
+    {
+        gap:2rem;
+    }
+    .errorLoadingIcon
+    {
+        width: 18rem;
+        height: 18rem;
+    }
+    .loadingError>h2
+    {
+        font-size: 4rem;
+        margin-bottom: 2rem;
+    }
+    .loadingError>button
+    {
+        font-size: 3.5rem;
+        border:1rem solid rgb(112, 112, 112);
+        padding: 1rem 3rem 1.2rem 3rem;
+        border-radius: 3rem;
+    }
+    .loggedMenu
+    {
+        right: 1.5rem;
+        top:1.5rem;
+        width: 8rem;
+        height: 8rem;
+    }
+
+
+    .messageContainer
+    {
+        bottom: 10rem;
+        right: 1rem;
+        gap:1.2rem;
+    }
+    .adjustBottom
+    {
+        bottom: 10rem;
+    }
 }
 @media(hover:hover) and (pointer: fine)
 {

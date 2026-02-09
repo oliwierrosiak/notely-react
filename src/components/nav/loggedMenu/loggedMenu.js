@@ -50,7 +50,7 @@ function LoggedMenu(props)
     },[])
 
     return(
-        <div className={styles.container}>
+        <div className={`${styles.container} ${props.boardStyle?styles.boardContainer:''}`}>
 
             <div className={`${styles.menuContainer} ${displayMenu?styles.displayMenu:''}`}>
                 <div className={styles.menu}>

@@ -858,7 +858,7 @@ function Board()
             <BoardUsers users={noteUsers}/>
 
             <div className={styles.loggedMenu}>
-                <LoggedMenu />
+                <LoggedMenu boardStyle={true}/>
             </div>
 
             {displayLoading && <div className={`${styles.loading} ${!loading?styles.loadingHide:''}`}>
