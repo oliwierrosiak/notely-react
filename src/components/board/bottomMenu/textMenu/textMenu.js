@@ -8,11 +8,14 @@ import AlignCenterIcon from '../../../../assets/svg/alignCenterIcon'
 import AlignJustifyIcon from '../../../../assets/svg/alignJustifyIcon'
 import AlignLeftIcon from '../../../../assets/svg/alignLeftIcon'
 import AlignRightIcon from '../../../../assets/svg/alignRightIcon'
+import FontFamilyIcon from '../../../../assets/svg/fontFamilyIcon'
 
 function TextMenu(props)
 {
 
     const availableFontFamily = [{class:'fontArial',text:'Arial'},{class:'fontCentury',text:"Century Gothic"},{class:'fontCourier',text:'Courier New'},{class:'fontGothic',text:'Gothic Light'},{class:'fontGeorgia',text:'Georgia'},{class:'fontImpact',text:'Impact'},{class:'fontLucida',text:'Lucida Console'},{class:'fontLucidaSans',text:'Lucida Sans Unicode'},{class:'fontPalatino',text:'Palatino Linotype'},{class:'fontTahoma',text:'Tahoma'},{class:'fontRoman',text:'Times New Roman'},{class:'fontMS',text:'Trebuchet MS'},{class:'fontVerdana',text:'Verdana'}]
+
+    const [displayFontIcon,setDisplayFontIcon] = useState(window.innerWidth <= 450)
 
     const fontSizeSetter = () =>{
         if(props.element.class)
@@ -191,7 +194,7 @@ function TextMenu(props)
         {
             setShowBgColorMenu(false)
         }
-        if(!e.target.classList.contains(styles.fontFamilyItem) && !e.target.classList.contains(styles.fontFamilyHeader))
+        if(!e.target.classList.contains(styles.fontFamilyItem) && !e.target.classList.contains(styles.fontFamilyHeader) && !e.target.closest('svg')?.classList.contains(styles.fontFamilyIcon))
         {
             setShowFontFamilyMenu(false)
         }
@@ -266,11 +269,25 @@ function TextMenu(props)
         }
     },[props.display])
 
+    const windowResize = (e) =>
+    {
+        setDisplayFontIcon(window.innerWidth <= 450)
+    }
+
+    useEffect(()=>{
+        window.addEventListener("resize",windowResize)
+        return()=>
+        {
+            window.removeEventListener("resize",windowResize)
+        }
+    },[])
+
     return(
         <div className={`${styles.container} ${display?styles.display:''}`}>
 
             <div className={`${styles.menuItem} ${styles.fontFamilyItem}`} onClick={e=>setShowFontFamilyMenu(!showFontFamilyMenu)}>
-                <p className={`${styles.fontFamilyHeader} ${fontFamily.class}`} onClick={e=>setShowFontFamilyMenu(!showFontFamilyMenu)}>{fontFamily.text}</p>
+                {displayFontIcon?<FontFamilyIcon class={styles.fontFamilyIcon}/>:
+                <p className={`${styles.fontFamilyHeader} ${fontFamily.class}`}>{fontFamily.text}</p>}
                 {showFontFamilyMenu &&
                 <FontFamilyMenu fonts={availableFontFamily} changeFontFamily={changeFontFamily} fontFamily={fontFamily}/>}
             </div>
@@ -326,7 +343,7 @@ function TextMenu(props)
                 <div className={`${styles.colorPreview} ${bgColor}`} onClick={e=>setShowBgColorMenu(!showBgColorMenu)}></div>
 
                 {showBgColorMenu &&
-                <BgColorMenu item={props.element} changeBgColor={changeBgColor} color={bgColor}/>}
+                <BgColorMenu item={props.element} changeBgColor={changeBgColor} color={bgColor} center={displayFontIcon}/>}
             </div>
 
             <div className={styles.line}></div>

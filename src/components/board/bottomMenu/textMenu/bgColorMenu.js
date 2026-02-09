@@ -37,7 +37,7 @@ function BgColorMenu(props)
     }
 
     return(
-        <div className={styles.bgColorContainer}>
+        <div className={`${styles.bgColorContainer} ${props.center?styles.centerBgColorContainer:''}`}>
             <div className={`${styles.bgColorMenuItem} bgRed6 ${props.color === "bgRed6"?styles.selectedBgColorItem:''}`} onClick={e=>colorClicked('bgRed6')}></div>
             <div className={`${styles.bgColorMenuItem} bgRed5 ${props.color === "bgRed5"?styles.selectedBgColorItem:''}`} onClick={e=>colorClicked('bgRed5')}></div>
             <div className={`${styles.bgColorMenuItem} bgRed4 ${props.color === "bgRed4"?styles.selectedBgColorItem:''}`} onClick={e=>colorClicked('bgRed4')}></div>

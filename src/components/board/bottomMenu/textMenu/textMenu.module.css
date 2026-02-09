@@ -258,6 +258,13 @@
     width: 100%;
     text-align: center;
 }
+.fontFamilyIcon
+{
+    width: 90%;
+    height: 90%;
+    padding-bottom: .5rem;
+    display: none;
+}
 @media (max-width:1200px) {
      .container
     {
@@ -478,78 +485,77 @@
 }
 @media(max-width:450px)
 {
-.container
-{
-    height: 6rem;
-    padding: .5rem 1rem;
-    border-radius: 1.8rem;
-    gap:1rem;
-}
-.menuItem
-{
-    width: 4.5rem;
-    height: 4.5rem;
-    border-radius: 1.8rem;
-}
-.boldItem
-{
-    font-size: 2.8rem;
-}
-.fontSizeItem
-{
-    font-size: 2.8rem;
-}
-.fontSizeMenu
-{
-    bottom: 6rem;
-    border-radius: 1rem;
-}
-.option
-{
-    padding: .4rem 0;
-    font-size: 2.2rem;
-}
-.italic
-{
-    font-size: 2.8rem;
-}
-.align
-{
-    position: relative;
-}
-.alignMenu
-{
-    bottom: 6rem;
-    border-radius: 1rem;
-}
-.alignItem
-{
-    width: 5rem;
-    height: 5rem;
-}
-.color
-{
-    font-size: 2.8rem;
-}
-.colorContainer
-{
-    bottom: 6rem;
-    left:-14rem;
-    height: 4rem;
-    border-radius: 1rem;
-}
-.colorItem
-{
-    width: 4rem;
-    height: 4rem;
-    font-size: 2.8rem;
-}
-.colorPreview
-{
-    width: 3rem;
-    height: 3rem;
-    border: .4rem solid rgb(65, 65, 65);
-}
+    .container
+    {
+        height: 10rem;
+        padding: 1rem 2rem;
+        border-radius: 3rem;
+    }
+    .menuItem
+    {
+        width: 6.5rem;
+        height: 6.5rem;
+        border-radius: 2.5rem;
+    }
+    .boldItem
+    {
+        font-size: 4rem;
+    }
+    .fontSizeItem
+    {
+        font-size: 3.5rem;
+    }
+    .fontSizeMenu
+    {
+        bottom: 9.5rem;
+        border-radius: 1.5rem;
+    }
+    .option
+    {
+        padding: .6rem 0;
+        font-size: 3rem;
+    }
+    .italic
+    {
+        font-size: 4rem;
+    }
+    .alignMenu
+    {
+        bottom: 9.5rem;
+        border-radius: 1.5rem;
+    }
+    .alignItem
+    {
+        width: 8rem;
+        height: 8rem;
+    }
+    .color
+    {
+        font-size: 4rem;
+    }
+    .colorContainer
+    {
+        bottom: 9.5rem;
+        left:-29rem;
+        height: 6rem;
+        border-radius: 1.5rem;
+    }
+    .colorItem
+    {
+        width: 6rem;
+        height:6rem;
+        font-size: 4rem;
+    }
+    .colorPreview
+    {
+        width: 4.8rem;
+        height: 4.8rem;
+        border: .6rem solid rgb(65, 65, 65);
+    }
+    .centerBgColorContainer
+    {
+        left:-35rem;
+    }
     .bgColorContainer
     {
         bottom: 9.5rem;
@@ -567,34 +573,31 @@
     {
         border: .8rem solid rgb(217, 217, 217) !important;
     }
-.deleteSVG
-{
-    width: 60%;
-    height: 60%;
-}
-.line
-{
-    width: .5rem;
-    height: 80%;
-}
-.fontFamilyItem
-{
-    width: 25rem;
-}
-.fontFamilyMenuContainer
-{
-    bottom: 6rem;
-    border-radius: 1.2rem;
-}
-.fontFamilyHeader
-{
-    font-size: 2.2rem;
-}
-.fontFamilyMenuItem
-{
-    padding: .5rem 0;
-    font-size: 2rem;
-}
+    .line
+    {
+        width: 1rem;
+        height: 70%;
+    }
+    .fontFamilyItem
+    {
+        width: 6.5rem;
+    }
+    .fontFamilyMenuContainer
+    {
+        bottom: 9.5rem;
+        border-radius: 1.5rem;
+        left:0;
+        right: -25rem;
+    }
+    .fontFamilyMenuItem
+    {
+        padding: 1rem 0;
+        font-size: 2.5rem;
+    }
+    .fontFamilyIcon
+    {
+        display: block;
+    }
 }
 @media(hover: hover) and (pointer: fine)
 {
