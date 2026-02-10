@@ -167,8 +167,8 @@
 {
     .container
     {
-        padding: 1rem 1.5rem;
-        border-radius: 2rem;
+        padding: 1.5rem 1.5rem;
+        border-radius: 2.5rem;
         gap:1rem;
     }
     .display
@@ -177,25 +177,26 @@
     }
     .input
     {
-        font-size: 1.8rem;
-        padding: .5rem .5rem .8rem .5rem;
-        border: .5rem solid rgb(117, 117, 117);
-        border-radius: 1.5rem;
+        font-size: 2.8rem;
+        max-width: 33vw;
+        padding: .3rem .5rem .5rem .5rem;
+        border: .6rem solid rgb(117, 117, 117);
+        border-radius: 2rem;
     }
     .input:focus
     {
-        border: .5rem solid rgb(146, 146, 146);
+        border: .6rem solid rgb(146, 146, 146);
     }
     .line
     {
         width:.6rem;
         margin:0;
-        height: 3rem;
+        height: 4rem;
     }
     .btn
     {
-        font-size: 2.2rem;
-        padding: .8rem 1.2rem;
+        font-size: 2.3rem;
+        padding: 1.2rem 1.2rem;
         border-radius: 1.5rem;
     }
     .inputError
