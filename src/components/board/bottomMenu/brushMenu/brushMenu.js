@@ -41,7 +41,7 @@ function BrushMenu(props)
 
     const setWidthPreviewSizes = () =>
     {
-        const value = 1.2 * (lineWidth / 100) + 0.7 * (mobileDisplayContext.mobileDisplay?1.5:1)
+        const value = 1.2 * (lineWidth / 100) + 0.7 * (mobileDisplayContext.mobileDisplay === "tablet"?1.5:mobileDisplayContext.mobileDisplay === "phone"?4:1)
         widthPreviewRef.current.style.width = `${value}rem`
         widthPreviewRef.current.style.height = `${value}rem`
     }

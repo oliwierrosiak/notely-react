@@ -239,6 +239,66 @@
         font-size: 1.8rem;
     }
 }
+@media(max-width:450px)
+{
+        .container
+    {
+        height:10rem;
+        padding: 1rem 2rem;
+        border-radius: 3rem;
+        gap:1.5rem;
+    }
+    .item
+    {
+        width: 6.5rem;
+        height: 6.5rem;
+        border-radius: 2.5rem;
+    }
+    .filterMenu
+    {
+        bottom: 9.5rem;
+        height: 8rem;
+        border-radius: 1.5rem;
+    }
+    .bgColorPreview
+    {
+        width: 4.5rem;
+        height: 4.5rem;
+        border: .6rem solid rgb(65, 65, 65);
+    }
+    .brushSvg
+    {   
+        width: 6.5rem;
+        height: 6.5rem;
+        margin-top: 0;
+        margin-left: 0;
+    }
+    .line
+    {
+        width: .8rem;
+        height: 65%;
+        margin: 0 0rem;
+    }
+    .arrow
+    {
+        width: 4.5rem;
+        height: 4.5rem;
+    }
+    .arrowRotated
+    {
+        width: 4.5rem;
+        height: 4.5rem;
+    }
+    .bottomArrow
+    {
+        width: 4.5rem;
+        height: 4.5rem;
+    }
+    .closeElement
+    {
+        font-size: 2.8rem;
+    }
+}
 @media(hover: hover) and (pointer: fine)
 {
     .item:hover
