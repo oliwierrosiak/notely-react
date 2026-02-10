@@ -66,13 +66,26 @@ function BottomMenu(props)
         {
             setShowShapesMenu(false)
         }
+        if(div && !div.classList.contains('addingImgForm') && !div.classList.contains(styles.imageItem))
+        {
+            props.setShowAddingImgForm(false)
+        }
+    }
+
+    const touchClick = (e)=>
+    {
+        if(e.target.classList.contains('canvas'))
+        {
+            windowClick(e)
+        }
     }
 
     useEffect(()=>{
         window.addEventListener('click',windowClick)
+        window.addEventListener('touchstart',touchClick)
         return()=>{
             window.removeEventListener("click",windowClick)
-            
+            window.removeEventListener('touchstart',touchClick)
         }
     },[])
 
@@ -84,7 +97,7 @@ function BottomMenu(props)
             <div className={styles.item} onClick={textClicked}>
                 <NoteIcon class={styles.icon} />
             </div>
-            <div className={styles.item} onClick={imgClicked}>
+            <div className={`${styles.item} ${styles.imageItem}`} onClick={imgClicked}>
                 <ImageIcon class={styles.icon} />
             </div>
 

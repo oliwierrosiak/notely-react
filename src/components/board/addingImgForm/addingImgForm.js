@@ -96,7 +96,7 @@ function AddingImgForm(props)
     }
 
     return(
-        <div className={`${styles.container} ${props.display ? styles.display:''}`}>
+        <div className={`${styles.container} ${props.display ? styles.display:''} addingImgForm`}>
             
             <input type='text' value={linkValue} onChange={e=>setLinkValue(e.target.value)} placeholder='Wprowadź link...' className={`${styles.input} ${linkError?styles.inputError:''}`} onFocus={inputFocused} onBlur={inputBlur}/>
             <button className={styles.btn} onClick={validLink}>Potwierdź</button>
