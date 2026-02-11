@@ -1,0 +1,45 @@
+.container
+{
+    width: 100%;
+    height: 100svh;
+    background-color: #014040;
+    display: flex;
+    flex-direction: column;
+    justify-content: center;
+    align-items: center;
+    gap:3rem;
+}
+.header
+{
+    font-size: 5rem;
+    color: white;
+    font-family: "Cause", cursive;
+    cursor: default;
+}
+.icon
+{
+   height: 48vh;
+}
+.btn
+{
+    font-size: 1.8rem;
+    outline: none;
+    border:.5rem solid #03A678;
+    background: #02735E;
+    color: white;
+    font-weight: 900;
+    padding: .8rem 1.5rem;
+    border-radius: 1.8rem;
+    cursor: pointer;
+    transition: background .3s ease;
+    font-family: "Jost", sans-serif;
+}
+.btn:hover
+{
+    background: #03A678;
+}
+.header::selection,
+.btn::selection
+{
+    background:none;
+}

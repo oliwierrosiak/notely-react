@@ -13,6 +13,7 @@ import ResetPassword from "./components/resetPassword/resetPassword";
 import { GoogleOAuthProvider } from "@react-oauth/google";
 import UnauthorizedActionContext from "./context/unauthorizedActionContext";
 import MobileDisplayContext from "./context/mobileDisplayContext";
+import Page404 from "./components/404/404";
 
 function App() {
 
@@ -98,6 +99,7 @@ function App() {
         <Route path="/note/:id" element={<Board />}/>
         <Route path='/profile/:id' element={<Profile />}/>
         <Route path='/passwordreset/:id' element={<ResetPassword />}/>
+        <Route path="*" element={<Page404 />}/>
       </Routes>
    </Router>
 
