@@ -21,7 +21,7 @@
 }
 .loginForm2
 {
-    gap:.3rem;
+    gap:.5rem;
 }
 .backToLoginMargin
 {
@@ -685,7 +685,7 @@
     }
     .loginForm2
     {
-        gap:2rem;
+        gap:1.5rem;
     }
     .loginBtnWithoutMargin
     {
