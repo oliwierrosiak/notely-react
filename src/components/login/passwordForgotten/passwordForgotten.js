@@ -72,6 +72,7 @@ function PasswordForgotten(props)
                     <div className={styles.placeholder}>Podaj swój adres email</div>
             </div>}
 
+            {!sent && <div className={`${styles.passwordForgotten} ${props.loading?styles.passwordForgottenWhileLoading:''} ${styles.backToLoginMargin}`} onClick={e=>displayLoginContext.setDisplayLogin('login')}>Powrót do Logowania</div>}
             <div className={styles.error2}>{error}</div>
             
             {sent?<button className={`${styles.loginBtn} ${styles.loginBtnWithoutMargin}`} type='button' onClick={e=>displayLoginContext.setDisplayLogin('')}>Wróc do strony głównej</button>

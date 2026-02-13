@@ -21,7 +21,15 @@
 }
 .loginForm2
 {
-    gap:1rem;
+    gap:.3rem;
+}
+.backToLoginMargin
+{
+    margin:0rem 0;
+}
+.passwordForgottenClearMargin
+{
+    margin-top: .5rem;
 }
 .header
 {
@@ -675,17 +683,21 @@
     {
         font-size: 3rem;
     }
-    .passwordForgottenClearMargin
-    {
-        margin: 0;
-    }
     .loginForm2
     {
-        gap:2.5rem;
+        gap:2rem;
     }
     .loginBtnWithoutMargin
     {
         margin: 0;
+    }
+    .backToLoginMargin
+    {
+        margin:2rem 0 0 0;
+    }
+    .passwordForgottenClearMargin
+    {
+        margin-top:1rem;
     }
 }
 @media(max-width:450px)
@@ -861,6 +873,18 @@
         font-size: 3rem;
         gap:5rem;
         margin-bottom: 2rem;
+    }
+    .loginForm2
+    {
+        gap:3rem;
+    }
+    .backToLoginMargin
+    {
+        margin:2rem 0 0 0;
+    }
+    .passwordForgottenClearMargin
+    {
+        margin-top: 0rem;
     }
 }
 @media (hover:hover) and (pointer:fine)
