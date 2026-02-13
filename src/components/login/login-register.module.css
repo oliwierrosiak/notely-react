@@ -96,6 +96,15 @@
     cursor: pointer;
     font-size: 1.7rem;
 }
+.input:-webkit-autofill,
+.input:-webkit-autofill:hover,
+.input:-webkit-autofill:focus
+{
+  -webkit-box-shadow: 0 0 0 1000px transparent inset !important;
+  -webkit-text-fill-color: white !important;
+  transition: background-color 9999s ease-out 0s;
+  caret-color: white !important;
+}
 .inputFocused
 {
     cursor: text;
