@@ -93,7 +93,7 @@ function DeletingAccountConfirm(props)
 
     return(
         <div className={styles.overlay} onClick={overlayClicked}>
-            <div className={styles.container}>
+            <form className={styles.container} onSubmit={e=>e.preventDefault()}>
 
                 <div className={`${styles.back} ${loading?styles.backWhileLoading:''}`} onClick={e=>!loading &&  props.setDisplay(false)}>
                 <ArrowIcon class={styles.backSVG}/>
@@ -107,7 +107,7 @@ function DeletingAccountConfirm(props)
                     <LoadingIcon class={styles.loading}/>
                 </div>:
                 <div className={styles.inputContainer} onClick={containerClicked}>
-                    <input ref={inputRef} onBlur={inputBlurred} onFocus={inputFocused} placeholder='Wprowadź hasło' value={password}
+                    <input autoComplete='off' ref={inputRef} onBlur={inputBlurred} onFocus={inputFocused} placeholder='Wprowadź hasło' value={password}
                     onChange={e=>setPassword(e.target.value)} type='password' className={styles.input}/>
                     <div className={styles.border}>
                         <div ref={borderFillRef} className={styles.borderFill}></div>
@@ -117,11 +117,11 @@ function DeletingAccountConfirm(props)
                 {error && <div className={styles.error}>{error}</div>}
 
                 <div className={styles.btnContainer}>
-                    <button onClick={cancelClicked} className={`${styles.btn} ${styles.cancel} ${loading?styles.btnLoading:''}`}>Anuluj</button>
-                    <button onClick={validate} className={`${styles.btn} ${styles.delete} ${loading?styles.btnLoading:''}`}>Usuń Konto</button>
+                    <button onClick={cancelClicked} type='button' className={`${styles.btn} ${styles.cancel} ${loading?styles.btnLoading:''}`}>Anuluj</button>
+                    <button onClick={validate} type='button' className={`${styles.btn} ${styles.delete} ${loading?styles.btnLoading:''}`}>Usuń Konto</button>
                 </div>
 
-            </div>
+            </form>
         </div>
     )
 }
