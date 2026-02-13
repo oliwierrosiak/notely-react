@@ -152,7 +152,29 @@ function JoinWithCode(props)
         }
     }
 
+    const setCursorBack = (e) =>
+    {
+        const inputs = [...document.querySelectorAll(`.${styles.input}`)]
+        const focused = document.activeElement
+        const idx = inputs.findIndex(x=>x === focused)
+        if(idx > 0)
+        {
+            if(e.target.value === '')
+            {
+                setTimeout(() => {
+                    inputs[idx].blur()
+                    inputs[idx-1].focus()
+                }, 20);
+            }
+                    
+        }
+    }
+
     const windowEvent = (e) =>{
+        if(e.key === 'Backspace')
+        {
+            setCursorBack(e)
+        }
         if(e.key === "Enter")
         {
             btnRef.current.click()
@@ -165,6 +187,20 @@ function JoinWithCode(props)
             window.removeEventListener('keydown',windowEvent)
         }
     },[])
+
+    const setCursorAtEnd = (e) =>
+    {
+        setTimeout(() => {
+            e.target.setSelectionRange(1,1)
+        }, 10);
+    }
+
+    const inputKeyDown = (e) =>
+    {
+        if (!/[0-9]/.test(e.key) && e.key !== 'Backspace') {
+            e.preventDefault();
+        }
+    }
 
     return(
         <article className={styles.overlay} onClick={overlayClicked}>
@@ -179,19 +215,19 @@ function JoinWithCode(props)
 
                 <div className={styles.codeContainer}>
 
-                    <input type='text' maxLength="1" inputMode='numeric' disabled={loading} className={`${styles.input} ${loading?styles.inputWhileLoading:''}`} value={code.code1} onChange={e=>{dispatch({type:'code1',value:e.target.value});e.target.value !== "" && focusNextElement(1)}}/>
+                    <input type='text' maxLength="1" inputMode='numeric' disabled={loading} className={`${styles.input} ${loading?styles.inputWhileLoading:''}`} onClick={setCursorAtEnd} value={code.code1} onKeyDown={inputKeyDown} onChange={e=>{dispatch({type:'code1',value:e.target.value});e.target.value !== "" && focusNextElement(1)}}/>
 
-                    <input type='text' disabled={loading} maxLength="1" inputMode='numeric' className={`${styles.input} ${loading?styles.inputWhileLoading:''}`} value={code.code2} onChange={e=>{dispatch({type:'code2',value:e.target.value});e.target.value !== "" && focusNextElement(2)}}/>
-
-                    <input type='text' disabled={loading} maxLength="1" inputMode='numeric' className={`${styles.input} ${loading?styles.inputWhileLoading:''}`} value={code.code3} onChange={e=>{dispatch({type:'code3',value:e.target.value});e.target.value !== "" && focusNextElement(3)}}/>
+                    <input type='text' disabled={loading} onClick={setCursorAtEnd} onKeyDown={inputKeyDown} maxLength="1" inputMode='numeric' className={`${styles.input} ${loading?styles.inputWhileLoading:''}`} value={code.code2} onChange={e=>{dispatch({type:'code2',value:e.target.value});e.target.value !== "" && focusNextElement(2)}}/>
+ 
+                    <input type='text' disabled={loading} onClick={setCursorAtEnd} onKeyDown={inputKeyDown} maxLength="1" inputMode='numeric' className={`${styles.input} ${loading?styles.inputWhileLoading:''}`} value={code.code3} onChange={e=>{dispatch({type:'code3',value:e.target.value});e.target.value !== "" && focusNextElement(3)}}/>
 
                     <div className={styles.dash}>-</div>
 
-                    <input type='text' disabled={loading} maxLength="1" inputMode='numeric' className={`${styles.input} ${loading?styles.inputWhileLoading:''}`} value={code.code4} onChange={e=>{dispatch({type:'code4',value:e.target.value});e.target.value !== "" && focusNextElement(4)}}/>
+                    <input type='text' disabled={loading} onClick={setCursorAtEnd} onKeyDown={inputKeyDown} maxLength="1" inputMode='numeric' className={`${styles.input} ${loading?styles.inputWhileLoading:''}`} value={code.code4} onChange={e=>{dispatch({type:'code4',value:e.target.value});e.target.value !== "" && focusNextElement(4)}}/>
 
-                    <input type='text' disabled={loading} maxLength="1" inputMode='numeric' className={`${styles.input} ${loading?styles.inputWhileLoading:''}`} value={code.code5} onChange={e=>{dispatch({type:'code5',value:e.target.value});e.target.value !== "" && focusNextElement(5)}}/>
+                    <input type='text' disabled={loading} onClick={setCursorAtEnd} onKeyDown={inputKeyDown} maxLength="1" inputMode='numeric' className={`${styles.input} ${loading?styles.inputWhileLoading:''}`} value={code.code5} onChange={e=>{dispatch({type:'code5',value:e.target.value});e.target.value !== "" && focusNextElement(5)}}/>
 
-                    <input type='text' disabled={loading} maxLength="1" inputMode='numeric' className={`${styles.input} ${loading?styles.inputWhileLoading:''}`} value={code.code6} onChange={e=>{dispatch({type:'code6',value:e.target.value});e.target.value !== "" && focusNextElement(6)}}/>
+                    <input type='text' disabled={loading} maxLength="1" inputMode='numeric' onKeyDown={inputKeyDown} className={`${styles.input} ${loading?styles.inputWhileLoading:''}`} value={code.code6} onClick={setCursorAtEnd} onChange={e=>{dispatch({type:'code6',value:e.target.value});e.target.value !== "" && focusNextElement(6)}}/>
                 </div>
 
                 {error && <div className={styles.error}>{error}</div>}
