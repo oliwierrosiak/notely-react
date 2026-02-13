@@ -1,7 +1,7 @@
-function CameraIcon(props)
+function CameraIcon()
 {
     return(
-        <svg fill="#fcfcfcff" width="60%" height="60%" version="1.1" id="Layer_1" viewBox="0 0 198.931 198.931">
+        <svg fill="#fcfcfcff" width="60%" height="60%" viewBox="0 0 198.931 198.931">
 <g>
 	<g>
 		<g>

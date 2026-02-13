@@ -176,7 +176,7 @@ function AddingNote(props)
 
 
                     <div className={`${inputStyles.inputContainer} ${loading?inputStyles.inputContainerWhileLoading:''} ${passwordEnabled?"":styles.inputContainerDisabled}`} onClick={divClicked}>
-                        <input autocomplete="off" autocapitalize="off" autocorrect="off" spellcheck="false" disabled={loading || !passwordEnabled} value={password} onChange={e=>setPassword(e.target.value)} type={showPassword?'text':'password'} onBlur={inputBlur} onFocus={inputFocused} className={`${inputStyles.input} ${inputStyles.passwordInput} ${!passwordEnabled?styles.passwordDisabled:''}`}></input>
+                        <input autoComplete="off" autoCapitalize="off" autoCorrect="off" spellCheck="false" disabled={loading || !passwordEnabled} value={password} onChange={e=>setPassword(e.target.value)} type={showPassword?'text':'password'} onBlur={inputBlur} onFocus={inputFocused} className={`${inputStyles.input} ${inputStyles.passwordInput} ${!passwordEnabled?styles.passwordDisabled:''}`}></input>
                         <div style={passwordEnabled?{}:{cursor:'default',color:'grey'}} className={`${inputStyles.placeholder} `}>Utwórz hasło</div>
                         <div className={`${inputStyles.eye} ${!passwordEnabled?styles.eyeDisabled:''}`} onClick={e=>!loading && passwordEnabled && setShowPassword(!showPassword)}>
                         {showPassword?<PasswordEye />:<PasswordEyeHidden />}
