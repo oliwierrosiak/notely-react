@@ -82,7 +82,8 @@ function EditNote(props)
         }
     }
 
-    const validate = () =>{
+    const validate = (e) =>{
+        e.preventDefault()
         setError('')
         if(title === '')
         {
@@ -100,8 +101,8 @@ function EditNote(props)
     }
 
     return(
-        <div className={styles.overlay} onClick={overlayClicked}>
-            <article className={styles.container}>
+        <article className={styles.overlay} onClick={overlayClicked}>
+            <form className={styles.container} onSubmit={validate}>
 
                 <div className={`${styles.back} ${loading?styles.backWhileLoading:''}`} onClick={e=>!loading && props.setDisplayNoteEdit(false)}>
                     <ArrowIcon class={styles.backSVG}/>
@@ -114,7 +115,7 @@ function EditNote(props)
                 </header>
 
                 <div className={`${inputStyles.inputContainer} ${styles.inputContainer} ${inputStyles.emailInputContainer} ${loading?inputStyles.inputContainerWhileLoading:''} ${props.note.visibility === "private"?styles.privateNoteMargin:''}`} onClick={divClicked}>
-                    <input ref={inputRef} disabled={loading} value={title} onChange={e=>setTitle(e.target.value)} type='text' onBlur={inputBlur} onFocus={inputFocused} className={inputStyles.input}></input>
+                    <input autoComplete='off' spellCheck='false' autoCorrect='off' ref={inputRef} disabled={loading} value={title} onChange={e=>setTitle(e.target.value)} type='text' onBlur={inputBlur} onFocus={inputFocused} className={inputStyles.input}></input>
                     <div className={inputStyles.placeholder}>Edytuj nazwę</div>
                 </div>
 
@@ -123,7 +124,7 @@ function EditNote(props)
                     <p onClick={e=>!loading && props.note.visibility !== "private" && setPasswordExist(!passwordExist)} className={styles.checkboxDescription}>Notatka zabezpieczona hasłem</p>
 
                     <div className={`${inputStyles.inputContainer} ${loading?inputStyles.inputContainerWhileLoading:''} ${passwordExist?"":styles.inputContainerDisabled}`} onClick={divClicked}>
-                        <input disabled={loading || !passwordExist} value={password} onChange={e=>setPassword(e.target.value)} type={showPassword?'text':'password'} onBlur={inputBlur} onFocus={inputFocused} className={`${inputStyles.input} ${inputStyles.passwordInput} ${!passwordExist?styles.passwordDisabled:''}`}></input>
+                        <input autoComplete='off' spellCheck='false' autoCorrect='off' disabled={loading || !passwordExist} value={password} onChange={e=>setPassword(e.target.value)} type={showPassword?'text':'password'} onBlur={inputBlur} onFocus={inputFocused} className={`${inputStyles.input} ${inputStyles.passwordInput} ${!passwordExist?styles.passwordDisabled:''}`}></input>
                         <div style={passwordExist?{}:{cursor:'default',color:'grey'}} className={`${inputStyles.placeholder} `}>Nowe hasło notatki</div>
                         <div className={`${inputStyles.eye} ${!passwordExist?styles.eyeDisabled:''}`} onClick={e=>!loading && passwordExist && setShowPassword(!showPassword)}>
                         {showPassword?<PasswordEye />:<PasswordEyeHidden />}
@@ -133,10 +134,10 @@ function EditNote(props)
 
                 {error && <div className={styles.error}>{error}</div>}
 
-                 <button ref={btnRef} onClick={validate} className={`${styles.edit} ${loading?styles.btnLoading:''}`}>{loading?<LoadingIcon class={inputStyles.loading} />:"Zapisz Edycję"}</button>
+                 <button ref={btnRef} className={`${styles.edit} ${loading?styles.btnLoading:''}`}>{loading?<LoadingIcon class={inputStyles.loading} />:"Zapisz Edycję"}</button>
 
-            </article>
-        </div>
+            </form>
+        </article>
     )
 }
 
