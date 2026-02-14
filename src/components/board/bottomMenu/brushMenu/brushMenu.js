@@ -47,11 +47,8 @@ function BrushMenu(props)
     }
 
     useEffect(()=>{
-        // if(brush.type)
-        // {
             changePencil({width:lineWidth})
             setWidthPreviewSizes()
-        // }
     },[lineWidth])
 
 
