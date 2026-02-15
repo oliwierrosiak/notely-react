@@ -35,9 +35,9 @@ function App() {
     }
     catch(ex)
     {
-      setAccessToken('')
-      sessionStorage.removeItem('refreshToken')
-      setLoginLoading(false)
+        setAccessToken('')
+        sessionStorage.removeItem('refreshToken')
+        setLoginLoading(false)
     }
   }
 

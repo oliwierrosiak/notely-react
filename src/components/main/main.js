@@ -18,6 +18,7 @@ function Main(props)
     const displayLoginContext = useContext(DisplayLoginContext)
 
     const [displayNotesMenu,setDisplayNotesMenu] = useState(false)
+    const [displayColdStartInfo,setDisplayColdStartInfo] = useState(false)
 
     const btnHovered = (target) =>{
         target === "1"?btn1HoverRef.current.classList.add(styles.buttonHoverDisplay):btn2HoverRef.current.classList.add(styles.buttonHoverDisplay)
@@ -104,6 +105,22 @@ function Main(props)
        
     }
 
+    const displayColdStartInfoTimeout = useRef()
+
+    useEffect(()=>{
+        if(loginContext.loginLoading)
+        {
+            displayColdStartInfoTimeout.current = setTimeout(()=>{
+                setDisplayColdStartInfo(true)
+            },2500)
+        }
+        else
+        {
+            clearTimeout(displayColdStartInfoTimeout.current)
+            setDisplayColdStartInfo(false)
+        }
+    },[loginContext.loginLoading])
+
     return(
         <main className={styles.main}>
             
@@ -127,6 +144,8 @@ function Main(props)
             </header>
 
             {loginContext.logged && <NotesMenu notesUpdater={props.notesUpdater} setDisplayPageRedirectionAnimation={props.setDisplayRedirectPageAnimation} setDisplayNoteEdit={props.setDisplayNoteEdit} display={displayNotesMenu} setDisplayNotesMenu={setDisplayNotesMenu}/>}
+
+            <h1 className={`${styles.coldStartServerInfo} ${displayColdStartInfo?styles.coldStartServerInfoDisplay:''}`}>Ładowanie zajmuje chwilę dłużej ze względu na start serwera. Prosimy o cieprliwość.</h1>
 
             </div>
 
