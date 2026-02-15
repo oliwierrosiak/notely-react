@@ -30,6 +30,10 @@ function Main(props)
 
     const codeClicked = (e) =>
     {
+        if(loginContext.loginLoading)
+        {
+            return  
+        }
         if(loginContext.logged)
         {
             props.setDisplayJoinWithCode(true)
@@ -42,6 +46,10 @@ function Main(props)
 
     const createClicked = (e) =>
     {
+        if(loginContext.loginLoading)
+        {
+            return  
+        }
         if(loginContext.logged)
         {
             props.setDisplayAddingNote(true)
