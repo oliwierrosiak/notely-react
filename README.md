@@ -61,7 +61,6 @@ Application cooperate with a REST API based on Node.
  - Create, edit and delete notes
  - Private notes support
  - Join notes via access code
- - Move and scale elements on the board
 
 🎨 Whiteboard Tools
 
@@ -69,6 +68,7 @@ Application cooperate with a REST API based on Node.
  - Text notes
  - Images and video support
  - Shapes support
+ - Move and scale elements on the board
 
 🤝 Real-time Collaboration
 
