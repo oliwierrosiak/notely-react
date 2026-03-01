@@ -42,7 +42,7 @@ The Notely App is available at [https://notelyboard.web.app](https://notelyboard
  - 🔌 Socket.IO
  - 📡 Axios
 
-## Api
+## 🧠 Backend API
 
 Application cooperate with a REST API based on Node.
 
