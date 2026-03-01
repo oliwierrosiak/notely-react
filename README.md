@@ -1,70 +1,96 @@
-# Getting Started with Create React App
+# 📝 Notely – Collaborative Whiteboard App
 
-This project was bootstrapped with [Create React App](https://github.com/facebook/create-react-app).
+Notely is a real-time collaborative whiteboard application built with React using Create React App.
 
-## Available Scripts
+The application allows users to create and collaborate on interactive notes with the ability to:
 
-In the project directory, you can run:
+    - Draw freely
+    - Add text notes
+    - Insert shapes
+    - Attach images and videos
 
-### `npm start`
+The app uses WebSockets technology to enable multiple users to work on the same note live — without refreshing the page.
 
-Runs the app in the development mode.\
-Open [http://localhost:3000](http://localhost:3000) to view it in your browser.
+## 🌍 Live DEMO
 
-The page will reload when you make changes.\
-You may also see any lint errors in the console.
+The Notely App is available at [https://notelyboard.web.app](https://notelyboard.web.app)
 
-### `npm test`
+## 📸 Screenshots
 
-Launches the test runner in the interactive watch mode.\
-See the section about [running tests](https://facebook.github.io/create-react-app/docs/running-tests) for more information.
+### 🏠 Home Page
 
-### `npm run build`
+![Home page](./screenshots/home.png)
+![Home logged page](./screenshots/homeLogged.png)
 
-Builds the app for production to the `build` folder.\
-It correctly bundles React in production mode and optimizes the build for the best performance.
+### 🔐 Login
 
-The build is minified and the filenames include the hashes.\
-Your app is ready to be deployed!
+![Login page](./screenshots/login.png)
 
-See the section about [deployment](https://facebook.github.io/create-react-app/docs/deployment) for more information.
+### 📝 Note example
 
-### `npm run eject`
+![Note example](./screenshots/note.png)
 
-**Note: this is a one-way operation. Once you `eject`, you can't go back!**
+### 👤 Profile Page
 
-If you aren't satisfied with the build tool and configuration choices, you can `eject` at any time. This command will remove the single build dependency from your project.
+![Profile page](./screenshots/profile.png)
 
-Instead, it will copy all the configuration files and the transitive dependencies (webpack, Babel, ESLint, etc) right into your project so you have full control over them. All of the commands except `eject` will still work, but they will point to the copied scripts so you can tweak them. At this point you're on your own.
+## 🛠️ Technologies used
 
-You don't have to ever use `eject`. The curated feature set is suitable for small and middle deployments, and you shouldn't feel obligated to use this feature. However we understand that this tool wouldn't be useful if you couldn't customize it when you are ready for it.
+ - ⚛️ React
+ - 🌐 React-router-dom
+ - 🎨 Fabric.js
+ - 🔌 Socket.IO
+ - 📡 Axios
 
-## Learn More
+## Api
 
-You can learn more in the [Create React App documentation](https://facebook.github.io/create-react-app/docs/getting-started).
+Application cooperate with a REST API based on Node.
 
-To learn React, check out the [React documentation](https://reactjs.org/).
+👉 Api repository: [https://github.com/oliwierrosiak/notely-node](https://github.com/oliwierrosiak/notely-node).
 
-### Code Splitting
+## ✨ Features
 
-This section has moved here: [https://facebook.github.io/create-react-app/docs/code-splitting](https://facebook.github.io/create-react-app/docs/code-splitting)
+🔐 Authentication
 
-### Analyzing the Bundle Size
+ - User registration and login
+ - JWT-based authorization
+ - Password-protected notes
 
-This section has moved here: [https://facebook.github.io/create-react-app/docs/analyzing-the-bundle-size](https://facebook.github.io/create-react-app/docs/analyzing-the-bundle-size)
+📝 Note Management
 
-### Making a Progressive Web App
+ - Create, edit and delete notes
+ - Private notes support
+ - Join notes via access code
+ - Move and scale elements on the board
 
-This section has moved here: [https://facebook.github.io/create-react-app/docs/making-a-progressive-web-app](https://facebook.github.io/create-react-app/docs/making-a-progressive-web-app)
+🎨 Whiteboard Tools
 
-### Advanced Configuration
+ - Free drawing
+ - Text notes
+ - Images and video support
+ - Shapes support
 
-This section has moved here: [https://facebook.github.io/create-react-app/docs/advanced-configuration](https://facebook.github.io/create-react-app/docs/advanced-configuration)
+🤝 Real-time Collaboration
 
-### Deployment
+ - Live collaboration via WebSockets
+ - Instant updates without page refresh
 
-This section has moved here: [https://facebook.github.io/create-react-app/docs/deployment](https://facebook.github.io/create-react-app/docs/deployment)
+📱 UX
 
-### `npm run build` fails to minify
+ - Responsive design
+ - User profile editing
 
-This section has moved here: [https://facebook.github.io/create-react-app/docs/troubleshooting#npm-run-build-fails-to-minify](https://facebook.github.io/create-react-app/docs/troubleshooting#npm-run-build-fails-to-minify)
+## Local installation
+
+```bash
+git clone https://github.com/oliwierrosiak/notely-react.git
+
+cd nazwa-projektu
+
+npm install
+
+npm start
+```
+
+### App will be available at http://localhost:3000
+
