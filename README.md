@@ -85,7 +85,7 @@ Application cooperate with a REST API based on Node.
 ```bash
 git clone https://github.com/oliwierrosiak/notely-react.git
 
-cd nazwa-projektu
+cd notely-react
 
 npm install
 
