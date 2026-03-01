@@ -4,10 +4,10 @@ Notely is a real-time collaborative whiteboard application built with React usin
 
 The application allows users to create and collaborate on interactive notes with the ability to:
 
-    - Draw freely
-    - Add text notes
-    - Insert shapes
-    - Attach images and videos
+- Draw freely
+- Add text notes
+- Insert shapes
+- Attach images and videos
 
 The app uses WebSockets technology to enable multiple users to work on the same note live — without refreshing the page.
 
